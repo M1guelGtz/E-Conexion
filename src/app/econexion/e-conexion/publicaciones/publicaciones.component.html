@@ -1,4 +1,7 @@
-<div class="space-y-6 h-screen  left-60 flex flex-col absolute top-32 items-center p-5">
+<h1 class="w-full bg-transparent p-2 text-center">
+  <span class="block p-2 rounded-xl bg-[#61A146]" > Publicaciones </span>
+</h1>
+<div class="space-y-6 h-[90%]  overflow-hidden overflow-y-scroll flex flex-col items-center p-5">
     <div *ngFor="let publicacion of publicaciones" class="bg-white 80 shadow-lg flex-col flex justify-between rounded-xl p-4 border w-4/5">
         <div class="w-full flex pb-2 justify-between">
             <h1 class="px-5">{{publicacion.titulo}}</h1>
