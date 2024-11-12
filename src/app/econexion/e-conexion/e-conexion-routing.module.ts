@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChatComponent } from './chat/chat.component';
 import { EventosComponent } from './eventos/eventos.component';
-import { ForosComponent } from './foros/foros.component';
-import { PublicacionesComponent } from './publicaciones/publicaciones.component';
 import { RedComponent } from './red/red.component';
+import { PublicacionesComponent } from './publicaciones-module/publicaciones/publicaciones.component';
+import { ForosComponent } from './foros-module/foros/foros.component';
 
 const routes: Routes = [
   {
-    
     path:'red', 
     component: RedComponent,
     children: [
@@ -26,9 +26,14 @@ const routes: Routes = [
       {
         path: 'foros',
         component: ForosComponent
+      },
+      {
+        path: "chats",
+        component: ChatComponent
       }
     ]
-  }
+  },
+  
 ];
 
 @NgModule({
