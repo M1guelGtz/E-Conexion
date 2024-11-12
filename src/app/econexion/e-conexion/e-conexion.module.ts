@@ -1,27 +1,29 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
+import { ChatComponent } from './chat/chat.component';
 import { EConexionRoutingModule } from './e-conexion-routing.module';
-import { NavComponent } from './nav/nav.component';
-import { PublicacionesComponent } from './publicaciones/publicaciones.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { EventosComponent } from './eventos/eventos.component';
-import { ForosComponent } from './foros/foros.component';
+import { NavComponent } from './nav/nav.component';
+import { PublicacionesModuleModule } from './publicaciones-module/publicaciones-module.module';
 import { RedComponent } from './red/red.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ForosModuleModule } from './foros-module/foros-module.module';
 
 
 @NgModule({
   declarations: [
     NavComponent,
-    PublicacionesComponent,
     SidebarComponent,
     EventosComponent,
-    ForosComponent,
-    RedComponent
+    RedComponent,
+    ChatComponent
   ],
   imports: [
     CommonModule,
-    EConexionRoutingModule
+    EConexionRoutingModule,
+    PublicacionesModuleModule,
+    ForosModuleModule
   ]
 })
 export class EConexionModule { }
