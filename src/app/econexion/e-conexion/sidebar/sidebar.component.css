@@ -1,0 +1,11 @@
+.activado > img{
+    border-color: white ;
+}
+.activado{
+    /* aqui van los estilos del boton activo*/
+    
+}
+.buton:hover > img{
+    filter: invert(100%);
+    border-color: white;
+}
