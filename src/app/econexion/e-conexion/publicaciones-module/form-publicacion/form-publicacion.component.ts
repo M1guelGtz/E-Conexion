@@ -1,6 +1,6 @@
-import { Component,ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { PublicacionesService } from '../../../../servicios/publicaciones.service';
 @Component({
   selector: 'app-form-publicacion',
   templateUrl: './form-publicacion.component.html',
@@ -11,7 +11,7 @@ export class FormPublicacionComponent {
   selectedFile: string | null = null;
   fileError: string | null = null;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private publicacionesService: PublicacionesService) {}
 
   triggerFileInput(): void {
     this.fileInput.nativeElement.click();
@@ -38,13 +38,20 @@ export class FormPublicacionComponent {
     }
   }
 
-  publicar(): void {
+  publicar(titulo: string, descripcion: string): void {
+    const nuevaPublicacion = {
+      titulo: titulo,
+      usuario: 'Usuario Actual',
+      fecha: this.publicacionesService.getCurrentDate(),
+      imagen: this.selectedFile,
+      descripcion: descripcion
+    };
 
+    this.publicacionesService.agregarPublicacion(nuevaPublicacion);
     this.router.navigate(['red/publicaciones']);
   }
 
   cancelar(): void {
-   
     this.router.navigate(['red/publicaciones']);
   }
 }
