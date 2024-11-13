@@ -1,30 +1,29 @@
-<div class="  h-full w-[86vw] flex justify-center items-center">
-  <div class="w-3/4 mx-auto bg-gray-50 p-6 rounded-lg shadow-md">
+<div class="h-full flex justify-center w-[calc((100vw)-14rem)] p-5 items-center">
+  <div class="p-5 flex w-1/2 h-full flex-col rounded-lg">
     <h1 class="text-2xl font-semibold text-green-600 mb-4 text-center">Crear Publicación</h1>
   
-    <div class="mb-4">
+    <div class="">
       <label for="titulo" class="block text-left text-green-600 mb-2">Título:</label>
       <input id="titulo" type="text" #tituloInput placeholder="Ingrese el título aquí"
              class="w-full border border-green-600 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-300" />
     </div>
   
-    <div class="mb-4">
+    <div class="">
       <label for="descripcion" class="block text-left text-green-600 mb-2">Descripción:</label>
-      <textarea id="descripcion" rows="4" #descripcionInput placeholder="Escriba la descripción aquí"
-                class="w-full border border-green-600 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-300"></textarea>
+      <textarea id="descripcion" rows="4" #descripcionInput placeholder="Escriba la descripción aquí"class="w-full border border-green-600 h-20 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-300"></textarea>
     </div>
   
-    <div class="mb-6">
+    <div class="">
       <label class="block text-green-600 mb-2">Añadir imagen <span class="text-sm">(solo PNG o JPG)</span></label>
-      <div (click)="triggerFileInput()" class="border-dashed border-2 border-green-600 rounded-md p-4 text-center text-gray-500 cursor-pointer">
+      <div (click)="triggerFileInput()" class="border-dashed border-2 h-24 flex justify-center items-center border-green-600 rounded-md p-2 text-gray-500 cursor-pointer">
         <input type="file" #fileInput accept=".png, .jpg, .jpeg" class="hidden" (change)="onFileSelected($event)" />
         <span *ngIf="!selectedFile && !fileError">Haga clic aquí para seleccionar una imagen</span>
         <span *ngIf="fileError" class="text-red-500">{{ fileError }}</span>
-        <img *ngIf="selectedFile" [src]="selectedFile" alt="Imagen seleccionada" class="mx-auto mt-2 max-h-40" />
+        <img  *ngIf="selectedFile" [src]="selectedFile" alt="Imagen seleccionada" class="mx-auto object-cover content-center w-1/2 h-full" />
       </div>
     </div>
   
-    <div class="flex justify-between">
+    <div class="flex justify-between my-3">
       <button (click)="publicar(tituloInput.value, descripcionInput.value)" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700">
         Publicar
       </button>
@@ -33,5 +32,4 @@
       </button>
     </div>
   </div>
-  
 </div>
