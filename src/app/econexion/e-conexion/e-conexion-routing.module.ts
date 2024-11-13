@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EventosComponent } from './eventos/eventos.component';
+import { EventosComponent } from './eventos/eventos/eventos.component';
 import { ForosComponent } from './foros/foros.component';
-import { PublicacionesComponent } from './publicaciones/publicaciones.component';
 import { RedComponent } from './red/red.component';
+import { PublicacionesComponent } from './publicaciones/publicaciones/publicaciones.component';
+import { FormpublicacionComponent } from './publicaciones/formpublicacion/formpublicacion.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'foros',
         component: ForosComponent
+      },
+      {
+        path: 'publicaciones/formpublicacion',
+        component: FormpublicacionComponent
       }
     ]
   }
