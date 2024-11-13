@@ -1,0 +1,28 @@
+<div class="w-3/4 mx-auto bg-gray-50 p-6 rounded-lg shadow-md">
+    <h1 class="text-2xl font-semibold text-green-600 mb-4 text-center">crear publicación</h1>
+  
+    <div class="mb-4">
+      <label for="descripcion" class="block text-left text-green-600 mb-2">Descripción:</label>
+      <textarea id="descripcion" rows="4" placeholder="Escriba la descripción aquí"
+                class="w-full border border-green-600 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-300"></textarea>
+    </div>
+  
+    <div class="mb-6">
+      <label class="block text-green-600 mb-2">Añadir imagen <span class="text-sm">(solo PNG o JPG)</span></label>
+      <div (click)="triggerFileInput()" class="border-dashed border-2 border-green-600 rounded-md p-4 text-center text-gray-500 cursor-pointer">
+        <input type="file" #fileInput accept=".png, .jpg, .jpeg" class="hidden" (change)="onFileSelected($event)" />
+        <span *ngIf="!selectedFile && !fileError">Haga clic aquí para seleccionar una imagen</span>
+        <span *ngIf="fileError" class="text-red-500">{{ fileError }}</span>
+        <img *ngIf="selectedFile" [src]="selectedFile" alt="Imagen seleccionada" class="mx-auto mt-2 max-h-40" />
+      </div>
+    </div>
+  
+    <div class="flex justify-between">
+      <button (click)="publicar()" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700">
+        publicar
+      </button>
+      <button (click)="cancelar()" class="bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400">
+        Cancelar
+      </button>
+    </div>
+</div>

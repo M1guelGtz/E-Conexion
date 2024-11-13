@@ -1,0 +1,14 @@
+<div class="w-full flex pb-2 justify-between">
+    <h1 class="px-5">{{publicacion.titulo}}</h1>
+    <span class="text-sm text-gray-500">{{ publicacion.fecha }}</span>
+  </div>
+  <div class="border object-cover border-dashed border-green-800 flex justify-between rounded-xl ">
+    <div class="flex justify-between items-center w-3/5 p-5 flex-col ">
+      <span class=" w-full font-semibold text-green-800">Publicado por: {{publicacion.usuario}}</span>
+      <p class="text-gray-700 text-justify">{{ publicacion.descripcion }}</p>
+      <p></p>
+    </div>
+    <div class="w-2/5  flex-col flex items-end h-50">
+      <img [src]="publicacion.imagen" alt="Imagen de publicación" class="rounded-r-xl  w-full ">
+    </div>
+  </div>
