@@ -1,7 +1,12 @@
-<h1 class="bg-transparent p-2 text-center">
-  <span class="block p-2 rounded-xl bg-[#61A146]" > <a routerLink="formevento">Crear Evento</a>  Eventos  <a > Mis Eventos</a> </span>
-</h1> 
-<div class="mx-auto my-6 h-[79%] w-[86vw] overflow-hidden overflow-y-scroll">
-    <h1 class="text-2xl font-semibold text-green-600 text-center mb-4">Eventos</h1>
+<div class=" p-2 text-center flex justify-center w-full">
+  <div class="flex justify-between w-3/4 p-2 h-10 items-center text-white rounded-xl bg-[#61A146]" > 
+    <a routerLink="formeventos">Crear evento</a>  
+    <h1 class=" text-2xl ">Eventos</h1>
+    <a> Mis eventos</a>
+  </div>
+</div>
+<div class=" h-[85%] w-[calc((100vw)-13rem)]  flex flex-col items-center overflow-hidden overflow-y-scroll" id="scrollme">
+  <div class="w-3/4">
     <app-card-evento *ngFor="let evento of eventos" [evento]="evento"></app-card-evento>
+  </div>
   </div>

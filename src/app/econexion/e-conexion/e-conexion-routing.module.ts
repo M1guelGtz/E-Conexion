@@ -34,7 +34,7 @@ const routes: Routes = [
         component: FormPublicacionComponent
       },
       {
-        path: 'eventos/formevento',
+        path: 'eventos/formeventos',
         component: FormEventoComponent
       },
       {
