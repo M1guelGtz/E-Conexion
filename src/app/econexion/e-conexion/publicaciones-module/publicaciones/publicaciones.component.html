@@ -1,12 +1,11 @@
-<h1 class="w-full bg-transparent p-2 text-center">
-    <span class="block p-2 rounded-xl bg-[#61A146]" > <a routerLink="formpublicacion">Crear publicación</a>  
-      Publicaciones  
-      <a > Mis Publicaciones</a>
-    </span>
-
-  </h1>
-  <div class="space-y-6 h-[90%]  overflow-hidden overflow-y-scroll flex flex-col items-center p-5">
-      <div *ngFor="let publicacion of publicaciones" class="bg-white 80 shadow-lg flex-col flex justify-between rounded-xl p-4 border w-4/5">
-        <app-card-publicacion [publicacion]="publicacion"></app-card-publicacion>
-      </div>
-    </div>
+<h1 class="bg-transparent p-2 text-center w-[86vw]">
+  <span class="block p-2 rounded-xl bg-[#61A146]" > <a routerLink="formpublicacion">Crear publicación</a>  
+    Publicaciones  
+    <a> Mis Publicaciones</a>
+  </span>
+</h1>
+<div class="space-y-6 h-[90%] w-[86vw] overflow-hidden overflow-y-scroll flex flex-col items-center p-5">
+  <div *ngFor="let publicacion of publicaciones" class="bg-white 80 shadow-lg flex-col flex justify-between rounded-xl p-4 border w-4/5">
+    <app-card-publicacion [publicacion]="publicacion"></app-card-publicacion>
+  </div>
+</div>
