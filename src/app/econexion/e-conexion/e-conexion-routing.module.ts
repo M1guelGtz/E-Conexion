@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChatComponent } from './chat/chat.component';
 import { EventosComponent } from './eventos-module/eventos/eventos.component';
-import { RedComponent } from './red/red.component';
-import { PublicacionesComponent } from './publicaciones-module/publicaciones/publicaciones.component';
-import { ForosComponent } from './foros-module/foros/foros.component';
-import { FormPublicacionComponent } from './publicaciones-module/form-publicacion/form-publicacion.component';
 import { FormEventoComponent } from './eventos-module/form-evento/form-evento.component';
+import { ForosComponent } from './foros-module/foros/foros.component';
+import { MiPerfilComponent } from './perfil/mi-perfil/mi-perfil.component';
+import { FormPublicacionComponent } from './publicaciones-module/form-publicacion/form-publicacion.component';
+import { PublicacionesComponent } from './publicaciones-module/publicaciones/publicaciones.component';
+import { RedComponent } from './red/red.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,12 @@ const routes: Routes = [
       {
         path: "chats",
         component: ChatComponent
+      },{
+        path: '',
+        component: PublicacionesComponent
+      },{
+        path: "perfil",
+        component: MiPerfilComponent
       }
     ]
   },
