@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { PublicacionesService } from '../../../../servicios/publicaciones.service';
 
 @Component({
@@ -9,9 +10,10 @@ import { PublicacionesService } from '../../../../servicios/publicaciones.servic
 export class PublicacionesComponent implements OnInit {
   publicaciones: any[] = [];
 
-  constructor(private publicacionesService: PublicacionesService) {}
+  constructor(private publicacionesService: PublicacionesService, private title: Title) {}
 
   ngOnInit(): void {
     this.publicaciones = this.publicacionesService.getPublicaciones();
+    this.title.setTitle("Econexion | Publicaciones")
   }
 }

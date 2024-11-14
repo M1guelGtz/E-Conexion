@@ -1,11 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-eventos',
   templateUrl: './eventos.component.html',
   styleUrl: './eventos.component.css'
 })
-export class EventosComponent {
+export class EventosComponent implements OnInit {
+
+  constructor(private title: Title){}
+  ngOnInit(): void {
+    this.title.setTitle("Econexion | Eventos")
+  }
   eventos = [
     {
       id: 1,
@@ -24,4 +30,5 @@ export class EventosComponent {
       estatus: 'Disponible'
     }
   ];
+  
 }
