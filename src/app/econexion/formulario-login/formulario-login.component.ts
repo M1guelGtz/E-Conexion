@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './formulario-login.component.html',
   styleUrl: './formulario-login.component.css'
 })
-export class FormularioLoginComponent {
+export class FormularioLoginComponent{
 
   constructor(private _router: Router, private fb: FormBuilder){
     this.loginFormulario = this.fb.group({
@@ -14,6 +14,9 @@ export class FormularioLoginComponent {
       contra: ['']
     });
   }
+
+  
+
   alerta: boolean = false
   ojo:boolean=false
   password:string = "password"

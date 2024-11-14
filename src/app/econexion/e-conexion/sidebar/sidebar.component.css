@@ -1,8 +1,8 @@
 .activado > img{
-    border-color: white ;
+    filter: invert(100%);
 }
 .activado{
-    /* aqui van los estilos del boton activo*/
+    color: #61A146;
     
 }
 .buton:hover > img{

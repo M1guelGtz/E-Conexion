@@ -8,6 +8,8 @@ import { RedComponent } from './red/red.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ForosModuleModule } from './foros-module/foros-module.module';
 import { EventosModuleModule } from './eventos-module/eventos-module.module';
+import { ChatWhitUserComponent } from './chat-whit-user/chat-whit-user.component';
+import { PerfilModule } from './perfil/perfil.module';
 
 
 @NgModule({
@@ -15,14 +17,16 @@ import { EventosModuleModule } from './eventos-module/eventos-module.module';
     NavComponent,
     SidebarComponent,
     RedComponent,
-    ChatComponent
+    ChatComponent,
+    ChatWhitUserComponent
   ],
   imports: [
     CommonModule,
     EConexionRoutingModule,
     PublicacionesModuleModule,
     ForosModuleModule,
-    EventosModuleModule
+    EventosModuleModule,
+    PerfilModule
   ]
 })
 export class EConexionModule { }

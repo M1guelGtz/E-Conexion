@@ -1,12 +1,13 @@
-<div class=" p-2 text-center flex justify-center w-full">
-  <div class="flex justify-between w-3/4 p-2 h-10 items-center text-white rounded-xl bg-[#61A146]" > 
-    <a routerLink="formeventos">Crear evento</a>  
-    <h1 class=" text-2xl ">Eventos</h1>
-    <a> Mis eventos</a>
+<div class=" p-1 h-[10%] flex justify-center bg-transparent w-full">
+  <div class="flex justify-between px-2 w-3/5 items-center border border-dashed border-[#61A146] bg-white rounded-xl text-[#61A146]" > 
+    <a routerLink="formeventos">Crear Evento</a>  
+    <h1 class=" text-2xl ">EVENTOS</h1>
+    <a> Mis Eventos</a>
   </div>
 </div>
-<div class=" h-[85%] w-[calc((100vw)-13rem)]  flex flex-col items-center overflow-hidden overflow-y-scroll" id="scrollme">
-  <div class="w-3/4">
-    <app-card-evento *ngFor="let evento of eventos" [evento]="evento"></app-card-evento>
+
+<div class="space-y-6 h-[90%] overflow-hidden overflow-y-scroll flex flex-col items-center p-5" id="scrollme">
+  <div *ngFor="let evento of eventos" class="bg-white 80 shadow-lg flex-col flex justify-between rounded-xl p-4 border w-3/5">
+    <app-card-evento [evento]="evento"></app-card-evento>
   </div>
-  </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="w-full h-full cursor-pointer select-none"  (click)="irAlChat()">
+    <div class="flex w-full justify-between">
+        <span class="text-green-600 text-xl mx-5 ">{{chat.nombreChat}}</span>
+        <span class="text-sm"> {{chat.horaUltimoMsj}} </span>
+    </div>
+    <div class="flex w-full  justify-between">
+        <span class="text-black/70 text-sm mx-10"> {{chat.ultimoMsj}} </span>
+        <span class="bg-green-500 w-5 text-sm text-white h-5 flex justify-center items-center rounded-full"> {{chat.mensajesEspera}} </span>
+    </div>
+</div>

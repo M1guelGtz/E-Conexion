@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent {
 
+  seemenu: boolean = true
+  width : string = "w-full"
+  menu(){
+    this.seemenu = !this.seemenu
+    this.seemenu ? this.width = "w-full" : this.width = "w-5/12" 
+  }
 }
