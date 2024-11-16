@@ -11,5 +11,6 @@ import { SidebarService } from '../../../servicios/sidebar.service';
 export class RedComponent {
 
   constructor(public _servicio: SidebarService){}
+
   
 }

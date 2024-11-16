@@ -7,7 +7,6 @@ import { SidebarService } from '../../../servicios/sidebar.service';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-
   constructor(public _servicio: SidebarService){
     this.seemenu = _servicio.seemenu
     this.width = _servicio.width
