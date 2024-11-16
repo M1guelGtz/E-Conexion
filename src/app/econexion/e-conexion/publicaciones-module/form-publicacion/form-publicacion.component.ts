@@ -1,6 +1,7 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PublicacionesService } from '../../../../servicios/publicaciones.service';
+import { Publicacion } from '../../../../Interfaces/publicacion';
 @Component({
   selector: 'app-form-publicacion',
   templateUrl: './form-publicacion.component.html',
@@ -11,12 +12,12 @@ export class FormPublicacionComponent {
   selectedFile: string | null = null;
   fileError: string | null = null;
 
-  constructor(private router: Router, private publicacionesService: PublicacionesService) {}
+  constructor(private router: Router, private _service_publicaciones : PublicacionesService) {}
 
   triggerFileInput(): void {
     this.fileInput.nativeElement.click();
   }
-
+  
   onFileSelected(event: Event): void {
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files && fileInput.files[0]) {
@@ -39,15 +40,17 @@ export class FormPublicacionComponent {
   }
 
   publicar(titulo: string, descripcion: string): void {
-    const nuevaPublicacion = {
+    const nuevaPublicacion : Publicacion = {
       titulo: titulo,
-      usuario: 'Usuario Actual',
-      fecha: this.publicacionesService.getCurrentDate(),
+      id_publicaciones_usuario: 1,
+      fecha: this._service_publicaciones.getCurrentDate(),
       imagen: this.selectedFile,
-      descripcion: descripcion
+      descripcion: descripcion,
+      id_publicaciones: 0,
+      nombre_usuario:""
     };
 
-    this.publicacionesService.agregarPublicacion(nuevaPublicacion);
+    this._service_publicaciones.postPublicaciones(nuevaPublicacion);
     this.router.navigate(['red/publicaciones']);
   }
 

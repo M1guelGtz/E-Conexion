@@ -16,7 +16,8 @@ const routes: Routes = [
     children: [
       {
         path: 'publicaciones',
-        component: PublicacionesComponent
+        component: PublicacionesComponent,
+        data: {animation: 'HomePage'}
       },{
         path: '',
         redirectTo: '',
@@ -24,7 +25,8 @@ const routes: Routes = [
       },
       {
         path: 'eventos',
-        component: EventosComponent
+        component: EventosComponent,
+        data: {animation: 'AboutPage'}
       },
       {
         path: 'foros',
