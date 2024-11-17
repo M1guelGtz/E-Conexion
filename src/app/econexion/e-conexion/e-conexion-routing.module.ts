@@ -8,6 +8,7 @@ import { MiPerfilComponent } from './perfil/mi-perfil/mi-perfil.component';
 import { FormPublicacionComponent } from './publicaciones-module/form-publicacion/form-publicacion.component';
 import { PublicacionesComponent } from './publicaciones-module/publicaciones/publicaciones.component';
 import { RedComponent } from './red/red.component';
+import { EventosUsuarioComponent } from './eventos-module/eventos-usuario/eventos-usuario.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,12 @@ const routes: Routes = [
         path: 'publicaciones/formpublicacion',
         component: FormPublicacionComponent
       },
+      {
+      path: 'eventos/miseventos',
+      component:EventosUsuarioComponent
+    },
+    { path: 'eventos/form-evento/:id'
+      , component: FormEventoComponent },
       {
         path: 'eventos/formeventos',
         component: FormEventoComponent

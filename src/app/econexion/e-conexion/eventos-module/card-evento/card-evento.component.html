@@ -1,27 +1,28 @@
 <div class="border border-green-300 w-full rounded-lg p-4 mb-4 shadow-md bg-white">
-    <div class="flex justify-between">
-      <div>
-        <p class="text-green-600 font-medium">Evento: <span class="text-gray-800">{{ evento.nombre }}</span></p>
-        <p class="text-green-600 font-medium">Ubicación: <span class="text-gray-800">{{ evento.ubicacion }}</span></p>
-      </div>
-      <div class="text-right">
-        <p class="text-gray-500">Organizador: <span class="text-gray-800 font-medium">{{ evento.organizador }}</span></p>
-      </div>
+  <div class="flex justify-between">
+    <div>
+      <p class="text-green-600 font-medium">Evento: <span class="text-gray-800">{{ evento.nombre }}</span></p>
+      <p class="text-green-600 font-medium">Ubicación: <span class="text-gray-800">{{ evento.ubicacion }}</span></p>
+      <p class="text-green-600 font-medium">Fecha de inicio: <span class="text-gray-800">{{ evento.fecha_creacion | date: 'medium' }}</span></p>
+      <p class="text-green-600 font-medium">Fecha de término: <span class="text-gray-800">{{ evento.fecha_termino | date: 'medium' }}</span></p>
     </div>
-  
-    <div class="mt-4">
-      <label for="descripcion-{{ evento.id }}" class="text-green-600">Descripción:</label>
-      <textarea id="descripcion-{{ evento.id }}" rows="2" class="w-full border border-green-300 rounded-md p-2 mt-2" readonly>
-        {{ evento.descripcion }}
-      </textarea>
-    </div>
-  
-    <div class="flex justify-end mt-4">
-      <p class="mr-4 text-gray-600">Estatus</p>
-      <button [ngClass]="{'bg-green-600 text-white': evento.estatus === 'Disponible', 'bg-gray-400 text-white': evento.estatus === 'Terminado'}"
-              class="py-1 px-3 rounded-md">
-        {{ evento.estatus }}
-      </button>
+    <div class="text-right">
+      <p class="text-gray-500">Organizador: <span class="text-gray-800 font-medium">{{ evento.organizador }}</span></p>
     </div>
   </div>
-  
+
+  <div class="mt-4">
+    <label for="descripcion-{{ evento.id }}" class="text-green-600">Descripción:</label>
+    <textarea id="descripcion-{{ evento.id }}" rows="2" class="w-full border border-green-300 rounded-md p-2 mt-2" readonly>
+      {{ evento.descripcion }}
+    </textarea>
+  </div>
+
+  <div class="flex justify-end mt-4">
+    <p class="mr-4 text-gray-600">Estatus</p>
+    <button [ngClass]="{'bg-green-600 text-white': evento.estatus === 'Disponible', 'bg-gray-400 text-white': evento.estatus === 'Terminado'}"
+            class="py-1 px-3 rounded-md">
+      {{ evento.estatus }}
+    </button>
+  </div>
+</div>
