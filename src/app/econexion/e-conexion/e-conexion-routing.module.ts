@@ -6,6 +6,7 @@ import { FormEventoComponent } from './eventos-module/form-evento/form-evento.co
 import { ForosComponent } from './foros-module/foros/foros.component';
 import { MiPerfilComponent } from './perfil/mi-perfil/mi-perfil.component';
 import { FormPublicacionComponent } from './publicaciones-module/form-publicacion/form-publicacion.component';
+import { MisPublicacionesComponent } from './publicaciones-module/mis-publicaciones/mis-publicaciones.component';
 import { PublicacionesComponent } from './publicaciones-module/publicaciones/publicaciones.component';
 import { RedComponent } from './red/red.component';
 
@@ -34,6 +35,13 @@ const routes: Routes = [
       },
       {
         path: 'publicaciones/formpublicacion',
+        component: FormPublicacionComponent
+      },{
+        path: 'publicaciones/misPublicaciones',
+        component: MisPublicacionesComponent
+      },
+      {
+        path: "publicaciones/formpublicacion/:id",
         component: FormPublicacionComponent
       },
       {
