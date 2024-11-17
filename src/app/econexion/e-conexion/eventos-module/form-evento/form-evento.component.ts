@@ -37,13 +37,11 @@ export class FormEventoComponent implements OnInit {
     if (this.idEvento) {
       this.cargarEvento(this.idEvento);
       this.Accion= "Editar"
-
     }
     else {
       this.Accion = "Crear"
     }
   }
-
   cargarEvento(id: number): void {
     this.eventoService.obtenerEventoPorId(id).subscribe(
       (evento) => {
@@ -70,7 +68,6 @@ export class FormEventoComponent implements OnInit {
       const fechaFinal = new Date(`${formValues.fechaFinal}T${formValues.horaFinal}:00`);
       const now = new Date();
     const estatus = now < fechaInicio ? 'Programado' : (now >= fechaInicio && now <= fechaFinal ? 'Activo' : 'Terminado');
-
       const nuevoEvento: Eventos = {
         id_evento_usuario: 1,
         id_organizador: 1,

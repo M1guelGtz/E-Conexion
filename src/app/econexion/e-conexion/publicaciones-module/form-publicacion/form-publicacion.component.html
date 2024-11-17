@@ -1,16 +1,16 @@
-<div class="h-full flex justify-center w-[calc((100vw)-14rem)] p-5 items-center">
-  <div class="p-5 flex w-1/2 h-full flex-col rounded-lg">
-    <h1 class="text-2xl font-semibold text-green-600 mb-4 text-center">{{accion}} Publicación <span *ngIf="id">numero {{id}}</span> </h1>
+<div class="h-full flex justify-center w-full p-5 items-center">
+  <form [formGroup]="Publicacion" class="p-5 flex w-1/2 h-full flex-col rounded-lg">
+    <h1 class="text-2xl font-semibold text-green-600 mb-4 text-center">{{accion}} Publicación  </h1>
   
     <div class="">
       <label for="titulo" class="block text-left text-green-600 mb-2">Título:</label>
-      <input id="titulo" type="text" #tituloInput placeholder="Ingrese el título aquí"
+      <input formControlName="titulo" id="titulo" type="text" #tituloInput placeholder="Ingrese el título aquí"
              class="w-full border border-green-600 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-300" />
     </div>
   
     <div class="">
       <label for="descripcion" class="block text-left text-green-600 mb-2">Descripción:</label>
-      <textarea id="descripcion" rows="4" #descripcionInput placeholder="Escriba la descripción aquí"class="w-full border border-green-600 h-20 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-300"></textarea>
+      <textarea formControlName="descripcion" id="descripcion" rows="4" #descripcionInput placeholder="Escriba la descripción aquí"class="w-full border border-green-600 h-20 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-300"></textarea>
     </div>
   
     <div class="">
@@ -24,12 +24,10 @@
     </div>
   
     <div class="flex justify-between my-3">
-      <button (click)="publicar(tituloInput.value, descripcionInput.value)" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700">
-        Publicar
-      </button>
-      <button (click)="cancelar()" class="bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400">
+      <button (click)="cancelar()" class="border border-green-600 text-green-600 w-32 py-2 px-4 rounded-md hover:bg-green-100">
         Cancelar
       </button>
+      <button (click)="publicar()" class="bg-green-600 text-white py-2 w-32 px-4 rounded-md hover:bg-green-700">{{id ? "Guardar": "Publicar"}}</button>
     </div>
-  </div>
+  </form>
 </div>

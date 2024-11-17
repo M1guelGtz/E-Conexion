@@ -1,4 +1,5 @@
-<div *ngFor="let evento of eventoService.Eventos" class="border border-green-300 w-full rounded-lg p-4 mb-4 shadow-md bg-white">
+<div class="h-[100%]  flex flex-col items-center overflow-hidden overflow-y-scroll" id="scrollme">
+  <div *ngFor="let evento of eventoService.Eventos" class=" border-green-300 w-3/5 rounded-lg p-4 mb-4 shadow-md bg-white">
     <div class="flex justify-between">
       <div>
         <p class="text-green-600 font-medium">Evento: <span class="text-gray-800">{{ evento.nombre }}</span></p>
@@ -19,12 +20,12 @@
     </div>
   
     <div class="flex justify-end mt-4 space-x-2">
-      <button (click)="editarEvento(evento.id_eventos!)" class="bg-blue-600 text-white py-1 px-3 rounded-md hover:bg-blue-700">
+      <button (click)="editarEvento(evento.id_eventos!)" class="bg-green-600 text-white py-2 w-32 px-4 rounded-md hover:bg-green-700">
         Editar
       </button>
-      <button (click)="eliminarEvento(evento.id_eventos!)" class="bg-red-600 text-white py-1 px-3 rounded-md hover:bg-red-700">
+      <button (click)="eliminarEvento(evento.id_eventos!)" class="border border-green-600 text-green-600 w-32 py-2 px-4 rounded-md hover:bg-green-100"> 
         Eliminar
       </button>
     </div>
   </div>
-  
+</div>

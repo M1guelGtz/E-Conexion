@@ -23,7 +23,7 @@ export class PublicacionesService {
     return this._http.delete<Publicacion>(Backend_Api.Url+ "publicaciones/" + id)
   }
   updatePublicaciones(id : number, data: Publicacion): Observable<Publicacion>{
-    return this._http.put<Publicacion>(Backend_Api.Url + id, data)
+    return this._http.put<Publicacion>(Backend_Api.Url + "publicaciones/" + id, data)
   }
   getCurrentDate(): string {
     const today = new Date().toISOString();

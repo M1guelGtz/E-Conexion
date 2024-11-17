@@ -7,6 +7,7 @@ import { CardPublicacionComponent } from './card-publicacion/card-publicacion.co
 import { FormPublicacionComponent } from './form-publicacion/form-publicacion.component';
 import { MisPublicacionesComponent } from './mis-publicaciones/mis-publicaciones.component';
 import { CardMisPublicacionesComponent } from './card-mis-publicaciones/card-mis-publicaciones.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,11 +16,13 @@ import { CardMisPublicacionesComponent } from './card-mis-publicaciones/card-mis
     CardPublicacionComponent,
     FormPublicacionComponent,
     MisPublicacionesComponent,
-    CardMisPublicacionesComponent
+    CardMisPublicacionesComponent,
   ],
   imports: [
     CommonModule,
-    PublicacionesModuleRoutingModule
+    PublicacionesModuleRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PublicacionesModuleModule { }

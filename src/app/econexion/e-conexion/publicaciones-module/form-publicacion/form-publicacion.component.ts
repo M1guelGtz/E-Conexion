@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Publicacion } from '../../../../Interfaces/publicacion';
 import { PublicacionesService } from '../../../../servicios/publicaciones.service';
@@ -13,7 +14,13 @@ export class FormPublicacionComponent implements OnInit {
   fileError: string | null = null;
   accion: string = ""
   id: any;
-  constructor(private router: Router,private route:  ActivatedRoute, private _service_publicaciones : PublicacionesService) {}
+  Publicacion: FormGroup;
+  constructor(private fb: FormBuilder,private router: Router,private route:  ActivatedRoute, private _service_publicaciones : PublicacionesService) {
+    this.Publicacion = this.fb.group({
+      titulo: ['', Validators.required],
+      descripcion: ['', Validators.required],
+    });
+  }
 
   triggerFileInput(): void {
     this.fileInput.nativeElement.click();
@@ -24,6 +31,10 @@ export class FormPublicacionComponent implements OnInit {
       this.accion = "Editar"
       this._service_publicaciones.getPublicacionById(this.id).subscribe((data) => {
         console.log(data)
+        this.Publicacion.patchValue({
+          titulo: data.titulo,
+          descripcion: data.descripcion
+        })
       },
       (error) => {
         console.error(error);
@@ -54,17 +65,28 @@ export class FormPublicacionComponent implements OnInit {
     }
   }
 
-  publicar(titulo: string, descripcion: string): void {
+  publicar(): void {
+    
+    const formValues = this.Publicacion.value;
     console.log(this._service_publicaciones.getCurrentDate());
     const nuevaPublicacion : Publicacion = {
-      titulo: titulo,
+      titulo: formValues.titulo,
       id_publicaciones_usuario: 1,
       fecha: this._service_publicaciones.getCurrentDate(),
       imagen: "icons8-usuario-masculino-en-círculo-100.png",
-      descripcion: descripcion,
+      descripcion: formValues.descripcion,
       id_publicaciones: 0,
       nombre_usuario:"Miguel Angel  "
     };
+    if(this.id){
+      this._service_publicaciones.updatePublicaciones(this.id, nuevaPublicacion).subscribe((data) => {
+        console.log("editado con exito", data)
+        this.router.navigate(['red/publicaciones/misPublicaciones']);
+        },
+        (error) => {
+          console.error(error);
+        })
+    }else{
     this._service_publicaciones.postPublicaciones(nuevaPublicacion).subscribe(data => {
       console.log("publicacion agregada con los datos:",data)
     },
@@ -72,6 +94,7 @@ export class FormPublicacionComponent implements OnInit {
         console.error('Error al publicar:', error);
       });
     this.router.navigate(['red/publicaciones']);
+    }
   }
 
   cancelar(): void {

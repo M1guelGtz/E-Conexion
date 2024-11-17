@@ -17,8 +17,8 @@
     <img [src]="publicacion.imagen" alt="Imagen de publicación" class="rounded-r-xl w-full h-full object-cover">
   </div>
   <div class="p-5 w-2/5 h-[14rem] rounded-r-xl items-center text-white  duration-1000   flex flex-col justify-evenly" ngClass="" *ngIf="menu">
-    <button (click)="handleClickEditar()" class="w-full bg-[#61A146] p-2 rounded-lg">Editar</button>
-    <button (click)="eliminarPublicacion()" class="w-full bg-gray-500 p-2 rounded-lg" >Eliminar</button>
+    <button (click)="handleClickEditar()" class="bg-green-600 text-white py-2 w-32 px-4 rounded-md hover:bg-green-700">Editar</button>
+    <button (click)="eliminarPublicacion()" class="border border-green-600 text-green-600 w-32 py-2 px-4 rounded-md hover:bg-green-100">Eliminar</button>
   </div>
 </div>
   
