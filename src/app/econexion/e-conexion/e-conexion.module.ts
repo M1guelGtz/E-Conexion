@@ -10,6 +10,9 @@ import { PerfilModule } from './perfil/perfil.module';
 import { PublicacionesModuleModule } from './publicaciones-module/publicaciones-module.module';
 import { RedComponent } from './red/red.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ContactosComponent } from './contactos/contactos.component';
+import { ListChatsComponent } from './list-chats/list-chats.component';
+import { ContactoComponent } from './contacto/contacto.component';
 
 
 @NgModule({
@@ -19,6 +22,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     RedComponent,
     ChatComponent,
     ChatWhitUserComponent,
+    ContactosComponent,
+    ListChatsComponent,
+    ContactoComponent,
   ],
   imports: [
     CommonModule,

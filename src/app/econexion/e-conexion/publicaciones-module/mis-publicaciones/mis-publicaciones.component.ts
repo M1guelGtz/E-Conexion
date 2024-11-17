@@ -10,7 +10,7 @@ import { PublicacionesService } from '../../../../servicios/publicaciones.servic
 export class MisPublicacionesComponent implements OnInit {
   constructor(public _servicio_publicaciones: PublicacionesService, private title: Title){}
   
-  id_usuario: number = 1
+  id_usuario: number = 6
   ngOnInit(): void {
     this._servicio_publicaciones.getMisPublicaciones(this.id_usuario).subscribe( data => {
       this._servicio_publicaciones.publicaciones = data
