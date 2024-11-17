@@ -11,6 +11,7 @@ export class PublicacionesService {
   
   constructor(private _http: HttpClient) {}
 
+  publicaciones: Publicacion[] = []
 
   getPublicaciones(): Observable<Publicacion[]>{
     return this._http.get<Publicacion[]>(Backend_Api.Url + "publicaciones")
@@ -19,17 +20,21 @@ export class PublicacionesService {
     return this._http.post<Publicacion>(Backend_Api.Url + "publicaciones", data)
   }
   deletePublicaciones(id: number): Observable<Publicacion>{
-    return this._http.delete<Publicacion>(Backend_Api.Url + id)
+    return this._http.delete<Publicacion>(Backend_Api.Url+ "publicaciones/" + id)
   }
   updatePublicaciones(id : number, data: Publicacion): Observable<Publicacion>{
-    return this._http.put<Publicacion>(Backend_Api.Url + id, data)
+    return this._http.put<Publicacion>(Backend_Api.Url + "publicaciones/" + id, data)
   }
   getCurrentDate(): string {
-    const today = new Date();
-    const day = String(today.getDate()).padStart(2, '0');
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const year = today.getFullYear();
-    return `${day}/${month}/${year}`;
+    const today = new Date().toISOString();
+    console.log(today);
+    return String(today);
+  }
+  getMisPublicaciones(id : number): Observable<Publicacion[]>{
+    return this._http.get<Publicacion[]>(Backend_Api.Url + "publicaciones/" + id)
+  }
+  getPublicacionById(id: number): Observable<Publicacion>{
+    return this._http.get<Publicacion>(Backend_Api.Url + "publicaciones/publicacionById/" + id)
   }
 
 }
