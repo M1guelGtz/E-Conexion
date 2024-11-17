@@ -18,7 +18,7 @@ import { PerfilModule } from './perfil/perfil.module';
     SidebarComponent,
     RedComponent,
     ChatComponent,
-    ChatWhitUserComponent
+    ChatWhitUserComponent,
   ],
   imports: [
     CommonModule,
