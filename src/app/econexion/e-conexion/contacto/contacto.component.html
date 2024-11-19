@@ -1,0 +1,10 @@
+<div class="w-full h-full flex  select-none">
+    <div class="  flex w-1/2 justify-between items-center cursor-pointer" (click)="handleClickGoToChat()">
+        <span class="text-green-600 text-xl mx-5 ">{{chat.nombreChat}}</span>
+    </div>
+    <div class="flex w-6/12 justify-evenly m-2">
+        <button (click)="HandleClickEdit()" class="bg-green-600 text-white  w-32 p-1 rounded-md hover:bg-green-700">Editar</button>
+        <button (click)="handleClickDeleteChat()" class="border border-green-600 text-green-600 w-32 p-1 rounded-md hover:bg-green-100">Eliminar</button>
+    </div>
+</div>
+<button (click)="HandleClickAddContact()" class="absolute bottom-5 right-5 bg-green-600 text-white  w-40 p-2 rounded-md hover:bg-green-700">Agregar contacto</button>
