@@ -10,6 +10,8 @@ import { PerfilModule } from './perfil/perfil.module';
 import { PublicacionesModuleModule } from './publicaciones-module/publicaciones-module.module';
 import { RedComponent } from './red/red.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { DonacionesComponent } from './donaciones-modules/donaciones/donaciones.component';
+import { DonacionesModulesModule } from './donaciones-modules/donaciones-modules.module';
 import { ContactosComponent } from './contactos/contactos.component';
 import { ListChatsComponent } from './list-chats/list-chats.component';
 import { ContactoComponent } from './contacto/contacto.component';
@@ -22,6 +24,7 @@ import { ContactoComponent } from './contacto/contacto.component';
     RedComponent,
     ChatComponent,
     ChatWhitUserComponent,
+ 
     ContactosComponent,
     ListChatsComponent,
     ContactoComponent,
@@ -32,7 +35,8 @@ import { ContactoComponent } from './contacto/contacto.component';
     PublicacionesModuleModule,
     ForosModuleModule,
     EventosModuleModule,
-    PerfilModule
+    PerfilModule,
+    DonacionesModulesModule
   ]
 })
 export class EConexionModule { }
