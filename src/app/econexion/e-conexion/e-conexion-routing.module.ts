@@ -12,6 +12,8 @@ import { FormPublicacionComponent } from './publicaciones-module/form-publicacio
 import { MisPublicacionesComponent } from './publicaciones-module/mis-publicaciones/mis-publicaciones.component';
 import { PublicacionesComponent } from './publicaciones-module/publicaciones/publicaciones.component';
 import { RedComponent } from './red/red.component';
+import { DonacionesComponent } from './donaciones-modules/donaciones/donaciones.component';
+import { FormDonacionComponent } from './donaciones-modules/form-donacion/form-donacion.component';
 
 const routes: Routes = [
   {
@@ -46,6 +48,14 @@ const routes: Routes = [
       {
         path: "publicaciones/formpublicacion/:id",
         component: FormPublicacionComponent
+      },
+      {
+        path : "Donaciones",
+        component : DonacionesComponent
+      },
+      {
+      path :"Donaciones/donacionesform",
+      component : FormDonacionComponent
       },
       {
       path: 'eventos/miseventos',
