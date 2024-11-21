@@ -1,10 +1,14 @@
-<div class="p-4">
-    <div class=" h-[15%] flex justify-center bg-transparent p-5 w-full">
-        <div class="flex justify-between px-2 w-3/5 items-center border border-dashed border-[#61A146] bg-white rounded-xl text-[#61A146]" > 
+<div class=" h-[15%] flex justify-center bg-transparent p-5 w-full">
+  <div class="flex justify-between px-2 w-3/5 items-center border border-dashed border-[#61A146] bg-white rounded-xl text-[#61A146]" > 
           <a routerLink="donacionesform">Realizar Donación</a>  
           <h1 class=" text-2xl ">Mis donaciones</h1>
-        </div>
-      </div>
-    <app-card-donacion *ngFor="let donacion of donaciones" [donacion]="donacion"></app-card-donacion>
   </div>
+</div>
+  <div class="space-y-6  h-[85%] w-full overflow-hidden overflow-y-scroll flex flex-col items-center p-5" id="scrollme">
+    <div *ngFor="let donacion of donaciones" class="bg-white  shadow-lg rounded-xl p-4 border w-3/5">
+      <app-card-donacion [donacion]="donacion"></app-card-donacion>
+    </div>
+  </div>
+
+
   
