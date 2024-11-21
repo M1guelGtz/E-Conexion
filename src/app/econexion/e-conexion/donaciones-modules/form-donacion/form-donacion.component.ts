@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventosService } from '../../../../servicios/eventos.service';
 import { DonacionesService } from '../../../../servicios/donacion.service';
 import { Eventos } from '../../../../Interfaces/eventos';
@@ -14,11 +14,13 @@ export class FormDonacionComponent implements OnInit {
   donacionForm: FormGroup;
   eventosDisponibles: Eventos[] = [];
   estatusSeleccionado: string | undefined;
+  idDonacion: number | null = null;
 
   constructor(
     private fb: FormBuilder,
     private eventosService: EventosService,
     private donacionesService: DonacionesService,
+    private route: ActivatedRoute,
     private router: Router
   ) {
     this.donacionForm = this.fb.group({
@@ -29,7 +31,12 @@ export class FormDonacionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.idDonacion = Number(this.route.snapshot.paramMap.get('id'));
     this.obtenerEventos();
+
+    if (this.idDonacion) {
+      this.cargarDonacion(this.idDonacion);
+    }
   }
 
   obtenerEventos(): void {
@@ -49,11 +56,21 @@ export class FormDonacionComponent implements OnInit {
       : undefined;
   }
 
-  registrarDonacion(): void {
+  cargarDonacion(id: number): void {
+    this.donacionesService.obtenerDonacionesPorID(id).subscribe((donacion) => {
+      this.donacionForm.patchValue({
+        eventoId: donacion.id_evento,
+        cantidad: donacion.cantidad,
+        tipo_donacion: donacion.tipo_donacion,
+      });
+    });
+  }
+
+  guardarDonacion(): void {
     if (this.donacionForm.valid) {
       const formValues = this.donacionForm.value;
       const nuevaDonacion = {
-        id_donacion_usuario: 1, 
+        id_donacion_usuario: 1,
         id_evento: formValues.eventoId,
         cantidad: formValues.cantidad,
         tipo_donacion: formValues.tipo_donacion,
@@ -61,24 +78,22 @@ export class FormDonacionComponent implements OnInit {
         fecha: new Date().toISOString(),
       };
 
-      this.donacionesService.crearDonacion(nuevaDonacion).subscribe(
-        (response) => {
-          console.log('Donación registrada:', response);
-          this.router.navigate(['red/Donaciones']); 
-          console.log(nuevaDonacion);
-          
-        },
-        (error) => {
-          console.error('Error al registrar la donación:', error);
-          console.log(nuevaDonacion);
-          
-        }
-      );
+      if (this.idDonacion) {
+        this.donacionesService.actualizarDonacion(this.idDonacion, nuevaDonacion).subscribe(() => {
+            console.log('Donación actualizada con éxito');
+            this.router.navigate(['red/Donaciones']);
+          });
+      } else {
+        this.donacionesService.crearDonacion(nuevaDonacion).subscribe(() => {
+          console.log('Donación registrada con éxito');
+          this.router.navigate(['red/Donaciones']);
+        });
+      }
     }
   }
 
+
   cancelar(): void {
-    this.router.navigate(['red/Donaciones']); 
-    
+    this.router.navigate(['red/Donaciones']);
   }
 }

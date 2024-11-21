@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Backend_Api } from '../../environment/environment';
-import { Eventos } from '../Interfaces/eventos';
+import { Eventos, EventoPut} from '../Interfaces/eventos';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +29,8 @@ export class EventosService {
     return this.http.get<Eventos>(`${Backend_Api.Url}eventos/${idEvento}`);
   }
 
-  editarEvento(idEvento: number, evento: Eventos): Observable<Eventos> {
-    return this.http.put<Eventos>(`${Backend_Api.Url}eventos/${idEvento}`, evento);
+  editarEvento(idEvento: number, evento: EventoPut): Observable<any> {
+    return this.http.put<EventoPut>(`${Backend_Api.Url}eventos/${idEvento}`, evento);
   }
 
   eliminarEvento(idEvento: number): Observable<void> {
