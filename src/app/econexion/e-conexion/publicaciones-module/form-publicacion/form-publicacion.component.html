@@ -15,11 +15,9 @@
   
     <div class="">
       <label class="block text-green-600 mb-2">Añadir imagen <span class="text-sm">(solo PNG o JPG)</span></label>
-      <div (click)="triggerFileInput()" class="border-dashed border-2 h-24 flex justify-center items-center border-green-600 rounded-md p-2 text-gray-500 cursor-pointer">
-        <input type="file" #fileInput accept=".png, .jpg, .jpeg" class="hidden" (change)="onFileSelected($event)" />
-        <span *ngIf="!selectedFile && !fileError">Haga clic aquí para seleccionar una imagen</span>
-        <span *ngIf="fileError" class="text-red-500">{{ fileError }}</span>
-        <img  *ngIf="selectedFile" [src]="selectedFile" alt="Imagen seleccionada" class="mx-auto object-cover content-center w-1/2 h-full" />
+      <div  class="border-dashed border-2 h-24 flex justify-center items-center border-green-600 rounded-md p-2 text-gray-500 cursor-pointer">
+        <!-- Ejemplo de HTML -->
+        <input formControlName="imagen" type="file" (change)="onFileSelected($event)">
       </div>
     </div>
   
