@@ -1,51 +1,97 @@
-<div class="p-6 border border-green-500 rounded-lg shadow">
-  <h2 class="text-center text-green-600 mb-4">
-    {{ idDonacion ? 'Editar Donación' : 'Registrar Donación' }}
-  </h2>
-  <form [formGroup]="donacionForm" (ngSubmit)="guardarDonacion()">
-    <div class="mb-4">
-      <label for="eventoId" class="block text-green-600">Eventos disponibles</label>
+<div class="w-full h-full flex justify-center">
+
+  <div class="p-6 flex flex-col h-full justify-center w-1/2 ">
+    <h2 class="text-center text-green-600 mb-4">
+      {{ idDonacion ? 'Editar Donación' : 'Registrar Donación' }}
+    </h2>
+    <form [formGroup]="donacionForm" (ngSubmit)="guardarDonacion()">
+      <!-- Campo para seleccionar evento -->
+      <div class="mb-4">
+        <label for="eventoId" class="block text-green-600">Eventos disponibles</label>
       <select
         formControlName="eventoId"
         class="w-full border border-green-300 rounded p-2"
         (change)="onEventoChange($event)"
       >
-        <option *ngFor="let evento of eventosDisponibles" [value]="evento.id_eventos">
-          {{ evento.nombre }}
-        </option>
+      <option *ngFor="let evento of eventosDisponibles" [value]="evento.id_eventos">
+        {{ evento.nombre }}
+      </option>
       </select>
+      <!-- Mensaje de error para eventoId -->
+      <div
+      *ngIf="donacionForm.get('eventoId')?.touched && donacionForm.get('eventoId')?.hasError('required')"
+        class="text-red-500 text-sm mt-1"
+        >
+        Selecciona un evento válido.
+      </div>
+      <div
+      *ngIf="donacionForm.get('eventoId')?.hasError('eventoInvalido')"
+      class="text-red-500 text-sm mt-1"
+      >
+        El evento seleccionado no es válido.
+      </div>
     </div>
+
+    <!-- Campo para cantidad -->
     <div class="mb-4">
       <label for="cantidad" class="block text-green-600">Cantidad</label>
       <input
-        type="number"
-        formControlName="cantidad"
-        class="w-full border border-green-300 rounded p-2"
+      type="number"
+      formControlName="cantidad"
+      class="w-full border border-green-300 rounded p-2"
       />
+      <!-- Mensaje de error para cantidad -->
+      <div
+      *ngIf="donacionForm.get('cantidad')?.touched && donacionForm.get('cantidad')?.hasError('required')"
+      class="text-red-500 text-sm mt-1"
+      >
+        La cantidad es obligatoria.
+      </div>
+      <div
+      *ngIf="donacionForm.get('cantidad')?.hasError('min')"
+      class="text-red-500 text-sm mt-1"
+      >
+        La cantidad debe ser mayor a 0.
+      </div>
     </div>
+
+    <!-- Campo para tipo de donación -->
     <div class="mb-4">
       <label for="tipo" class="block text-green-600">Tipo</label>
       <input
-        type="text"
-        formControlName="tipo_donacion"
-        class="w-full border border-green-300 rounded p-2"
+      type="text"
+      formControlName="tipo_donacion"
+      class="w-full border border-green-300 rounded p-2"
       />
+      <!-- Mensaje de error para tipo_donacion -->
+      <div
+      *ngIf="donacionForm.get('tipo_donacion')?.touched && donacionForm.get('tipo_donacion')?.hasError('required')"
+      class="text-red-500 text-sm mt-1"
+      >
+        El tipo de donación es obligatorio.
+      </div>
     </div>
-    <div class="flex justify-between items-center">
+
+    <!-- Botones -->
+    <div class="flex justify-evenly items-center">
       <button
         type="submit"
-        class="bg-green-500 text-white rounded p-2"
+        class="bg-green-500 text-white rounded p-2 w-40"
         [disabled]="!donacionForm.valid"
       >
-        {{ idDonacion ? 'Actualizar' : 'Crear' }}
+      {{ idDonacion ? 'Actualizar' : 'Crear' }}
       </button>
       <button
-        type="button"
-        class="border border-green-500 text-green-500 rounded p-2"
-        (click)="cancelar()"
+      type="button"
+      class="border border-green-500 text-green-500 rounded p-2 w-40"
+      (click)="cancelar()"
       >
-        Cancelar
-      </button>
+      Cancelar
+    </button>
+  </div>
+    <div *ngIf="!donacionForm.valid && donacionForm.touched"class="text-red-500 text-center mt-4 " >Por favor corrige los errores antes de continuar.
     </div>
   </form>
+</div>
+
 </div>

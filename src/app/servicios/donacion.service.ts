@@ -22,8 +22,8 @@ export class DonacionesService {
     return this.http.post<Donacion>(this.apiUrl, donacion);
   }
 
-  actualizarDonacion(id: number, donacion: Donacion): Observable<Donacion> {
-    return this.http.put<Donacion>(`${this.apiUrl}${id}`, donacion);
+  actualizarDonacion(idDonacion: number, donacion: Donacion): Observable<Donacion> {
+    return this.http.put<Donacion>(`${this.apiUrl}${idDonacion}`, donacion);
   }
 
   eliminarDonacion(id: number): Observable<void> {
