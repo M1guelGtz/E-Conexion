@@ -1,6 +1,8 @@
 <div class="p-6 border border-green-500 rounded-lg shadow">
-  <h2 class="text-center text-green-600 mb-4">Registrar Donación</h2>
-  <form [formGroup]="donacionForm" (ngSubmit)="registrarDonacion()">
+  <h2 class="text-center text-green-600 mb-4">
+    {{ idDonacion ? 'Editar Donación' : 'Registrar Donación' }}
+  </h2>
+  <form [formGroup]="donacionForm" (ngSubmit)="guardarDonacion()">
     <div class="mb-4">
       <label for="eventoId" class="block text-green-600">Eventos disponibles</label>
       <select
@@ -29,13 +31,13 @@
         class="w-full border border-green-300 rounded p-2"
       />
     </div>
-    <div class="flex justify-between">
+    <div class="flex justify-between items-center">
       <button
         type="submit"
         class="bg-green-500 text-white rounded p-2"
         [disabled]="!donacionForm.valid"
       >
-        Crear
+        {{ idDonacion ? 'Actualizar' : 'Crear' }}
       </button>
       <button
         type="button"

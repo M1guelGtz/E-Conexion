@@ -15,6 +15,9 @@ export class DonacionesService {
   obtenerDonaciones(): Observable<Donacion[]> {
     return this.http.get<Donacion[]>(this.apiUrl);
   }
+  obtenerDonacionesPorID ( id : number ) : Observable < Donacion > {
+    return this.http.get< Donacion > ( this.apiUrl + id)
+  }
   crearDonacion(donacion: Donacion): Observable<Donacion> {
     return this.http.post<Donacion>(this.apiUrl, donacion);
   }
@@ -26,4 +29,10 @@ export class DonacionesService {
   eliminarDonacion(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}${id}`);
   }
+
+  /*editarEvento(idEvento: number, evento: Eventos): Observable<Eventos> {
+    return this.http.put<Eventos>(`${Backend_Api.Url}/eventos/${idEvento}`, evento);
+  }*/
+ 
 }
+
