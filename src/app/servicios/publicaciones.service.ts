@@ -16,13 +16,13 @@ export class PublicacionesService {
   getPublicaciones(): Observable<Publicacion[]>{
     return this._http.get<Publicacion[]>(Backend_Api.Url + "publicaciones")
   }
-  postPublicaciones(data: Publicacion): Observable<Publicacion>{
+  postPublicaciones(data: FormData): Observable<Publicacion>{
     return this._http.post<Publicacion>(Backend_Api.Url + "publicaciones", data)
   }
   deletePublicaciones(id: number): Observable<Publicacion>{
     return this._http.delete<Publicacion>(Backend_Api.Url+ "publicaciones/" + id)
   }
-  updatePublicaciones(id : number, data: Publicacion): Observable<Publicacion>{
+  updatePublicaciones(id : number, data: FormData): Observable<Publicacion>{
     return this._http.put<Publicacion>(Backend_Api.Url + "publicaciones/" + id, data)
   }
   getCurrentDate(): string {
