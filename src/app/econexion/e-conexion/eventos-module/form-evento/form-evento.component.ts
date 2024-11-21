@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventosService } from '../../../../servicios/eventos.service';
-import { Eventos } from '../../../../Interfaces/eventos';
+import { EventoPut, Eventos } from '../../../../Interfaces/eventos';
 
 @Component({
   selector: 'app-form-evento',
@@ -26,7 +26,8 @@ export class FormEventoComponent implements OnInit {
       horaInicio: ['', Validators.required],
       fechaFinal: ['', Validators.required],
       horaFinal: ['', Validators.required],
-      descripcion: ['', Validators.required]
+      descripcion: ['', Validators.required],
+      estatus_donacion :["", Validators.required]
     });
   }
  
@@ -62,40 +63,59 @@ export class FormEventoComponent implements OnInit {
   }
 
   crearEvento(): void {
+    
     if (this.eventoForm.valid) {
       const formValues = this.eventoForm.value;
       const fechaInicio = new Date(`${formValues.fechaInicio}T${formValues.horaInicio}:00`);
+      fechaInicio.setHours(fechaInicio.getHours() - 6);
       const fechaFinal = new Date(`${formValues.fechaFinal}T${formValues.horaFinal}:00`);
+      fechaFinal.setHours(fechaFinal.getHours() - 6);
       const now = new Date();
-    const estatus = now < fechaInicio ? 'Programado' : (now >= fechaInicio && now <= fechaFinal ? 'Activo' : 'Terminado');
-      const nuevoEvento: Eventos = {
-        id_evento_usuario: 1,
-        id_organizador: 1,
+      const estatus = now < fechaInicio ? 'Programado' : (now >= fechaInicio && now <= fechaFinal ? 'Activo' : 'Terminado');
+  
+      console.log(formValues.estatus_donacion);
+      
+      const eventoAPI : EventoPut = {
         id_donacion: null,
         descripcion: formValues.descripcion,
+        fecha_creacion: fechaInicio.toISOString(),
+        fecha_termino: fechaFinal.toISOString(),
         estatus: estatus,
         nombre: formValues.nombreEvento,
         ubicacion: formValues.ubicacion,
-        estatus_donacion: 'si',
+        estatus_donacion: formValues.estatus_donacion,
         estatus_donador: 'no',
-        fecha_creacion: fechaInicio.toISOString(),
-        fecha_termino: fechaFinal.toISOString(),
-        id_eventos: this.idEvento
       };
-
+  
       if (this.idEvento) {
-        console.log(nuevoEvento);
-        
-        this.eventoService.editarEvento(this.idEvento, nuevoEvento).subscribe(
+     
+        this.eventoService.editarEvento(this.idEvento, eventoAPI).subscribe(
           () => {
             console.log('Evento editado con éxito');
             this.router.navigate(['red/eventos/miseventos']);
           },
           (error) => {
             console.error('Error al editar el evento:', error);
+            console.log(eventoAPI);
           }
         );
       } else {
+       
+        const nuevoEvento : Eventos= {
+          id_donacion: null,
+          descripcion: formValues.descripcion,
+          fecha_creacion: fechaInicio.toISOString(),
+          fecha_termino: fechaFinal.toISOString(),
+          estatus: estatus,
+          nombre: formValues.nombreEvento,
+          ubicacion: formValues.ubicacion,
+          estatus_donacion: formValues.estatus_donacion,
+          estatus_donador: 'no',
+          id_evento_usuario: 1,
+          id_organizador: 1,
+          id_eventos : this.idEvento
+        };
+  
         this.eventoService.crearEvento(nuevoEvento).subscribe(
           (response) => {
             console.log('Evento creado con éxito:', response);
@@ -103,11 +123,14 @@ export class FormEventoComponent implements OnInit {
           },
           (error) => {
             console.error('Error al crear el evento:', error);
+            console.log(nuevoEvento);
+            
           }
         );
       }
     }
   }
+  
 
   cancelar(): void {
     this.Accion == "Crear" ? this.router.navigate(['red/eventos']): this.router.navigate(['red/eventos/miseventos'])
