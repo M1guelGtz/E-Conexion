@@ -13,6 +13,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContactosComponent } from './contactos/contactos.component';
 import { ListChatsComponent } from './list-chats/list-chats.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { DonacionesModulesModule } from './donaciones-modules/donaciones-modules.module';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ContactoComponent } from './contacto/contacto.component';
     PublicacionesModuleModule,
     ForosModuleModule,
     EventosModuleModule,
-    PerfilModule
+    PerfilModule,
+    DonacionesModulesModule
   ]
 })
 export class EConexionModule { }

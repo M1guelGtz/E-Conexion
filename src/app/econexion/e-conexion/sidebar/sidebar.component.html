@@ -1,7 +1,8 @@
 <div class="flex h-full w-full flex-col">
   <div class="flex w-full  flex-1">
-    <aside class="p-4 border-r bg-white border-solid border-green-500 duration-300 bg-transparent" [ngClass]="_servicio.width">
-        <div class="w-full flex justify-end translate-x-[1.9rem] ">
+    <aside class="p-4 border-r flex flex-col justify-between bg-white border-solid border-green-500 duration-300 bg-transparent" [ngClass]="_servicio.width">
+    <div>
+      <div class="w-full flex justify-end translate-x-[1.9rem] ">
           <div (click)="menu()" class="w-7 h-7 flex justify-center items-center object-fill cursor-pointer rounded-full border border-green-600 bg-white">
             <img *ngIf="_servicio.seemenu" src="icons8-cierre-de-sesión-redondeado-hacia-la-izquierda-24.png" alt="" class="w-full">
             <img *ngIf="!_servicio.seemenu" src="icons8-salir-redondeado-24.png" alt="" class="w-full">
@@ -31,7 +32,19 @@
             routerLink="foros" > 
               <img src="handshake.png" alt="handshake" class="w-[30px] border-white rounded border  h-[30px]">
           </a>
-      </nav>
+        </nav>
+      </div>
+      <div>
+        <a *ngIf="_servicio.seemenu" routerLink="Donaciones" routerLinkActive="activado scale-105 duration-500 border-[#61A146] text-[#61A146] bg-white shadow-lg activado shadow-black/50" 
+        class="flex buton items-center border bg-[#61A146]  text-white  p-2 rounded hover:bg-white  hover:border-[#61A146] hover:text-[#61A146]" > <img src="Donacion.png" 
+        alt="check" class="w-[30px] border-white mr-6 rounded border h-[30px]"> Donaciones </a>
+        <a *ngIf="!_servicio.seemenu"
+            routerLinkActive="activado scale-110 duration-500 border-[#61A146] bg-white shadow-xl activado shadow-black/50" 
+            class="flex  buton items-center justify-center border bg-[#61A146]  text-white  p-2 rounded hover:bg-white  hover:border-[#61A146] hover:text-[#61A146]" 
+            routerLink="Donaciones"> 
+              <img src="Donacion.png" alt="check" class="w-[30px] border-white  rounded border h-[30px]">
+          </a>
+      </div>
       </aside>
     </div>
   </div>
