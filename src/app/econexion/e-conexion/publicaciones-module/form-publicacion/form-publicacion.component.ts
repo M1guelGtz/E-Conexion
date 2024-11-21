@@ -62,7 +62,7 @@ export class FormPublicacionComponent implements OnInit {
         this.selectedFile = e.target.result;
       };
       reader.readAsDataURL(file);
-      console.log(reader.result);
+      console.log(reader);
       
     }
   }
