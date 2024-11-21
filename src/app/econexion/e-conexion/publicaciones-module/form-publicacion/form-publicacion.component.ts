@@ -13,12 +13,14 @@ export class FormPublicacionComponent implements OnInit {
   fileError: string | null = null;
   accion: string = ""
   id: any;
-  id_user = '6';
+  id_user = '1';
+  img = null
   Publicacion: FormGroup;
   constructor(private fb: FormBuilder,private router: Router,private route:  ActivatedRoute, private _service_publicaciones : PublicacionesService) {
     this.Publicacion = this.fb.group({
       titulo: ['', Validators.required],
       descripcion: ['', Validators.required],
+      imagen: [null, Validators.required],
     });
   }
 
@@ -33,7 +35,8 @@ export class FormPublicacionComponent implements OnInit {
         console.log(data)
         this.Publicacion.patchValue({
           titulo: data.titulo,
-          descripcion: data.descripcion
+          descripcion: data.descripcion,
+          imagen: data.imagen
         })
       },
       (error) => {
@@ -44,39 +47,48 @@ export class FormPublicacionComponent implements OnInit {
       this.accion = "Crear"
     }
   }
-  onFileSelected(event: Event): void {
+  /*onFileSelected(event: Event): void {
     const fileInput = event.target as HTMLInputElement;
     if (fileInput.files && fileInput.files[0]) {
       const file = fileInput.files[0];
       const validFormats = ['image/png', 'image/jpeg'];
-
       if (!validFormats.includes(file.type)) {
         this.fileError = 'Solo se permiten imágenes en formato PNG o JPG';
         this.selectedFile = null;
         return;
       }
-
       this.fileError = null;
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.selectedFile = e.target.result;
       };
       reader.readAsDataURL(file);
-      console.log(reader);
+      console.log(file);
+      console.log(reader.result);
+    }
+  }*/
+    onFileSelected(event: Event) {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files) {
       
+      const file = fileInput.files[0]; // Captura el primer archivo seleccionado
+      console.log("Nombre del archivo seleccionado: ", file.name);
+      file.arrayBuffer().then((buffer) => {
+        const blob = new Blob([buffer], { type: file.type });
+        this.formdata.append('file', blob, file.name);
+      })
+      console.log("Objeto imagen: ", file);
     }
   }
+  
   formdata = new FormData();
   publicar(): void {
     const formValues = this.Publicacion.value;
-    console.log(this._service_publicaciones.getCurrentDate());
+    console.log("imagen: ", formValues);
     this.formdata.append('titulo', formValues.titulo);
     this.formdata.append('descripcion', formValues.descripcion);
     this.formdata.append('id_publicaciones_usuario', this.id)
     this.formdata.append('fecha', this._service_publicaciones.getCurrentDate() )
-    if (this.selectedFile) {
-      this.formdata.append('imagen', this.selectedFile);
-    }
     this.formdata.append('id_publicaciones_usuario', this.id_user)
     if(this.id){
       this._service_publicaciones.updatePublicaciones(this.id, this.formdata).subscribe((data) => {
@@ -87,14 +99,16 @@ export class FormPublicacionComponent implements OnInit {
           console.error(error);
         })
     }else{
-    this._service_publicaciones.postPublicaciones(this.formdata).subscribe(data => {
-      console.log("publicacion agregada con los datos:",data)
-    },
-      error => {
-        console.error('Error al publicar:', error);
-      });
-    this.router.navigate(['red/publicaciones']);
+      this._service_publicaciones.postPublicaciones(this.formdata).subscribe(data => {
+        console.log("publicacion agregada con los datos:",data)
+      },
+        error => {
+          console.error('Error al publicar:', error);
+        });
+      this.router.navigate(['red/publicaciones']);
     }
+    console.log(this.formdata);
+    
   }
 
   cancelar(): void {

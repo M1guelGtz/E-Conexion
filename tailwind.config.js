@@ -13,6 +13,9 @@ module.exports = {
       },
       animation: {
         expand: 'expand 1s linear forwards',
+      },
+      backgroundImage: {
+        logo: "url('/LOGO.png')"
       }
     },
   },
