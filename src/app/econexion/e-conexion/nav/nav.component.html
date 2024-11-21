@@ -3,10 +3,9 @@
       <img src="LOGO.png" alt="Logo" class="w-[80px] h-[80px] rounded-full" >
       <h1 class="text-2xl font-bold text-green-800">ECONEXION</h1>
     </div>
-    <div class="flex space-x-3">
+    <div class="flex space-x-3 mx-3">
       <label  (click)="activarBusqueda()" *ngIf="activarInput" class="text-green-800 flex justify-center items-center w-[50px] h-[50px] rounded-full object-cover border border-[#61A146] "><img src="search.png" alt="search" class="w-[25px] h-[25px]"> </label>
       <label   *ngIf="!activarInput" class="text-green-800 flex justify-between items-center w-[500px] h-[50px] rounded-full object-cover border border-[#61A146] "><img src="search.png" alt="search" class="w-[25px] m-2 h-[25px]"> <input class="w-10/12 rounded-full p-2 bg-black/10" type="text" name="" id=""> <p (click)="activarBusqueda()" class="flex justify-center items-center m-2 rounded-full w-[40px] h-[40px] bg-red-500 text-white" >X</p> </label>
-      <button routerLink="chats" class="text-green-800 flex justify-center items-center w-[50px] h-[50px] rounded-full object-cover bg-[#61A146] "><img src="message.png" alt="search" class="w-[25px] h-[25px]"></button>
-      <button routerLink="perfil" class="text-green-800 flex justify-center items-center w-[50px] h-[50px] rounded-full object-cover bg-[#61A146]"><img src="icons8-usuario-masculino-en-círculo-24.png" alt="search" class="w-[25px] h-[25px] invert"></button>
+      <button routerLink="perfil" class=" text-green-800 flex justify-center items-center w-[50px] h-[50px] rounded-full object-cover bg-[#61A146]"><img src="icons8-usuario-masculino-en-círculo-24.png" alt="search" class="w-[25px] h-[25px] invert"></button>
     </div>
 </header>
