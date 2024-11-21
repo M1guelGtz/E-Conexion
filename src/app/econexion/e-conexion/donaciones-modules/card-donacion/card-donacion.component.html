@@ -1,6 +1,5 @@
 <div class="border border-green-500 rounded-lg p-4 mb-4">
     <div class="flex justify-between">
-      <span class="w-1/3"><strong>ID del Donador:</strong> {{ donacion.id_donacion_usuario}}</span>
       <span class="w-1/3 p-2 flex justify-evenly items-center text-green-600 bg-blue-100/50 rounded-2xl"> <strong>Nombre del evento: </strong> {{ evento.nombre }} <i (click)="handleClickExpandEvent()" class="w-5 mx-5 text-white rounded bg-green-600 flex justify-center object-fill items-center h-5"> <img src="expandir.png" alt=""> </i> </span>
       <span class="w-1/3 flex justify-end"><strong>Fecha: </strong> {{donacion.fecha}}</span>
     </div>
@@ -10,8 +9,10 @@
       <span><strong>Estatus:</strong> {{ donacion.estatus }}</span>
     </div>
     <div class="w-full flex justify-end">
-      <button type="submit" class="bg-green-500 text-white rounded w-[100px] m-3 p-2"> Editar </button>
-      <button type="button" class="border border-green-500 text-green-500 rounded w-[100px] m-3 p-2"> Eliminar </button>
+      <button (click)="actualizarDonacion(donacion.id_donaciones!)"  class="bg-green-500 text-white rounded w-[100px] m-3 p-2"
+      [disabled]="donacion.estatus === 'TERMINADO'"
+      > Editar </button>
+      <button (click)="eliminarDonacion(donacion.id_donaciones!)" class="border border-green-500 text-green-500 rounded w-[100px] m-3 p-2"> Eliminar </button>
     </div>
   </div>
 

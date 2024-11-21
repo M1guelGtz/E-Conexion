@@ -5,4 +5,5 @@ export interface Donacion {
     tipo_donacion : string
     estatus : string | undefined
     id_evento : number 
+    id_donaciones : number | null
 }
