@@ -26,7 +26,8 @@ export class FormEventoComponent implements OnInit {
       horaInicio: ['', Validators.required],
       fechaFinal: ['', Validators.required],
       horaFinal: ['', Validators.required],
-      descripcion: ['', Validators.required]
+      descripcion: ['', Validators.required],
+      estatus_donacion :["", Validators.required]
     });
   }
  
@@ -62,6 +63,7 @@ export class FormEventoComponent implements OnInit {
   }
 
   crearEvento(): void {
+    
     if (this.eventoForm.valid) {
       const formValues = this.eventoForm.value;
       const fechaInicio = new Date(`${formValues.fechaInicio}T${formValues.horaInicio}:00`);
@@ -71,6 +73,7 @@ export class FormEventoComponent implements OnInit {
       const now = new Date();
       const estatus = now < fechaInicio ? 'Programado' : (now >= fechaInicio && now <= fechaFinal ? 'Activo' : 'Terminado');
   
+      console.log(formValues.estatus_donacion);
       
       const eventoAPI : EventoPut = {
         id_donacion: null,
@@ -80,7 +83,7 @@ export class FormEventoComponent implements OnInit {
         estatus: estatus,
         nombre: formValues.nombreEvento,
         ubicacion: formValues.ubicacion,
-        estatus_donacion: 'si',
+        estatus_donacion: formValues.estatus_donacion,
         estatus_donador: 'no',
       };
   
@@ -106,7 +109,7 @@ export class FormEventoComponent implements OnInit {
           estatus: estatus,
           nombre: formValues.nombreEvento,
           ubicacion: formValues.ubicacion,
-          estatus_donacion: 'si',
+          estatus_donacion: formValues.estatus_donacion,
           estatus_donador: 'no',
           id_evento_usuario: 1,
           id_organizador: 1,
@@ -120,6 +123,8 @@ export class FormEventoComponent implements OnInit {
           },
           (error) => {
             console.error('Error al crear el evento:', error);
+            console.log(nuevoEvento);
+            
           }
         );
       }
