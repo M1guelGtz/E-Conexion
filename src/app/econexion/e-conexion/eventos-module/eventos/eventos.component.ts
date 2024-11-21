@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { EventosService } from '../../../../servicios/eventos.service';
-import { log } from 'console';
+
 
 @Component({
   selector: 'app-eventos',

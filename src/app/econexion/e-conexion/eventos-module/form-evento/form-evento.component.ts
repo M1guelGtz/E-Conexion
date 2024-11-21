@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventosService } from '../../../../servicios/eventos.service';
 import { EventoPut, Eventos } from '../../../../Interfaces/eventos';
@@ -12,6 +12,7 @@ import { EventoPut, Eventos } from '../../../../Interfaces/eventos';
 export class FormEventoComponent implements OnInit {
   eventoForm: FormGroup;
   idEvento: number | null = null;
+  fechaActual! : string;
 
   constructor(
     private fb: FormBuilder,
@@ -27,22 +28,22 @@ export class FormEventoComponent implements OnInit {
       fechaFinal: ['', Validators.required],
       horaFinal: ['', Validators.required],
       descripcion: ['', Validators.required],
-      estatus_donacion :["", Validators.required]
-    });
+      estatus_donacion: ['', Validators.required]
+    }, { validators: this.validarFechas });
   }
- 
+
   Accion: any;
 
   ngOnInit(): void {
     this.idEvento = Number(this.route.snapshot.paramMap.get('id'));
     if (this.idEvento) {
       this.cargarEvento(this.idEvento);
-      this.Accion= "Editar"
-    }
-    else {
-      this.Accion = "Crear"
+      this.Accion = 'Editar';
+    } else {
+      this.Accion = 'Crear';
     }
   }
+
   cargarEvento(id: number): void {
     this.eventoService.obtenerEventoPorId(id).subscribe(
       (evento) => {
@@ -62,8 +63,41 @@ export class FormEventoComponent implements OnInit {
     );
   }
 
-  crearEvento(): void {
+  validarFechas(group: AbstractControl): { [key: string]: boolean } | null {
+    const fechaInicio = group.get('fechaInicio')?.value;
+    const horaInicio = group.get('horaInicio')?.value;
+    const fechaFinal = group.get('fechaFinal')?.value;
+    const horaFinal = group.get('horaFinal')?.value;
     
+    
+    if (fechaInicio && horaInicio) {
+      const inicio = new Date(`${fechaInicio}T${horaInicio}:00`);
+      const ahora = new Date();
+      
+
+      if (inicio < ahora) {
+        return { fechaInicioPasada: true };
+      }
+    }
+
+    if (fechaInicio && horaInicio && fechaFinal && horaFinal) {
+      const inicio = new Date(`${fechaInicio}T${horaInicio}:00`);
+      const final = new Date(`${fechaFinal}T${horaFinal}:00`);
+
+      if (final < inicio) {
+        return { fechaFinalAntesInicio: true };
+      }
+
+      const diferenciaHoras = (final.getTime() - inicio.getTime()) / (1000 * 60 * 60);
+      if (diferenciaHoras < 1) {
+        return { diferenciaInsuficiente: true };
+      }
+    }
+
+    return null;
+  }
+
+  crearEvento(): void {
     if (this.eventoForm.valid) {
       const formValues = this.eventoForm.value;
       const fechaInicio = new Date(`${formValues.fechaInicio}T${formValues.horaInicio}:00`);
@@ -72,10 +106,8 @@ export class FormEventoComponent implements OnInit {
       fechaFinal.setHours(fechaFinal.getHours() - 6);
       const now = new Date();
       const estatus = now < fechaInicio ? 'Programado' : (now >= fechaInicio && now <= fechaFinal ? 'Activo' : 'Terminado');
-  
-      console.log(formValues.estatus_donacion);
-      
-      const eventoAPI : EventoPut = {
+
+      const eventoAPI: EventoPut = {
         id_donacion: null,
         descripcion: formValues.descripcion,
         fecha_creacion: fechaInicio.toISOString(),
@@ -86,9 +118,8 @@ export class FormEventoComponent implements OnInit {
         estatus_donacion: formValues.estatus_donacion,
         estatus_donador: 'no',
       };
-  
+
       if (this.idEvento) {
-     
         this.eventoService.editarEvento(this.idEvento, eventoAPI).subscribe(
           () => {
             console.log('Evento editado con éxito');
@@ -96,12 +127,10 @@ export class FormEventoComponent implements OnInit {
           },
           (error) => {
             console.error('Error al editar el evento:', error);
-            console.log(eventoAPI);
           }
         );
       } else {
-       
-        const nuevoEvento : Eventos= {
+        const nuevoEvento: Eventos = {
           id_donacion: null,
           descripcion: formValues.descripcion,
           fecha_creacion: fechaInicio.toISOString(),
@@ -113,9 +142,9 @@ export class FormEventoComponent implements OnInit {
           estatus_donador: 'no',
           id_evento_usuario: 1,
           id_organizador: 1,
-          id_eventos : this.idEvento
+          id_eventos: this.idEvento
         };
-  
+
         this.eventoService.crearEvento(nuevoEvento).subscribe(
           (response) => {
             console.log('Evento creado con éxito:', response);
@@ -123,16 +152,13 @@ export class FormEventoComponent implements OnInit {
           },
           (error) => {
             console.error('Error al crear el evento:', error);
-            console.log(nuevoEvento);
-            
           }
         );
       }
     }
   }
-  
 
   cancelar(): void {
-    this.Accion == "Crear" ? this.router.navigate(['red/eventos']): this.router.navigate(['red/eventos/miseventos'])
+    this.Accion === 'Crear' ? this.router.navigate(['red/eventos']) : this.router.navigate(['red/eventos/miseventos']);
   }
 }

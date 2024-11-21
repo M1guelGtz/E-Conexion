@@ -23,16 +23,21 @@ export class FormDonacionComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.donacionForm = this.fb.group({
-      eventoId: ['', Validators.required],
-      cantidad: ['', [Validators.required, Validators.min(1)]],
-      tipo_donacion: ['', Validators.required],
-    });
+    this.donacionForm = this.fb.group(
+      {
+        eventoId: ['', Validators.required],
+        cantidad: ['', [Validators.required, Validators.min(1)]],
+        tipo_donacion: ['', Validators.required],
+      },
+      { validators: this.validarEventoSeleccionado() }
+    );
   }
 
   ngOnInit(): void {
     this.idDonacion = Number(this.route.snapshot.paramMap.get('id'));
     this.obtenerEventos();
+    console.log(this.idDonacion);
+    
 
     if (this.idDonacion) {
       this.cargarDonacion(this.idDonacion);
@@ -41,9 +46,17 @@ export class FormDonacionComponent implements OnInit {
 
   obtenerEventos(): void {
     this.eventosService.obtenerEventos().subscribe((eventos) => {
-      this.eventosDisponibles = eventos.filter(
-        (evento) => evento.estatus_donacion === 'si'
-      );
+      const now = new Date();
+      this.eventosDisponibles = eventos.filter((evento) => {
+        const fechaInicio = new Date(evento.fecha_creacion);
+        const fechaFin = new Date(evento.fecha_termino);
+        return (
+          evento.estatus_donacion === 'si' &&
+          evento.estatus_donador !== 'si' && 
+          now <= fechaFin && 
+          fechaInicio <= fechaFin 
+        );
+      });
     });
   }
 
@@ -76,6 +89,7 @@ export class FormDonacionComponent implements OnInit {
         tipo_donacion: formValues.tipo_donacion,
         estatus: this.estatusSeleccionado,
         fecha: new Date().toISOString(),
+        id_donaciones: this.idDonacion
       };
 
       if (this.idDonacion) {
@@ -89,11 +103,28 @@ export class FormDonacionComponent implements OnInit {
           this.router.navigate(['red/Donaciones']);
         });
       }
+    } else {
+      console.error('Formulario inválido', this.donacionForm.errors);
     }
   }
 
-
   cancelar(): void {
     this.router.navigate(['red/Donaciones']);
+  }
+
+  validarEventoSeleccionado() {
+    return (formGroup: FormGroup) => {
+      const eventoIdControl = formGroup.get('eventoId');
+      if (eventoIdControl && eventoIdControl.value) {
+        const eventoSeleccionado = this.eventosDisponibles.find(
+          (evento) => evento.id_eventos === +eventoIdControl.value
+        );
+        if (!eventoSeleccionado) {
+          eventoIdControl.setErrors({ eventoInvalido: true });
+        } else {
+          eventoIdControl.setErrors(null); // Evento válido
+        }
+      }
+    };
   }
 }

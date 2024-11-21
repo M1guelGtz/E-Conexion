@@ -58,6 +58,10 @@ const routes: Routes = [
       component : FormDonacionComponent
       },
       {
+        path :"Donaciones/donacionesform/:id",
+        component : FormDonacionComponent
+        },
+      {
       path: 'eventos/miseventos',
       component:EventosUsuarioComponent
     },
