@@ -1,39 +1,55 @@
-<div class="w-[calc((100vw)-14rem)] h-[90%] flex flex-col justify-evenly my-2 bg-transparent items-center rounded-lg ">
-  <h1 class="text-2xl font-semibold text-green-600 mb-2 text-center">Crear Publicación</h1>
+<div class="overflow-hidden w-full h-full overflow-y-scroll flex flex-col justify-between my-2 bg-transparent items-center rounded-lg" id="scrollme">
+  <h1 class="text-2xl font-semibold text-green-600 mb-2 text-center">{{Accion}} evento</h1>
+  <form [formGroup]="eventoForm" class="w-1/2 p-5 flex flex-col h-full justify-evenly">
+    <div>
+      <label class="block text-green-600 mb-1" for="nombreEvento">Nombre del evento:</label>
+      <input formControlName="nombreEvento" type="text" id="nombreEvento" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+    </div>
+    
+    <div>
+      <label class="block text-green-600 mb-1" for="ubicacion">Ubicación:</label>
+      <input formControlName="ubicacion" type="text" id="ubicacion" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+    </div>
 
-    <form class="w-3/4  p-5 flex flex-col h-full justify-evenly  ">
-      <div class="">
-        <label class="block text-green-600 mb-1" for="nombreEvento">Nombre del evento:</label>
-        <input type="text" id="nombreEvento" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
-      </div>
-  
-      <div class="">
-        <label class="block text-green-600 mb-1" for="ubicacion">Ubicación:</label>
-        <input type="text" id="ubicacion" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
-      </div>
-  
-      <div class="">
-        <label class="block text-green-600 mb-1" for="fechaInicio">Fecha de inicio:</label>
-        <input type="date" id="fechaInicio" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
-      </div>
-  
-      <div class="">
-        <label class="block text-green-600 mb-1" for="fechaFinal">Fecha final:</label>
-        <input type="date" id="fechaFinal" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
-      </div>
-  
-      <div class="">
-        <label class="block text-green-600 mb-1" for="tipoEvento">Tipo de evento:</label>
-        <input type="text" id="tipoEvento" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
-      </div>
-  
-      <div class="flex justify-between my-4">
-        <button (click)="crearEvento()" type="button" class="bg-green-600 text-white py-2 w-32 px-4 rounded-md hover:bg-green-700">
-          Crear
-        </button>
-        <button (click)="cancelar()" type="button" class="border border-green-600 text-green-600 w-32 py-2 px-4 rounded-md hover:bg-green-100">
-          Cancelar
-        </button>
-      </div>
-    </form>
-  </div>
+    <div>
+      <label class="block text-green-600 mb-1" for="fechaInicio">Fecha de inicio:</label>
+      <input formControlName="fechaInicio" type="date" id="fechaInicio" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+    </div>
+
+    <div>
+      <label class="block text-green-600 mb-1" for="horaInicio">Hora de inicio:</label>
+      <input formControlName="horaInicio" type="time" id="horaInicio" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+    </div>
+
+    <div>
+      <label class="block text-green-600 mb-1" for="fechaFinal">Fecha final:</label>
+      <input formControlName="fechaFinal" type="date" id="fechaFinal" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+    </div>
+
+    <div>
+      <label class="block text-green-600 mb-1" for="horaFinal">Hora final:</label>
+      <input formControlName="horaFinal" type="time" id="horaFinal" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+    </div>
+
+    <div>
+      <label class="block text-green-600 mb-1" for="descripcion">Descripción:</label>
+      <textarea formControlName="descripcion" id="descripcion" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+    </div>
+    <div>
+      <label class="block text-green-600 mb-1" for="select">¿requieres de una donacion para este evento?</label>
+      <select name="select" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" formControlName="estatus_donacion">
+        <option value="no" selected >No</option>
+        <option value="si">Si</option>
+      </select>
+    </div>
+
+    <div class="flex justify-evenly my-4">
+      <button (click)="crearEvento()" type="button" class="bg-green-600 text-white py-2 w-40 px-4 rounded-md hover:bg-green-700">
+        {{Accion}}
+      </button>
+      <button (click)="cancelar()" type="button" class="border border-green-600 text-green-600 w-40 py-2 px-4 rounded-md hover:bg-green-100">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

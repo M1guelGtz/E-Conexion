@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Publicacion } from '../../../../Interfaces/publicacion';
 import { PublicacionesService } from '../../../../servicios/publicaciones.service';
 
 @Component({
@@ -8,12 +9,14 @@ import { PublicacionesService } from '../../../../servicios/publicaciones.servic
   styleUrl: './publicaciones.component.css'
 })
 export class PublicacionesComponent implements OnInit {
-  publicaciones: any[] = [];
-
+  publicaciones: Publicacion[] = []
   constructor(private publicacionesService: PublicacionesService, private title: Title) {}
 
   ngOnInit(): void {
-    this.publicaciones = this.publicacionesService.getPublicaciones();
+    this.publicacionesService.getPublicaciones().subscribe( data => {
+      this.publicaciones = data
+      console.log("publicaciones",data)
+    })
     this.title.setTitle("Econexion | Publicaciones")
   }
 }

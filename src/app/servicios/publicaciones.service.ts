@@ -1,48 +1,40 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Backend_Api } from '../../environment/environment';
+import { Publicacion } from '../Interfaces/publicacion';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PublicacionesService {
-  private publicaciones = [
-    {
-      titulo: "Limpieza de rios en suchiapa",
-      usuario: 'Rodrigo Emilio',
-      fecha: this.getCurrentDate(),
-      imagen: 'LOGO.png',
-      descripcion: 'Recolección de basura en los ríos de la ciudad de Suchiapa, Chiapas...'
-    },
-    {
-      titulo: "Recolección de basura en las calles",
-      usuario: 'Miguel Gtz',
-      fecha: this.getCurrentDate(),
-      imagen: 'LOGO.png',
-      descripcion: 'Recolección de basura en la ciudad de Suchiapa, Chiapas...'
-    },
-    {
-      titulo: "Carlos Daniel",
-      usuario: 'Carlos Daniel',
-      fecha: this.getCurrentDate(),
-      imagen: 'LOGO.png',
-      descripcion: 'Descripción de la publicación'
-    }
-  ];
+  
+  constructor(private _http: HttpClient) {}
 
-  constructor() {}
+  publicaciones: Publicacion[] = []
 
+  getPublicaciones(): Observable<Publicacion[]>{
+    return this._http.get<Publicacion[]>(Backend_Api.Url + "publicaciones")
+  }
+  postPublicaciones(data: FormData): Observable<Publicacion>{
+    return this._http.post<Publicacion>(Backend_Api.Url + "publicaciones", data)
+  }
+  deletePublicaciones(id: number): Observable<Publicacion>{
+    return this._http.delete<Publicacion>(Backend_Api.Url+ "publicaciones/" + id)
+  }
+  updatePublicaciones(id : number, data: FormData): Observable<Publicacion>{
+    return this._http.put<Publicacion>(Backend_Api.Url + "publicaciones/" + id, data)
+  }
   getCurrentDate(): string {
-    const today = new Date();
-    const day = String(today.getDate()).padStart(2, '0');
-    const month = String(today.getMonth() + 1).padStart(2, '0');
-    const year = today.getFullYear();
-    return `${day}/${month}/${year}`;
+    const today = new Date().toISOString();
+    console.log(today);
+    return String(today);
+  }
+  getMisPublicaciones(id : number): Observable<Publicacion[]>{
+    return this._http.get<Publicacion[]>(Backend_Api.Url + "publicaciones/" + id)
+  }
+  getPublicacionById(id: number): Observable<Publicacion>{
+    return this._http.get<Publicacion>(Backend_Api.Url + "publicaciones/publicacionById/" + id)
   }
 
-  getPublicaciones() {
-    return this.publicaciones;
-  }
-
-  agregarPublicacion(publicacion: any) {
-    this.publicaciones.push(publicacion);
-  }
 }

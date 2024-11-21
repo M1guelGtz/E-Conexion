@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChatComponent } from './chat/chat.component';
+import { ContactosComponent } from './contactos/contactos.component';
+import { EventosUsuarioComponent } from './eventos-module/eventos-usuario/eventos-usuario.component';
 import { EventosComponent } from './eventos-module/eventos/eventos.component';
 import { FormEventoComponent } from './eventos-module/form-evento/form-evento.component';
 import { ForosComponent } from './foros-module/foros/foros.component';
+import { ListChatsComponent } from './list-chats/list-chats.component';
 import { MiPerfilComponent } from './perfil/mi-perfil/mi-perfil.component';
 import { FormPublicacionComponent } from './publicaciones-module/form-publicacion/form-publicacion.component';
+import { MisPublicacionesComponent } from './publicaciones-module/mis-publicaciones/mis-publicaciones.component';
 import { PublicacionesComponent } from './publicaciones-module/publicaciones/publicaciones.component';
 import { RedComponent } from './red/red.component';
+import { DonacionesComponent } from './donaciones-modules/donaciones/donaciones.component';
+import { FormDonacionComponent } from './donaciones-modules/form-donacion/form-donacion.component';
 
 const routes: Routes = [
   {
@@ -16,7 +22,8 @@ const routes: Routes = [
     children: [
       {
         path: 'publicaciones',
-        component: PublicacionesComponent
+        component: PublicacionesComponent,
+        data: {animation: 'HomePage'}
       },{
         path: '',
         redirectTo: '',
@@ -24,7 +31,8 @@ const routes: Routes = [
       },
       {
         path: 'eventos',
-        component: EventosComponent
+        component: EventosComponent,
+        data: {animation: 'AboutPage'}
       },
       {
         path: 'foros',
@@ -33,14 +41,45 @@ const routes: Routes = [
       {
         path: 'publicaciones/formpublicacion',
         component: FormPublicacionComponent
+      },{
+        path: 'publicaciones/misPublicaciones',
+        component: MisPublicacionesComponent
       },
+      {
+        path: "publicaciones/formpublicacion/:id",
+        component: FormPublicacionComponent
+      },
+      {
+        path : "Donaciones",
+        component : DonacionesComponent
+      },
+      {
+      path :"Donaciones/donacionesform",
+      component : FormDonacionComponent
+      },
+      {
+      path: 'eventos/miseventos',
+      component:EventosUsuarioComponent
+    },
+    { path: 'eventos/form-evento/:id'
+      , component: FormEventoComponent },
       {
         path: 'eventos/formeventos',
         component: FormEventoComponent
       },
       {
         path: "chats",
-        component: ChatComponent
+        component: ChatComponent,
+        children: [
+          {
+            path: '',
+            component: ListChatsComponent
+          },
+          {
+            path: "contactos",
+            component: ContactosComponent
+          }
+        ]
       },{
         path: '',
         component: PublicacionesComponent

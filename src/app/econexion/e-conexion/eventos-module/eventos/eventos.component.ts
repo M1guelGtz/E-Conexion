@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { EventosService } from '../../../../servicios/eventos.service';
+import { log } from 'console';
 
 @Component({
   selector: 'app-eventos',
@@ -7,28 +9,26 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './eventos.component.css'
 })
 export class EventosComponent implements OnInit {
+  eventos: any[] = [];
 
-  constructor(private title: Title){}
+  constructor(private title: Title, private eventosService: EventosService) {}
+
   ngOnInit(): void {
-    this.title.setTitle("Econexion | Eventos")
+    this.title.setTitle('Econexion | Eventos');
+    this.cargarEventos();
+    
   }
-  eventos = [
-    {
-      id: 1,
-      nombre: 'Evento 1',
-      ubicacion: 'Ubicación 1',
-      descripcion: 'Descripción del evento 1',
-      organizador: 'Nombre Organizador 1',
-      estatus: 'Terminado'
-    },
-    {
-      id: 2,
-      nombre: 'Evento 2',
-      ubicacion: 'Ubicación 2',
-      descripcion: 'Descripción del evento 2',
-      organizador: 'Nombre Organizador 2',
-      estatus: 'Disponible'
-    }
-  ];
-  
+
+  cargarEventos(): void {
+    this.eventosService.obtenerEventos().subscribe(
+      (data) => {
+        this.eventos = data;
+        console.log(data);
+        
+      },
+      (error) => {
+        console.error('Error al obtener los eventos:', error);
+      }
+    );
+  }
 }
