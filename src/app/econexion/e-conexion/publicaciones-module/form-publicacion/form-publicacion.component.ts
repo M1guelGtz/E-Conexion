@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Publicacion } from '../../../../Interfaces/publicacion';
 import { PublicacionesService } from '../../../../servicios/publicaciones.service';
 @Component({
   selector: 'app-form-publicacion',
@@ -14,6 +13,7 @@ export class FormPublicacionComponent implements OnInit {
   fileError: string | null = null;
   accion: string = ""
   id: any;
+  id_user = '6';
   Publicacion: FormGroup;
   constructor(private fb: FormBuilder,private router: Router,private route:  ActivatedRoute, private _service_publicaciones : PublicacionesService) {
     this.Publicacion = this.fb.group({
@@ -66,22 +66,20 @@ export class FormPublicacionComponent implements OnInit {
       
     }
   }
-
+  formdata = new FormData();
   publicar(): void {
-    
     const formValues = this.Publicacion.value;
     console.log(this._service_publicaciones.getCurrentDate());
-    const nuevaPublicacion : Publicacion = {
-      titulo: formValues.titulo,
-      id_publicaciones_usuario: 1,
-      fecha: this._service_publicaciones.getCurrentDate(),
-      imagen: "icons8-usuario-masculino-en-círculo-100.png",
-      descripcion: formValues.descripcion,
-      id_publicaciones: 0,
-      nombre_usuario:"Miguel Angel  "
-    };
+    this.formdata.append('titulo', formValues.titulo);
+    this.formdata.append('descripcion', formValues.descripcion);
+    this.formdata.append('id_publicaciones_usuario', this.id)
+    this.formdata.append('fecha', this._service_publicaciones.getCurrentDate() )
+    if (this.selectedFile) {
+      this.formdata.append('imagen', this.selectedFile);
+    }
+    this.formdata.append('id_publicaciones_usuario', this.id_user)
     if(this.id){
-      this._service_publicaciones.updatePublicaciones(this.id, nuevaPublicacion).subscribe((data) => {
+      this._service_publicaciones.updatePublicaciones(this.id, this.formdata).subscribe((data) => {
         console.log("editado con exito", data)
         this.router.navigate(['red/publicaciones/misPublicaciones']);
         },
@@ -89,7 +87,7 @@ export class FormPublicacionComponent implements OnInit {
           console.error(error);
         })
     }else{
-    this._service_publicaciones.postPublicaciones(nuevaPublicacion).subscribe(data => {
+    this._service_publicaciones.postPublicaciones(this.formdata).subscribe(data => {
       console.log("publicacion agregada con los datos:",data)
     },
       error => {

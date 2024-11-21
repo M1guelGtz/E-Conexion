@@ -2,19 +2,18 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ChatWhitUserComponent } from './chat-whit-user/chat-whit-user.component';
 import { ChatComponent } from './chat/chat.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { ContactosComponent } from './contactos/contactos.component';
+import { DonacionesModulesModule } from './donaciones-modules/donaciones-modules.module';
 import { EConexionRoutingModule } from './e-conexion-routing.module';
 import { EventosModuleModule } from './eventos-module/eventos-module.module';
 import { ForosModuleModule } from './foros-module/foros-module.module';
+import { ListChatsComponent } from './list-chats/list-chats.component';
 import { NavComponent } from './nav/nav.component';
 import { PerfilModule } from './perfil/perfil.module';
 import { PublicacionesModuleModule } from './publicaciones-module/publicaciones-module.module';
 import { RedComponent } from './red/red.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { DonacionesComponent } from './donaciones-modules/donaciones/donaciones.component';
-import { DonacionesModulesModule } from './donaciones-modules/donaciones-modules.module';
-import { ContactosComponent } from './contactos/contactos.component';
-import { ListChatsComponent } from './list-chats/list-chats.component';
-import { ContactoComponent } from './contacto/contacto.component';
 
 
 @NgModule({
@@ -24,7 +23,6 @@ import { ContactoComponent } from './contacto/contacto.component';
     RedComponent,
     ChatComponent,
     ChatWhitUserComponent,
- 
     ContactosComponent,
     ListChatsComponent,
     ContactoComponent,
