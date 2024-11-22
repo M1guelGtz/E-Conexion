@@ -1,3 +1,13 @@
-<div class="container mx-auto my-6">
-    <app-card-foro *ngFor="let foro of foros" [foros]="foro"></app-card-foro>
+<div class=" h-[15%] flex justify-center bg-transparent p-5 w-full">
+    <div class="flex justify-between px-2 w-3/5 items-center border border-dashed border-[#61A146] bg-white rounded-xl text-[#61A146]" > 
+      <a routerLink="formforos">Crear Foro</a>  
+      <h1 class=" text-2xl font-semibold text-green-600">Foros</h1>
+      <a routerLink="Misforos"> Mis Foros</a>
+    </div>
+  </div>
+
+<div class="space-y-6 h-[85%] overflow-hidden overflow-y-scroll  flex flex-col items-center p-5" id="scrollme">
+    <div class="w-3/5">
+        <app-card-foro *ngFor="let foro of foros" [foros]="foro"></app-card-foro>
+    </div>
 </div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Donacion } from '../Interfaces/donacion';
+import {  Donacion, Donacionput } from '../Interfaces/donacion';
 import { Backend_Api } from '../../environment/environment';
 
 @Injectable({
@@ -22,17 +22,13 @@ export class DonacionesService {
     return this.http.post<Donacion>(this.apiUrl, donacion);
   }
 
-  actualizarDonacion(idDonacion: number, donacion: Donacion): Observable<Donacion> {
-    return this.http.put<Donacion>(`${this.apiUrl}${idDonacion}`, donacion);
+  actualizarDonacion(idDonacion: number, donacion: Donacionput): Observable<Donacionput> {
+    return this.http.put<Donacionput>(`${this.apiUrl}${idDonacion}`, donacion);
   }
 
   eliminarDonacion(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}${id}`);
   }
 
-  /*editarEvento(idEvento: number, evento: Eventos): Observable<Eventos> {
-    return this.http.put<Eventos>(`${Backend_Api.Url}/eventos/${idEvento}`, evento);
-  }*/
- 
 }
 

@@ -19,7 +19,7 @@ export class CardDonacionComponent implements OnInit{
   
   ngOnInit(): void {
     console.log('Objeto donación recibido:', this.donacion);
-    this. _evento_service.obtenerEventoPorId(this.donacion.id_evento).subscribe( ( evento ) => {
+    this. _evento_service.obtenerEventoPorId(this.donacion.id_evento!).subscribe( ( evento ) => {
       this.evento = evento
       
     } )
@@ -33,10 +33,10 @@ export class CardDonacionComponent implements OnInit{
 
   actualizarDonacion(idDonacion : number): void{
     console.log('ID de la donación:', idDonacion);
+    
     this.router.navigate([`red/Donaciones/donacionesform/${idDonacion}`]);
   }
   eliminarDonacion(idDonacion: number): void {
-    // Confirmación antes de eliminar
     if (confirm('¿Estás seguro de que deseas eliminar esta donación?')) {
       this._donacion_service.eliminarDonacion(idDonacion).subscribe({
         next: () => {
