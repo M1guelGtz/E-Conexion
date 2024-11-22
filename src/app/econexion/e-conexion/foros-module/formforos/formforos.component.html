@@ -1,50 +1,48 @@
 <div class="overflow-hidden w-full h-full overflow-y-scroll flex flex-col justify-between my-2 bg-transparent items-center rounded-lg" id="scrollme">
-      <h2 class="text-center text-2xl font-bold text-green-600 mb-4">Crear Foro</h2>
-  
-      <form [formGroup]="foroForm" class="w-1/2 p-5 flex flex-col h-full justify-evenly" (ngSubmit)="onSubmit()">
+    <h2 class="text-center text-2xl font-bold text-green-600 mb-4">Crear Foro</h2>
 
-        <div class="mb-4">
-          <label class="block text-green-700 font-medium mb-2" for="nombre">
-            Nombre del foro:
-          </label>
-          <input
-            formControlName="nombre"
-            type="text"
-            id="nombre"
-            class="w-full px-3 py-2 border border-green-500 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
-            placeholder="Ingresa el nombre del foro"
-          />
-        </div>
-  
-        <!-- Campo Descripción -->
-        <div class="mb-4">
-          <label class="block text-green-700 font-medium mb-2" for="descripcion">
-            Descripción:
-          </label>
-          <textarea
-            formControlName="descripcion"
-            id="descripcion"
-            rows="3"
-            class="w-full px-3 py-2 border border-green-500 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
-            placeholder="Ingresa una descripción"
-          ></textarea>
-        </div>
-  
-        <!-- Botones -->
-        <div class="flex justify-between">
-          <button
-            type="submit"
-            class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
-          >
-            Crear
-          </button>
-          <button
-            type="button"
-            class="px-4 py-2 bg-white text-green-500 border border-green-500 rounded-lg hover:bg-green-100"
-            (click)="cancelar()"
-          >
-            Cancelar
-          </button>
-        </div>
-      </form>
-    </div>
+    <form [formGroup]="foroForm" class="w-1/2 p-5 flex flex-col h-full justify-evenly" (ngSubmit)="onSubmit()">
+
+      <div class="mb-4">
+        <label class="block text-green-700 font-medium mb-2" for="nombre">
+          Nombre del foro:
+        </label>
+        <input
+          formControlName="nombre"
+          type="text"
+          id="nombre"
+          class="w-full px-3 py-2 border border-green-500 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
+          placeholder="Ingresa el nombre del foro"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-green-700 font-medium mb-2" for="descripcion">
+          Descripción:
+        </label>
+        <textarea
+          formControlName="descripcion"
+          id="descripcion"
+          rows="3"
+          class="w-full px-3 py-2 border border-green-500 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
+          placeholder="Ingresa una descripción"
+        ></textarea>
+      </div>
+
+      <div class="flex justify-between">
+        <button
+          type="submit"
+          class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+        >
+          Crear
+        </button>
+        <button
+          type="button"
+          class="px-4 py-2 bg-white text-green-500 border border-green-500 rounded-lg hover:bg-green-100"
+          (click)="cancelar()"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div> 

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ForosService } from '../../../../servicios/foro.service';
-
+import { ForosService } from '../../../../servicios/foros.service'; 
 @Component({
   selector: 'app-formforos',
   templateUrl: './formforos.component.html',
@@ -37,4 +36,3 @@ export class FormforosComponent implements OnInit{
     this.router.navigate(['/foros']);
   }
 }
-

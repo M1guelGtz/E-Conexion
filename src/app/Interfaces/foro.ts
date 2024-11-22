@@ -4,4 +4,3 @@ export interface Foro {
     descripcion: string;
     fechaCreacion?: Date; 
   }
-  
