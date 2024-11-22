@@ -56,7 +56,8 @@ export class FormDonacionComponent implements OnInit {
           evento.estatus_donacion === 'si' &&
           evento.estatus_donador !== 'si' && 
           now <= fechaFin && 
-          fechaInicio <= fechaFin 
+          fechaInicio <= fechaFin &&
+          evento.estatus !=='Terminado'
         );
       });
     });

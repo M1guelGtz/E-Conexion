@@ -14,6 +14,8 @@ export class CardDonacionComponent implements OnInit{
   @Input() donacion!: Donacion;
   evento! : Eventos;
   modal : boolean = false;
+  estado = "bg-green-500"
+
 
   constructor ( public _evento_service : EventosService, private router: Router, public _donacion_service : DonacionesService) {  }
   
@@ -21,7 +23,7 @@ export class CardDonacionComponent implements OnInit{
     console.log('Objeto donación recibido:', this.donacion);
     this. _evento_service.obtenerEventoPorId(this.donacion.id_evento!).subscribe( ( evento ) => {
       this.evento = evento
-      
+      this.donacion.estatus === 'Terminado' ? this.estado="bg-gray-300" : this.estado = "bg-green-500"  
     } )
   }
   handleClickExpandEvent(){
@@ -54,7 +56,7 @@ export class CardDonacionComponent implements OnInit{
       });
     }
   }
-  
+
 
 }
 

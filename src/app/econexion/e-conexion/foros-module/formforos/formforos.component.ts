@@ -27,12 +27,12 @@ export class FormforosComponent implements OnInit{
     if (this.foroForm.valid) {
       this.forosService.crearForo(this.foroForm.value).subscribe(() => {
         alert('Foro creado con éxito');
-        this.router.navigate(['/foros']);
+        this.router.navigate(['red/foros']);
       });
     }
   }
 
   cancelar(): void {
-    this.router.navigate(['/foros']);
+    this.router.navigate(['red/foros']);
   }
 }

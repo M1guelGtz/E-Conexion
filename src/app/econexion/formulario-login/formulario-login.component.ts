@@ -1,31 +1,54 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../../servicios/login.service';
+
+
 @Component({
   selector: 'app-formulario-login',
   templateUrl: './formulario-login.component.html',
   styleUrl: './formulario-login.component.css'
 })
 export class FormularioLoginComponent{
+  loginFormulario: FormGroup;
+  alerta: string | null = null; 
+  ojo: boolean = false; 
 
-  constructor(private _router: Router, private fb: FormBuilder){
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private router: Router
+  ) {
     this.loginFormulario = this.fb.group({
-      usuario: ['', [Validators.required, Validators.pattern('^[0-9a-zA-Z. ]+$')]],
-      contra: ['', [Validators.required, Validators.pattern('^[0-9a-zA-Z. ]+$')]]
+      correo_usuario: ['', [Validators.required, Validators.email]],
+      contrasena_usuario : ['', Validators.required]
     });
   }
-  alerta: boolean = false
-  ojo:boolean=false
-  password:string = "password"
-  loginFormulario: FormGroup;
-  IniciarSesion(){
+
+  IniciarSesion() {
     if (this.loginFormulario.valid) {
-      console.log(this.loginFormulario.value);
-      this._router.navigate(["/red/publicaciones"])
+      const credentials = this.loginFormulario.value;
+
+      this.loginService.login(credentials).subscribe({
+        next: (response) => {
+          this.loginService.saveToken(response.access_token); 
+          localStorage.setItem('userId', response.id_usuario.toString());
+          this.alerta = null;
+          this.router.navigate(['/red/publicaciones']); 
+        },
+        error: () => {
+          this.alerta = 'Correo o contraseña incorrectos.';
+        }
+      });
     }
   }
-  eye(){
-    this.password == "password" ? this.password="text": this.password="password"
-    this.ojo=!this.ojo
+
+  eye() {
+    this.ojo = !this.ojo;
+    const passwordInput = document.querySelector('input[formControlName="password"]') as HTMLInputElement;
+    if (passwordInput) {
+      passwordInput.type = this.ojo ? 'text' : 'password';
+    }
   }
+
 }
