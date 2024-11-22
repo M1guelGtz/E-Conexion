@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventosService } from '../../../../servicios/eventos.service';
 import { DonacionesService } from '../../../../servicios/donacion.service';
 import { Eventos } from '../../../../Interfaces/eventos';
+import { Donacion, Donacionput } from '../../../../Interfaces/donacion';
 
 @Component({
   selector: 'app-form-donacion',
@@ -41,6 +42,7 @@ export class FormDonacionComponent implements OnInit {
 
     if (this.idDonacion) {
       this.cargarDonacion(this.idDonacion);
+      
     }
   }
 
@@ -76,28 +78,37 @@ export class FormDonacionComponent implements OnInit {
         cantidad: donacion.cantidad,
         tipo_donacion: donacion.tipo_donacion,
       });
+      this.estatusSeleccionado = donacion.estatus
     });
   }
 
   guardarDonacion(): void {
     if (this.donacionForm.valid) {
-      const formValues = this.donacionForm.value;
-      const nuevaDonacion = {
-        id_donacion_usuario: 1,
-        id_evento: formValues.eventoId,
-        cantidad: formValues.cantidad,
-        tipo_donacion: formValues.tipo_donacion,
-        estatus: this.estatusSeleccionado,
-        fecha: new Date().toISOString(),
-        id_donaciones: this.idDonacion
-      };
-
+      const formValues = this.donacionForm.value; 
       if (this.idDonacion) {
-        this.donacionesService.actualizarDonacion(this.idDonacion, nuevaDonacion).subscribe(() => {
-            console.log('Donación actualizada con éxito');
-            this.router.navigate(['red/Donaciones']);
-          });
+        const donacionActualizada :Donacionput= {
+          cantidad: formValues.cantidad,
+          tipo_donacion: formValues.tipo_donacion,
+          estatus: this.estatusSeleccionado,
+          id_evento: formValues.eventoId
+        };
+  
+        this.donacionesService.actualizarDonacion(this.idDonacion, donacionActualizada).subscribe(() => {
+          console.log('Donación actualizada con éxito');
+          this.router.navigate(['red/Donaciones']);
+        });
       } else {
+        
+        const nuevaDonacion : Donacion = {
+          id_donacion_usuario: 1,
+          id_evento: formValues.eventoId,
+          cantidad: formValues.cantidad,
+          tipo_donacion: formValues.tipo_donacion,
+          estatus: this.estatusSeleccionado,
+          fecha: new Date().toISOString(),
+          id_donaciones: this.idDonacion
+        };
+  
         this.donacionesService.crearDonacion(nuevaDonacion).subscribe(() => {
           console.log('Donación registrada con éxito');
           this.router.navigate(['red/Donaciones']);
@@ -107,6 +118,7 @@ export class FormDonacionComponent implements OnInit {
       console.error('Formulario inválido', this.donacionForm.errors);
     }
   }
+  
 
   cancelar(): void {
     this.router.navigate(['red/Donaciones']);
@@ -122,7 +134,7 @@ export class FormDonacionComponent implements OnInit {
         if (!eventoSeleccionado) {
           eventoIdControl.setErrors({ eventoInvalido: true });
         } else {
-          eventoIdControl.setErrors(null); // Evento válido
+          eventoIdControl.setErrors(null);
         }
       }
     };

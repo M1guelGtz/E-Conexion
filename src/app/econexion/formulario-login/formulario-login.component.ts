@@ -21,7 +21,7 @@ export class FormularioLoginComponent{
   IniciarSesion(){
     if (this.loginFormulario.valid) {
       console.log(this.loginFormulario.value);
-      this._router.navigate(["/red"])
+      this._router.navigate(["/red/publicaciones"])
     }
   }
   eye(){
