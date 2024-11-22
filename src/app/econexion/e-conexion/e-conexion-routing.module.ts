@@ -14,6 +14,7 @@ import { PublicacionesComponent } from './publicaciones-module/publicaciones/pub
 import { RedComponent } from './red/red.component';
 import { DonacionesComponent } from './donaciones-modules/donaciones/donaciones.component';
 import { FormDonacionComponent } from './donaciones-modules/form-donacion/form-donacion.component';
+import { FormforosComponent } from './foros-module/formforos/formforos.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: 'foros',
         component: ForosComponent
+      },
+      {
+        path: 'foros/formforos',
+        component: FormforosComponent
       },
       {
         path: 'publicaciones/formpublicacion',

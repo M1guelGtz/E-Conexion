@@ -5,6 +5,7 @@ import { ForosModuleRoutingModule } from './foros-module-routing.module';
 import { ForosComponent } from './foros/foros.component';
 import { FormforosComponent } from './formforos/formforos.component';
 import { CardForoComponent } from './card-foro/card-foro.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { CardForoComponent } from './card-foro/card-foro.component';
   ],
   imports: [
     CommonModule,
-    ForosModuleRoutingModule
+    ForosModuleRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class ForosModuleModule { }
