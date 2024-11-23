@@ -1,29 +1,33 @@
 <div class="h-full flex justify-center w-full p-5 items-center">
-  <form [formGroup]="Publicacion" class="p-5 flex w-1/2 h-full flex-col rounded-lg">
+  <form [formGroup]="Publicacion" (submit)="publicar()" class="p-5 flex w-1/2 h-full flex-col rounded-lg">
     <h1 class="text-2xl font-semibold text-green-600 mb-4 text-center">{{accion}} Publicación  </h1>
-  
     <div class="">
       <label for="titulo" class="block text-left text-green-600 mb-2">Título:</label>
-      <input formControlName="titulo" id="titulo" type="text" #tituloInput placeholder="Ingrese el título aquí"
-             class="w-full border border-green-600 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-300" />
+      <input formControlName="titulo" id="titulo" type="text" #tituloInput placeholder="Ingrese el título aquí" class="w-full border border-green-600 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-300" />
     </div>
-  
     <div class="">
       <label for="descripcion" class="block text-left text-green-600 mb-2">Descripción:</label>
       <textarea formControlName="descripcion" id="descripcion" rows="4" #descripcionInput placeholder="Escriba la descripción aquí"class="w-full border border-green-600 h-20 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-300"></textarea>
     </div>
-  
     <div class="">
       <label class="block text-green-600 mb-2">Añadir imagen <span class="text-sm">(solo PNG o JPG)</span></label>
       <div  class="border-dashed border-2 h-24 flex justify-center items-center border-green-600 rounded-md p-2 text-gray-500 cursor-pointer">
-        <!-- Ejemplo de HTML -->
         <input formControlName="imagen" type="file" (change)="onFileSelected($event)">
       </div>
     </div>
-  
     <div class="flex justify-evenly my-3">
-      <button (click)="publicar()" class="bg-green-600 text-white py-2 w-40 px-4 rounded-md hover:bg-green-700">{{id ? "Guardar": "Publicar"}}</button>
+      <button type="submit" class="bg-green-600 text-white py-2 w-40 px-4 rounded-md hover:bg-green-700">{{id ? "Guardar": "Publicar"}}</button>
       <button (click)="cancelar()" class="border border-green-600 text-green-600 w-40 py-2 px-4 rounded-md hover:bg-green-100">Cancelar</button>
     </div>
   </form>
 </div>
+
+<!--   modal de la alerta de error  -->
+   <div *ngIf="error" class="w-full flex justify-center items-center h-screen absolute top-0 left-0 bg-black/60">
+    <div class="w-[300px] h-[350px] flex justify-between flex-col items-center rounded-lg  p-2 bg-green-50 ">
+      <h1 class="text-white text-center w-full p-2 bg-green-600 rounded-lg">Registro incompleto</h1>
+      <img src="alertaError.png" alt="alerta no funcia">
+      <span class="text-center text-green-600">¡Debe completar todos los campos!</span>
+      <button (click)="HandleClickAlertClose()" class="border m-2 border-green-600 text-green-600 w-full py-2 px-4 rounded-md hover:bg-green-100">Aceptar</button>
+    </div>
+   </div>
