@@ -11,7 +11,6 @@ import { ContactosService } from '../../../servicios/contactos.service';
 export class ContactoComponent {
   constructor( private _service_contact : ContactosService, private _service_chat : ChatsService ) {}
 
-
   chats_contacto1! : Chat[];
   chats_contacto2! : Chat[];
   myId = 1

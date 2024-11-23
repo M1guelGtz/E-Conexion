@@ -36,5 +36,6 @@ export class ChatComponent implements OnInit {
     }
   ) : 
     this.modalAddContact = false
+
   }
 }
