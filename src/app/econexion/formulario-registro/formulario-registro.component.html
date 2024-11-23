@@ -1,37 +1,130 @@
 <h1 class="w-full text-center text-[#61A146] text-4xl pb-5">
-    Registrate
-</h1>
-<form class="flex text-[#61A146] flex-col lg:flex-row flex-wrap rounded-xl justify-between p-5 bg-white border border-black" (submit)="registrarUsuario()">
-    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col"  for="">
-        <span>Nombre:</span>
-        <input class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-1" type="text" name="name" placeholder="Introduzca su nombre de usuario">
+    Regístrate
+  </h1>
+  <form
+    [formGroup]="registroForm"
+    class="flex text-[#61A146] flex-col lg:flex-row flex-wrap rounded-xl justify-between p-5 bg-white border border-black"
+    (ngSubmit)="registrarUsuario()"
+    enctype="multipart/form-data"
+  >
+    <!-- Nombre -->
+    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
+      <span>Nombre:</span>
+      <input
+        class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-1"
+        type="text"
+        formControlName="nombre_usuario"
+        placeholder="Introduzca su nombre de usuario"
+      />
+      <small
+      *ngIf="registroForm.get('nombre_usuario')?.invalid && registroForm.get('nombre_usuario')?.touched"
+      class="text-red-500"
+    >
+      El nombre es obligatorio.
+    </small>
     </label>
-    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col" for="">
-        <span>Apellido paterno</span>
-        <input class="w-full  text-center  border-2 rounded-lg border-[#BDE7AC] p-1" type="text" name="name" placeholder="Introduzca su nombre de usuario">
+  
+    <!-- Apellidos -->
+    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
+      <span>Apellidos:</span>
+      <input
+        class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-1"
+        type="text"
+        formControlName="apellidos_usuario"
+        placeholder="Introduzca sus apellidos"
+      />
+      <small
+      *ngIf="registroForm.get('apellidos_usuario')?.invalid && registroForm.get('apellidos_usuario')?.touched"
+      class="text-red-500"
+    >
+      Los apellidos son obligatorios.
+    </small>
     </label>
-    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col"  for="">
-        <span>Apellido materno</span>
-        <input class="w-full text-center  border-2 rounded-lg border-[#BDE7AC] p-1" type="text" name="name" placeholder="Introduzca su nombre de usuario">
-    </label><label class="my-2  lg:px-5 lg:w-1/2 flex flex-col"  for="">
-        <span>Correo electronico:</span>
-        <input class="w-full text-center  border-2 rounded-lg border-[#BDE7AC] p-1" type="text" name="name" placeholder="Introduzca su nombre de usuario">
+  
+    <!-- Correo Electrónico -->
+    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
+      <span>Correo electrónico:</span>
+      <input
+        class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-1"
+        type="email"
+        formControlName="correo_usuario"
+        placeholder="Introduzca su correo electrónico"
+      />
+      <small
+      *ngIf="registroForm.get('correo_usuario')?.invalid && registroForm.get('correo_usuario')?.touched"
+      class="text-red-500"
+    >
+      El correo electrónico es obligatorio y debe ser válido.
+    </small>
     </label>
-    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col"  for="">
-        <span>Telefono:</span>
-        <input class="w-full text-center  border-2 rounded-lg border-[#BDE7AC] p-1" type="text" name="name" placeholder="Introduzca su nombre de usuario">
+  
+    <!-- Teléfono -->
+    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
+      <span>Teléfono:</span>
+      <input
+        class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-1"
+        type="text"
+        formControlName="telefono_usuario"
+        placeholder="Introduzca su número de teléfono"
+      />
+      <small
+      *ngIf="registroForm.get('telefono_usuario')?.invalid && registroForm.get('telefono_usuario')?.touched"
+      class="text-red-500"
+    >
+      El teléfono es obligatorio.
+    </small>
     </label>
-    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col"  for="">
-        <span>Contraseña:</span>
-        <input class="w-full text-center  border-2 rounded-lg border-[#BDE7AC] p-1" type="text" name="name" placeholder="Introduzca su nombre de usuario">
+  
+    <!-- Contraseña -->
+    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
+      <span>Contraseña:</span>
+      <input
+        class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-1"
+        type="password"
+        formControlName="contrasena_usuario"
+        placeholder="Introduzca su contraseña"
+      />
+      <small
+      *ngIf="registroForm.get('contrasena_usuario')?.invalid && registroForm.get('contrasena_usuario')?.touched"
+      class="text-red-500"
+    >
+      La contraseña es obligatoria.
+    </small>
     </label>
-    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col"  for="">
-        <span>Confirme su contraseña:</span>
-        <input class="w-full text-center  border-2 rounded-lg border-[#BDE7AC] p-1" type="text" name="name" placeholder="Introduzca su nombre de usuario">
+  
+    <!-- Confirmación de Contraseña -->
+    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
+      <span>Confirme su contraseña:</span>
+      <input
+        class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-1"
+        type="password"
+        placeholder="Confirme su contraseña"
+      />
+    <small
+      *ngIf="registroForm.hasError('noCoinciden') && registroForm.get('confirmar_contrasena')?.touched"
+      class="text-red-500"
+    >
+      Las contraseñas no coinciden.
+    </small>
     </label>
-    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col"  for="">
-        <span>Has participado en eventos ambientales?</span>
-        <input class="w-full text-center  border-2 rounded-lg border-[#BDE7AC] p-1" type="checkbox" name="name" placeholder="Introduzca su nombre de usuario">
+  
+    <!-- Foto de Perfil -->
+    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
+      <span>Foto de perfil:</span>
+      <input
+        class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-1"
+        type="file"
+        (change)="onImagenSeleccionada($event)"
+        accept="image/*"
+      />
     </label>
-    <button class="p-3 my-5 text-white bg-[#61A146] rounded-lg w-full">Crear usuario</button>
-</form>
+  
+    <!-- Botón de Envío -->
+    <button
+      class="p-3 my-5 text-white bg-[#61A146] rounded-lg w-full"
+      type="submit"
+    >
+      Crear usuario
+    </button>
+  </form>
+  

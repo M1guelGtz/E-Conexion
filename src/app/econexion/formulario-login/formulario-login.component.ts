@@ -32,7 +32,7 @@ export class FormularioLoginComponent{
       this.loginService.login(credentials).subscribe({
         next: (response) => {
           this.loginService.saveToken(response.access_token); 
-          localStorage.setItem('userId', response.id_usuario.toString());
+          sessionStorage.setItem('userId', response.id_usuario.toString());
           this.alerta = null;
           this.router.navigate(['/red/publicaciones']); 
         },
