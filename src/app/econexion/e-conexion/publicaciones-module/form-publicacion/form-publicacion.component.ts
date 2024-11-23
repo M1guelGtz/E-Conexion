@@ -74,7 +74,7 @@ export class FormPublicacionComponent implements OnInit {
         },
         (error) => {
           console.error(error);
-          this.error = true;
+          //this.error = true;
         })
     }else{
       this._service_publicaciones.postPublicaciones(this.formdata).subscribe(data => {
