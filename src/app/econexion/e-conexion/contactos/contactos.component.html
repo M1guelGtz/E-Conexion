@@ -1,5 +1,5 @@
 <div class=" h-full space-y-3  overflow-hidden overflow-y-scroll flex flex-col items-center px-5" id="scrollme">
     <div *ngFor="let contacto of contactos" class="shadow-md hover:bg-gradient-to-r from-green-600/20 to-white border-green-600 flex-col flex justify-between rounded   border w-3/5">
-        <app-contacto [chat]="contacto"/>
+        <app-contacto [contacto]="contacto"/>
     </div>
 </div>

@@ -69,14 +69,13 @@ export class FormPublicacionComponent implements OnInit {
     this.formdata.append('id_publicaciones_usuario', this.id_user)
     if(this.id){
       this._service_publicaciones.updatePublicaciones(this.id, this.formdata).subscribe((data) => {
-      this._service_publicaciones.updatePublicaciones(this.id, this.formdata).subscribe((data) => {
         console.log("editado con exito", data)
         this.router.navigate(['red/publicaciones/misPublicaciones']);
         },
         (error) => {
           console.error(error);
+          this.error = true;
         })
-      })
     }else{
       this._service_publicaciones.postPublicaciones(this.formdata).subscribe(data => {
         console.log("publicacion agregada con los datos:",data)

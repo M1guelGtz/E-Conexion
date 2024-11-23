@@ -14,7 +14,12 @@ export class ContactosComponent implements OnInit {
   ngOnInit(): void {
       this._servicio_contactos. getMyContactosById(this.id_user).subscribe( list_contacts => {
         this.contactos = list_contacts
-      })
+        console.log(this.contactos);
+        
+      }, e =>{
+        console.log("error", e)
+      }
+    )
   }
   
 

@@ -14,6 +14,7 @@ import { PerfilModule } from './perfil/perfil.module';
 import { PublicacionesModuleModule } from './publicaciones-module/publicaciones-module.module';
 import { RedComponent } from './red/red.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -34,7 +35,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ForosModuleModule,
     EventosModuleModule,
     PerfilModule,
-    DonacionesModulesModule
+    DonacionesModulesModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class EConexionModule { }
