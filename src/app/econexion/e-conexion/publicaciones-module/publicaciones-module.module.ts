@@ -8,6 +8,7 @@ import { FormPublicacionComponent } from './form-publicacion/form-publicacion.co
 import { MisPublicacionesComponent } from './mis-publicaciones/mis-publicaciones.component';
 import { CardMisPublicacionesComponent } from './card-mis-publicaciones/card-mis-publicaciones.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ListaPComponent } from './lista-p/lista-p.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormPublicacionComponent,
     MisPublicacionesComponent,
     CardMisPublicacionesComponent,
+    ListaPComponent,
   ],
   imports: [
     CommonModule,
