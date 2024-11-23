@@ -12,5 +12,7 @@ export class ChatComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle("Econexion | Chats")
   }
-  
+  HandleClickAddContact():void{
+    alert("Agregando un contacto")
+  }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Usuario } from '../../../../Interfaces/usuario';
+import { PerfilService } from '../../../../servicios/perfil.service';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -8,9 +10,28 @@ import { Title } from '@angular/platform-browser';
 })
 export class MiPerfilComponent implements OnInit {
 
-  constructor(private title: Title){}
+  constructor(private title: Title, private _perfil_service : PerfilService){}
 
+  user : Usuario = {
+    apellidos_usuario : "",
+    correo_usuario : "",
+    nombre_usuario : "",
+    contraseña_usuario: "",
+    id_usuario : 0,
+    estatus : "",
+    imagen_usuario: "",
+    telefono_usuario: 0,
+    tipo_usuario : "",
+  }
+  id_user = 11
   ngOnInit(): void {
     this.title.setTitle("Econexion | Mi perfil")
+    this._perfil_service.getPerfil(this.id_user).subscribe(data => {
+      console.log(data)
+      this.user = data
+      console.log(this.user);
+      
+    })
+    
   }
 }

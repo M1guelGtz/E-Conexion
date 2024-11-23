@@ -8,11 +8,7 @@ import { Component, Input } from '@angular/core';
 export class ContactoComponent {
 
   @Input() chat = {
-    nombreChat: "",
-    idChat: 0,
-    mensajesEspera: 0,
-    ultimoMsj: "",
-    horaUltimoMsj:""
+    
   }
   handleClickGoToChat(): void {
     alert("Vamos al chat")
