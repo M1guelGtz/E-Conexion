@@ -14,14 +14,16 @@ export class CardDonacionComponent implements OnInit{
   @Input() donacion!: Donacion;
   evento! : Eventos;
   modal : boolean = false;
+  estado = "bg-green-500"
+
 
   constructor ( public _evento_service : EventosService, private router: Router, public _donacion_service : DonacionesService) {  }
   
   ngOnInit(): void {
     console.log('Objeto donación recibido:', this.donacion);
-    this. _evento_service.obtenerEventoPorId(this.donacion.id_evento).subscribe( ( evento ) => {
+    this. _evento_service.obtenerEventoPorId(this.donacion.id_evento!).subscribe( ( evento ) => {
       this.evento = evento
-      
+      this.donacion.estatus === 'Terminado' ? this.estado="bg-gray-300" : this.estado = "bg-green-500"  
     } )
   }
   handleClickExpandEvent(){
@@ -33,10 +35,10 @@ export class CardDonacionComponent implements OnInit{
 
   actualizarDonacion(idDonacion : number): void{
     console.log('ID de la donación:', idDonacion);
+    
     this.router.navigate([`red/Donaciones/donacionesform/${idDonacion}`]);
   }
   eliminarDonacion(idDonacion: number): void {
-    // Confirmación antes de eliminar
     if (confirm('¿Estás seguro de que deseas eliminar esta donación?')) {
       this._donacion_service.eliminarDonacion(idDonacion).subscribe({
         next: () => {
@@ -54,7 +56,7 @@ export class CardDonacionComponent implements OnInit{
       });
     }
   }
-  
+
 
 }
 

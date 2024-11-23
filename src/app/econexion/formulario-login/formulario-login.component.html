@@ -1,26 +1,50 @@
-
 <h1 class="w-full text-center rounded-lg bg-white font-bold my-5 text-[#61A146] text-4xl p-5">
-    Iniciar sesion
-</h1>
-
-<form [formGroup]="loginFormulario" class="flex  text-[#61A146] flex-col justify-between w-[100%] h-[350px] p-5 md: bg-white border border-black rounded-lg" (submit)="IniciarSesion()">
-    <label class=""  for="username">
-        <span class="">Usuario:</span>
-        <input formControlName="usuario" id="username" class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-3" type="text" name="name" placeholder="Introduzca su nombre de usuario">
+    Iniciar sesión
+  </h1>
+  
+  <form
+    [formGroup]="loginFormulario"
+    class="flex text-[#61A146] flex-col justify-between w-[100%] h-[350px] p-5 bg-white border border-black rounded-lg"
+    (ngSubmit)="IniciarSesion()">
+    <label for="email">
+      <span>Correo:</span>
+      <input
+        formControlName="correo_usuario"
+        id="email"
+        class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-3"
+        type="email"
+        placeholder="Introduzca su correo electrónico"
+      />
     </label>
-    <label class=""  for="password"><span>Contraseña</span>
-        <input formControlName="contra"  class="w-full text-center  border-2 rounded-lg border-[#BDE7AC] p-3" [type]="[password]" name="name" placeholder="Introduzca su contraseña">
-        <div class="w-full -translate-y-[10px] items-end flex justify-end px-2 -z-10 bg-black h-0 ">
-            <p (click)="eye()" class=" w-8   p-1  rounded-xl cover ">
-                <img *ngIf="!ojo" src="icons8-visible-100.png" alt="">
-                <img *ngIf="ojo" src="icons8-no-visible-50.png" alt="">   
-            </p>
-        </div>
+  
+    <label for="password">
+      <span>Contraseña:</span>
+      <input
+        formControlName="contrasena_usuario"
+        id="password"
+        class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-3"
+        [type]="ojo ? 'text' : 'password'"
+        placeholder="Introduzca su contraseña"
+      />
+      <div class="w-full -translate-y-[10px] items-end flex justify-end px-2">
+        <p (click)="eye()" class="w-8 p-1 rounded-xl cover cursor-pointer">
+          <img *ngIf="!ojo" src="icons8-visible-100.png" alt="Mostrar contraseña" />
+          <img *ngIf="ojo" src="icons8-no-visible-50.png" alt="Ocultar contraseña" />
+        </p>
+      </div>
     </label>
-    <button type="submit" class="p-3 text-white bg-[#61A146] rounded-lg w-full">Iniciar sesion</button>
-    <span class="block w-full text-center">No tienes una cuenta? <a class="hover:border-b hover:border-[#61A146] hover:text-[#346321]" href="/registro">Registrate</a></span>
-</form>
-
-<div *ngIf="alerta">
-</div>
-
+  
+    <button type="submit" class="p-3 text-white bg-[#61A146] rounded-lg w-full" [disabled]="loginFormulario.invalid">
+      Iniciar sesión
+    </button>
+  
+    <span class="block w-full text-center">
+      ¿No tienes una cuenta?
+      <a class="hover:border-b hover:border-[#61A146] hover:text-[#346321]" href="/registro">Regístrate</a>
+    </span>
+  </form>
+  
+  <div *ngIf="alerta" class="alert alert-danger mt-4">
+    {{ alerta }}
+  </div>
+  
