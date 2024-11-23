@@ -8,15 +8,6 @@ import { PublicacionesService } from '../../../../servicios/publicaciones.servic
   templateUrl: './publicaciones.component.html',
   styleUrl: './publicaciones.component.css'
 })
-export class PublicacionesComponent implements OnInit {
-  publicaciones: Publicacion[] = []
-  constructor(private publicacionesService: PublicacionesService, private title: Title) {}
-
-  ngOnInit(): void {
-    this.publicacionesService.getPublicaciones().subscribe( data => {
-      this.publicaciones = data
-      console.log("publicaciones",data)
-    })
-    this.title.setTitle("Econexion | Publicaciones")
-  }
+export class PublicacionesComponent  {
+  
 }

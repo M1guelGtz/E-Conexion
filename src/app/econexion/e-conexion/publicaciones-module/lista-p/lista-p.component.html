@@ -1,0 +1,10 @@
+
+<div class="w-full flex text-center justify-center h-full" *ngIf="publicaciones.length <= 0">
+    Upss, aun no tienes publicaciones
+  <a routerLink="/red/publicaciones/formpublicacion" class="text-green-600 border-b border-green-600"> crea una</a>
+</div>
+<div class="w-full flex items-center h-full flex-col">
+    <div *ngFor="let publicacion of publicaciones" class="bg-white  shadow-lg rounded-xl p-4 border w-3/5">
+        <app-card-publicacion [publicacion]="publicacion"></app-card-publicacion>
+    </div>
+</div>
