@@ -15,7 +15,7 @@
     <form [formGroup]="Formulario" (submit)="handleClickAddContact()" class="flex flex-col justify-between w-80 h-52 bg-green-600 p-2">
         <h1 class="w-full text-2xl text-center p-2 text-white ">Agrega un contacto</h1>
         <label for="Email" class="w-full text-white p-3"> Email:
-            <input formControlName="usuario_correo" class="w-full p-2 rounded" placeholder="Correo electronico del contacto" type="email" name="" id="Email">
+            <input formControlName="usuario_correo" class="w-full text-green-600 p-2 rounded" placeholder="Correo electronico del contacto" type="email" name="" id="Email">
         </label>
         <div class="w-full flex justify-around p-2">
             <button class="border text-white  border-white hover:text-green-600 p-2 rounded-md hover:bg-green-100" type="submit"  > Agregar </button>            

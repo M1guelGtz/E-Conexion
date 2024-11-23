@@ -1,8 +1,44 @@
 
   <div class="space-y-6   h-full overflow-hidden overflow-y-scroll flex flex-col items-center p-5" id="scrollme">
-    <h1 *ngIf="_servicio_publicaciones.publicaciones.length <= 0">
+    <div class="w-full flex text-center items-center justify-center flex-col h-full" *ngIf="this._servicio_publicaciones.publicaciones  .length <= 0">
+      <div class="container">
+          <div class="tree">
+              <div class="branch" style="--x:0">
+              <span style="--i:0;"></span>
+              <span style="--i:1;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:3;"></span>
+              </div>
+              <div class="branch" style="--x:1">
+              <span style="--i:0;"></span>
+              <span style="--i:1;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:3;"></span>
+              </div>
+              <div class="branch" style="--x:2">
+              <span style="--i:0;"></span>
+              <span style="--i:1;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:3;"></span>
+              </div>
+              <div class="branch" style="--x:3">
+              <span style="--i:0;"></span>
+              <span style="--i:1;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:3;"></span>
+              </div>
+              <div class="stem">
+              <span style="--i:0;"></span>
+              <span style="--i:1;"></span>
+              <span style="--i:2;"></span>
+              <span style="--i:3;"></span>
+              </div>
+              <span class="shadow"></span>
+          </div>
+      </div>
       Upss, aun no tienes publicaciones
-    <a routerLink="/red/publicaciones/formpublicacion" class="text-green-600 border-b border-green-600"> crea una</a></h1>
+      <a routerLink="/red/publicaciones/formpublicacion" class="text-green-600 mx-2 border-b border-green-600"> crea una</a>
+  </div>
     <div *ngFor="let publicacion of _servicio_publicaciones.publicaciones" class="bg-white  shadow-lg  rounded-xl p-4 border w-3/5">
       <app-card-mis-publicaciones [publicacion]="publicacion"></app-card-mis-publicaciones>
     </div>
