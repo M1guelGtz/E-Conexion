@@ -4,8 +4,7 @@
     <div>
       <div class="w-full flex justify-end translate-x-[1.9rem] ">
           <div (click)="menu()" class="w-7 h-7 flex justify-center items-center object-fill cursor-pointer rounded-full border border-green-600 bg-white">
-            <img *ngIf="_servicio.seemenu" src="icons8-cierre-de-sesión-redondeado-hacia-la-izquierda-24.png" alt="" class="w-full">
-            <img *ngIf="!_servicio.seemenu" src="icons8-salir-redondeado-24.png" alt="" class="w-full">
+            <img  src="icons8-cierre-de-sesión-redondeado-hacia-la-izquierda-24.png" [ngClass]="rotate" alt="" class="w-full duration-700">
           </div>
         </div>
         <nav *ngIf="_servicio.seemenu" class="space-y-4 flex flex-col">
