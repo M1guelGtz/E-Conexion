@@ -8,4 +8,5 @@ export interface Usuario {
     estatus: string
     id_usuario: number
     imagen_usuario: string | null
+    descripcion : string
 }

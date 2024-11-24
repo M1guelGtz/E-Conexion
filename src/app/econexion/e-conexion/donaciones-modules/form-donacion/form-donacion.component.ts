@@ -16,6 +16,7 @@ export class FormDonacionComponent implements OnInit {
   eventosDisponibles: Eventos[] = [];
   estatusSeleccionado: string | undefined;
   idDonacion: number | null = null;
+  id_donacion_usuario: number = 0; 
 
   constructor(
     private fb: FormBuilder,
@@ -35,14 +36,19 @@ export class FormDonacionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const userIdString = sessionStorage.getItem('userId');
+    if (userIdString !== null) {
+      this.id_donacion_usuario = Number(userIdString);
+    } else {
+      console.error('No se encontró el userId en sessionStorage');
+    }
+
     this.idDonacion = Number(this.route.snapshot.paramMap.get('id'));
     this.obtenerEventos();
     console.log(this.idDonacion);
-    
 
     if (this.idDonacion) {
       this.cargarDonacion(this.idDonacion);
-      
     }
   }
 
@@ -79,7 +85,7 @@ export class FormDonacionComponent implements OnInit {
         cantidad: donacion.cantidad,
         tipo_donacion: donacion.tipo_donacion,
       });
-      this.estatusSeleccionado = donacion.estatus
+      this.estatusSeleccionado = donacion.estatus;
     });
   }
 
@@ -87,7 +93,7 @@ export class FormDonacionComponent implements OnInit {
     if (this.donacionForm.valid) {
       const formValues = this.donacionForm.value; 
       if (this.idDonacion) {
-        const donacionActualizada :Donacionput= {
+        const donacionActualizada: Donacionput = {
           cantidad: formValues.cantidad,
           tipo_donacion: formValues.tipo_donacion,
           estatus: this.estatusSeleccionado,
@@ -99,9 +105,8 @@ export class FormDonacionComponent implements OnInit {
           this.router.navigate(['red/Donaciones']);
         });
       } else {
-        
-        const nuevaDonacion : Donacion = {
-          id_donacion_usuario: 1,
+        const nuevaDonacion: Donacion = {
+          id_donacion_usuario: this.id_donacion_usuario,
           id_evento: formValues.eventoId,
           cantidad: formValues.cantidad,
           tipo_donacion: formValues.tipo_donacion,
@@ -119,7 +124,6 @@ export class FormDonacionComponent implements OnInit {
       console.error('Formulario inválido', this.donacionForm.errors);
     }
   }
-  
 
   cancelar(): void {
     this.router.navigate(['red/Donaciones']);
