@@ -8,18 +8,23 @@ import { PublicacionesService } from '../../../../servicios/publicaciones.servic
   styleUrl: './mis-publicaciones.component.css'
 })
 export class MisPublicacionesComponent implements OnInit {
-  constructor(public _servicio_publicaciones: PublicacionesService, private title: Title){}
-  
-  id_usuario: number = 1
+  constructor(public _servicio_publicaciones: PublicacionesService, private title: Title) {}
+
+  id_usuario!: number;
+
   ngOnInit(): void {
-    this._servicio_publicaciones.getMisPublicaciones(this.id_usuario).subscribe( data => {
-      this._servicio_publicaciones.publicaciones = data
-      console.log("publicaciones",data)
-    })
-    this.title.setTitle("Econexion | Mis Publicaciones")
+    const userIdString = sessionStorage.getItem('userId');
+    if (userIdString !== null) {
+      this.id_usuario = Number(userIdString);
+    } else {
+      this.id_usuario = 0; 
+    }
+
+    this._servicio_publicaciones.getMisPublicaciones(this.id_usuario).subscribe(data => {
+      this._servicio_publicaciones.publicaciones = data;
+      console.log("publicaciones", data);
+    });
+    
+    this.title.setTitle("Econexion | Mis Publicaciones");
   }
-  
-
-
-
 }

@@ -9,11 +9,15 @@ import { Backend_Api } from '../../environment/environment';
 })
 export class PerfilService {
 
-  api = Backend_Api.Url + "usuarios/"
-  constructor( private http: HttpClient ) { }
+  constructor(private http: HttpClient) { }
 
-
-  getPerfil ( id : number ) : Observable<Usuario> {
-    return this.http.get<Usuario>( this.api + id )
+  getPerfil(): Observable<any> {
+    const idUsuario = sessionStorage.getItem('userId');
+    if (!idUsuario) {
+      throw new Error('No se encontró el ID del usuario en el sessionStorage');
+    }
+    const url = `${Backend_Api.Url}usuarios/${idUsuario}`;
+    return this.http.get(url);
   }
 }
+

@@ -12,7 +12,9 @@ import { EventoPut, Eventos } from '../../../../Interfaces/eventos';
 export class FormEventoComponent implements OnInit {
   eventoForm: FormGroup;
   idEvento: number | null = null;
-  fechaActual! : string;
+  fechaActual!: string;
+  id_evento_usuario!: number;
+  id_organizador!: number;
 
   constructor(
     private fb: FormBuilder,
@@ -35,6 +37,9 @@ export class FormEventoComponent implements OnInit {
   Accion: any;
 
   ngOnInit(): void {
+    this.id_evento_usuario = Number(sessionStorage.getItem('userId'));
+    this.id_organizador = Number(sessionStorage.getItem('userId'));
+
     this.idEvento = Number(this.route.snapshot.paramMap.get('id'));
     if (this.idEvento) {
       this.cargarEvento(this.idEvento);
@@ -68,12 +73,10 @@ export class FormEventoComponent implements OnInit {
     const horaInicio = group.get('horaInicio')?.value;
     const fechaFinal = group.get('fechaFinal')?.value;
     const horaFinal = group.get('horaFinal')?.value;
-    
-    
+
     if (fechaInicio && horaInicio) {
       const inicio = new Date(`${fechaInicio}T${horaInicio}:00`);
       const ahora = new Date();
-      
 
       if (inicio < ahora) {
         return { fechaInicioPasada: true };
@@ -140,8 +143,8 @@ export class FormEventoComponent implements OnInit {
           ubicacion: formValues.ubicacion,
           estatus_donacion: formValues.estatus_donacion,
           estatus_donador: 'no',
-          id_evento_usuario: 1,
-          id_organizador: 1,
+          id_evento_usuario: this.id_evento_usuario,
+          id_organizador: this.id_organizador,
           id_eventos: this.idEvento
         };
 

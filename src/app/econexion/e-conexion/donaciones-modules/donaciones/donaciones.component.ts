@@ -9,15 +9,24 @@ import { DonacionesService } from '../../../../servicios/donacion.service';
 })
 export class DonacionesComponent implements OnInit {
   donaciones: Donacion[] = [];
+  idUsuario: number = 0; // Inicializa con un valor por defecto
 
   constructor(private donacionesService: DonacionesService) {}
 
   ngOnInit(): void {
-    this.obtenerDonaciones();
+    // Obtener el idUsuario desde sessionStorage
+    const userIdString = sessionStorage.getItem('userId');
+    if (userIdString !== null) {
+      this.idUsuario = Number(userIdString);
+    } else {
+      console.error('No se encontró el userId en sessionStorage');
+    }
+
+    this.obtenerDonacionesPorUsuario(this.idUsuario);
   }
 
-  obtenerDonaciones(): void {
-    this.donacionesService.obtenerDonaciones().subscribe(
+  obtenerDonacionesPorUsuario(idUsuario: number): void {
+    this.donacionesService.obtenerDonacionesPorUsuario(idUsuario).subscribe(
       (data: Donacion[]) => this.donaciones = data,
       (error) => console.error('Error al obtener donaciones:', error)
     );
