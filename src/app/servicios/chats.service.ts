@@ -11,13 +11,20 @@ export class ChatsService {
 
   constructor( private _http: HttpClient ) { }
 
-  private api : string = Backend_Api.Url + "chat/"
+  private api : string = Backend_Api.Url + "usuario_has_chat/"
   chats : Chat[] = []
+  user_has_chat!: any[] 
+  getUsHasChatById( id_user: number ): Observable<any[]> { return this._http.get<any[]>(this.api + "by_usuario/" + id_user) }
+  getUsHasChatByChat( id_user: number ): Observable<any[]> { return this._http.get<any[]>(this.api + "by_chat/" + id_user) }
+  postUsHasChat( data : any ) : Observable <any> { return this._http.post<any>(this.api, data) }
+  putUsHasChat( id : number ) : Observable<Chat> { return this._http.put<Chat>(this.api, id) }
+  deleteUsHasChat( id : number ) : Observable<Chat> { return this._http.delete<Chat>( this.api + id ) }
 
-  postChat( data : Chat ) : Observable <Chat> { return this._http.post<Chat>(this.api, data) }
-  getMyChatsById( id_user: number ): Observable<Chat[]> { return this._http.get<Chat[]>(this.api + id_user) }
-  putChatById( id : number ) : Observable<Chat> { return this._http.put<Chat>(this.api, id) }
-  deleteCchat( id : number ) : Observable<Chat> { return this._http.delete<Chat>( this.api + id ) }
+  private apiChat : string = Backend_Api.Url + "chat/"
+  getMyChatsById( id_user: number ): Observable<Chat> { return this._http.get<Chat>(this.apiChat + id_user) }
+  postChat( data : any ) : Observable <any> { return this._http.post<any>(this.apiChat, data) }
+  putChatById( id : number ) : Observable<Chat> { return this._http.put<Chat>(this.apiChat, id) }
+  deleteCchat( id : number ) : Observable<Chat> { return this._http.delete<Chat>( this.apiChat + id ) }
 
 
 }

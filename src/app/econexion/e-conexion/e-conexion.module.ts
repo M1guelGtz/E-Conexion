@@ -15,6 +15,8 @@ import { PublicacionesModuleModule } from './publicaciones-module/publicaciones-
 import { RedComponent } from './red/red.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MensajesComponent } from './mensajes/mensajes.component';
+import { MensajeComponent } from './mensaje/mensaje.component';
 
 
 @NgModule({
@@ -27,6 +29,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ContactosComponent,
     ListChatsComponent,
     ContactoComponent,
+    MensajesComponent,
+    MensajeComponent,
   ],
   imports: [
     CommonModule,

@@ -13,6 +13,7 @@ export class SidebarComponent {
   }
   seemenu: any;
   width : any
+  minw = "min-w-80"
   rotate = "rotate-0"
   menu(){
 

@@ -29,6 +29,7 @@ export class DonacionesService {
   eliminarDonacion(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}${id}`);
   }
-
+  obtenerDonacionesPorUsuario(idUsuario: number): Observable<Donacion[]> 
+  { return this.http.get<Donacion[]>(`${this.apiUrl}donaciones/${idUsuario}`); }
 }
 

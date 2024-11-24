@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class EventosUsuarioComponent implements OnInit {
   eventosUsuario: Eventos[] = [];
-  idUsuario: number = 1; 
+  idUsuario: number = 0; // Inicializa con un valor por defecto
 
   constructor(
     public eventoService: EventosService,
@@ -18,11 +18,19 @@ export class EventosUsuarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Obtener el idUsuario desde sessionStorage
+    const userIdString = sessionStorage.getItem('userId');
+    if (userIdString !== null) {
+      this.idUsuario = Number(userIdString);
+    } else {
+      // Maneja el caso donde el userId no está disponible en sessionStorage
+      console.error('No se encontró el userId en sessionStorage');
+    }
+
     this.eventoService.obtenerEventosPorUsuario(this.idUsuario).subscribe(
       eventos => {
         this.eventoService.Eventos = eventos;
         console.log(this.eventoService.Eventos);
-        
       },
       error => {
         console.error('Error al obtener los eventos:', error);
@@ -38,14 +46,14 @@ export class EventosUsuarioComponent implements OnInit {
     if (confirm('¿Estás seguro de que deseas eliminar este evento?')) {
       this.eventoService.eliminarEvento(idEvento).subscribe(
         () => {
-          console.log("eliminado bien chido")
-          let aux : any[] = []
-          this.eventoService.Eventos.map((element) =>{
-            if(element.id_eventos != idEvento){
-              aux.push(element)
+          console.log("eliminado bien chido");
+          let aux: any[] = [];
+          this.eventoService.Eventos.map((element) => {
+            if (element.id_eventos != idEvento) {
+              aux.push(element);
             }
-          })
-          this.eventoService.Eventos = aux
+          });
+          this.eventoService.Eventos = aux;
         },
         error => {
           console.error('Error al eliminar el evento:', error);

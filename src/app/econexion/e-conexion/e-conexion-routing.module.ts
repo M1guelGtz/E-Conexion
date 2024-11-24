@@ -10,6 +10,7 @@ import { FormEventoComponent } from './eventos-module/form-evento/form-evento.co
 import { FormforosComponent } from './foros-module/formforos/formforos.component';
 import { ForosComponent } from './foros-module/foros/foros.component';
 import { ListChatsComponent } from './list-chats/list-chats.component';
+import { MensajesComponent } from './mensajes/mensajes.component';
 import { MiPerfilComponent } from './perfil/mi-perfil/mi-perfil.component';
 import { FormPublicacionComponent } from './publicaciones-module/form-publicacion/form-publicacion.component';
 import { ListaPComponent } from './publicaciones-module/lista-p/lista-p.component';
@@ -88,6 +89,10 @@ const routes: Routes = [
         path: "chats",
         component: ChatComponent,
         children: [
+          {
+            path: 'with/:id_chat',
+            component: MensajesComponent
+          },
           {
             path: '',
             component: ListChatsComponent

@@ -1,0 +1,26 @@
+<div class="w-full h-full flex-col p-5 flex justify-center items-center ">
+    <div class="w-7/12 h-full ">
+        <div class="p-3  overflow-hidden overflow-y-scroll  h-full lg  " id="scrollme" #scrollMe>
+            <div class="w-full flex justify-between" *ngFor="let mensajes of Mensajes">
+              <h2 class="w-full  flex justify-end text-green-600 p-1 " *ngIf="mensajes.id_emisor == mi_id">
+                <span class="bg-green-100 px-3">
+                  {{mensajes.mensaje}}
+                  <span class="text-xs block mt-1">{{mensajes.fecha}}</span>
+                </span>
+              </h2>
+              <h2 class="w-full flex text-blue-600 p-1" *ngIf="mensajes.id_emisor != mi_id">
+                <span class="bg-blue-100 px-3 py-1 ">
+                  {{mensajes.mensaje}}
+                  <span class="text-xs block mt-1">{{mensajes.fecha}}</span>
+                </span>
+              </h2>
+            </div>
+        </div>
+    </div>
+    <form (ngSubmit)="enviarMensaje()" class=" w-full flex justify-center">
+        <label class="w-[55%]">
+            <input [(ngModel)]="mensaje" class="border border-black w-full p-2 md:p-3 rounded-lg" placeholder="Redacta un mensaje" type="text" name="mensaje" >
+        </label>
+        <button type="submit" class=" bg-green-600 rounded-lg p-2">Enviar</button>
+    </form>
+</div>

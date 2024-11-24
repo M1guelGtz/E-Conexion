@@ -6,4 +6,5 @@ export interface Publicacion {
     imagen: string | null
     nombre_usuario: string,
     titulo: string
+    
 }
