@@ -1,19 +1,19 @@
 <div class="w-full h-full flex justify-around p-2 ">
     <div class="w-1/5 h-full bg-green-100 p-4">
+        <h1 class="w-full bg-[#61A146] h-10  text-center mb-3 text-white rounded-lg p-2">{{user.nombre_usuario}} {{user.apellidos_usuario}}</h1>
         <div class="border-black border flex w-full h-2/12 object-cover items-center justify-center rounded-lg">
             <img [src]="user.imagen_usuario" class="w-full h-full object-contain"/>
+        </div>
+        <div class="w-full h-[15%] flex justify-center items-center rounded-lg border border-dashed border-green-600 mt-2">
+            {{user.descripcion}}
         </div>
         <button class="w-full border-green-600 border rounded-lg my-5 p-2  "> editar foto de perfil </button>
     </div>
     <div class="w-9/12 h-full bg-green-100 p-4">
         <div class="w-full border h-[40%]">
-            <h1 class="w-full bg-[#61A146] h-[25%] text-center text-white rounded-lg p-2">{{user.nombre_usuario}} {{user.apellidos_usuario}}</h1>
-            <div class="w-full h-[71%] flex justify-center items-center rounded-lg border border-dashed border-green-600 mt-2">
-                {{user.descripcion}}
-            </div>
-            <div class=" bg-red-400">
-                {{user.correo_usuario}}
-
+            <div class="  w-full h-full flex flex-col items-center ">
+                <button (click)="ruta()" class="text-2xl font-semibold text-green-600" > Mis publicaciones </button>
+                <app-mis-publicaciones class="top-10"></app-mis-publicaciones>
             </div>
         </div>
     </div>

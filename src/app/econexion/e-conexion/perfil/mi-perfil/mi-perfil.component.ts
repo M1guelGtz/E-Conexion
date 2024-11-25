@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Usuario } from '../../../../Interfaces/usuario';
 import { PerfilService } from '../../../../servicios/perfil.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -23,7 +24,7 @@ export class MiPerfilComponent implements OnInit {
     descripcion :''
   };
 
-  constructor(private title: Title, private _perfil_service: PerfilService) {}
+  constructor(private title: Title, private _perfil_service: PerfilService , private router : Router) {}
 
   ngOnInit(): void {
     this.title.setTitle("Econexion | Mi perfil");
@@ -37,5 +38,8 @@ export class MiPerfilComponent implements OnInit {
         console.error('Error al obtener el perfil:', err);
       }
     });
+  }
+  ruta(){
+    this.router.navigate(['red/publicaciones/misPublicaciones'])
   }
 }
