@@ -9,6 +9,8 @@ import { PerfilService } from '../../../servicios/perfil.service';
   styleUrl: './nav.component.css'
 })
 export class NavComponent implements OnInit{
+  isModalOpen = false;
+  modalPosition = { top: 0, left: 0 };
 
   constructor(public _perfil_service : PerfilService, private router: Router){}
 
@@ -41,20 +43,37 @@ export class NavComponent implements OnInit{
       }
     });
   }
-  isModalOpen = false;
+ 
 
-  toggleModal(): void {
-    this.isModalOpen = !this.isModalOpen;
+  openModal(buttonRef: HTMLElement): void {
+    const rect = buttonRef.getBoundingClientRect();
+    this.modalPosition = {
+      top: rect.bottom + window.scrollY + 10, 
+      left: rect.left + window.scrollX - 220
+    };
+    this.isModalOpen = true;
+  }
+  
+  toggleModal(buttonRef: HTMLElement): void {
+    if (this.isModalOpen) {
+      this.closeModal(); 
+    } else {
+      this.openModal(buttonRef); 
+    }
   }
 
-  logout(): void {
-    this.router.navigate(['/login']);
-    sessionStorage.removeItem("userId")
+  closeModal(): void {
+    this.isModalOpen = false; 
   }
-  navigateToProfile(): void {
-    this.toggleModal();
+  
+  goToProfile(): void {
+    this.closeModal();
     this.router.navigate(['red/perfil']); 
   }
   
-  
+  logout(): void {
+    this.closeModal(); 
+    sessionStorage.removeItem("userId")
+    this.router.navigate(['/login']); 
+  }
 }

@@ -31,6 +31,7 @@ export class LoginService {
     formData.append('tipo_usuario', usuario.tipo_usuario);
     formData.append('estatus', usuario.estatus);
     formData.append('file', imagen); 
+    formData.append('descripcion',usuario.descripcion);
   
     return this.http.post(`${Backend_Api.Url}usuarios/register`, formData);
   }

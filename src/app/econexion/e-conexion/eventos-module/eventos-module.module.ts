@@ -6,6 +6,7 @@ import { CardEventoComponent } from './card-evento/card-evento.component';
 import { FormEventoComponent } from './form-evento/form-evento.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventosUsuarioComponent } from './eventos-usuario/eventos-usuario.component';
+import { ListaEComponent } from './lista-e/lista-e.component';
 
 
 
@@ -14,7 +15,8 @@ import { EventosUsuarioComponent } from './eventos-usuario/eventos-usuario.compo
     EventosComponent,
     CardEventoComponent,
     FormEventoComponent,
-    EventosUsuarioComponent
+    EventosUsuarioComponent,
+    ListaEComponent
   ],
   imports: [
     CommonModule,

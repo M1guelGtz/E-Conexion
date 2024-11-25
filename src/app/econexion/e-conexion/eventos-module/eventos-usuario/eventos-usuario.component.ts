@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class EventosUsuarioComponent implements OnInit {
   eventosUsuario: Eventos[] = [];
-  idUsuario: number = 0; // Inicializa con un valor por defecto
+  idUsuario: number = 0; 
 
   constructor(
     public eventoService: EventosService,
@@ -18,12 +18,12 @@ export class EventosUsuarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Obtener el idUsuario desde sessionStorage
+    
     const userIdString = sessionStorage.getItem('userId');
     if (userIdString !== null) {
       this.idUsuario = Number(userIdString);
     } else {
-      // Maneja el caso donde el userId no está disponible en sessionStorage
+      
       console.error('No se encontró el userId en sessionStorage');
     }
 
