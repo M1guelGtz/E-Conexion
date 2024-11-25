@@ -6,8 +6,22 @@ import { PublicacionesService } from '../../../../servicios/publicaciones.servic
 @Component({
   selector: 'app-publicaciones',
   templateUrl: './publicaciones.component.html',
-  styleUrl: './publicaciones.component.css'
+  styleUrl: './publicaciones.component.css',
 })
-export class PublicacionesComponent  {
-  
+export class PublicacionesComponent implements OnInit {
+  showAlert: boolean = false;
+  ngOnInit() {
+    const userId = sessionStorage.getItem('alerta');
+    if (userId) {
+      this.showAlert = true;
+      setTimeout(() => {
+        this.showAlert = false;
+      }, 5000);
+      sessionStorage.removeItem('alerta')
+    }
+  }
+
+  closeAlert() {
+    this.showAlert = false;
+  }
 }
