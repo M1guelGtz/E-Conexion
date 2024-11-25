@@ -11,7 +11,8 @@ import { PerfilService } from '../../../servicios/perfil.service';
 })
 export class ChatWhitUserComponent implements OnInit {
 
-  constructor ( public _service_chat: ChatsService, private _perfil: PerfilService, private router : Router ){}
+  constructor ( public _service_chat: ChatsService, private _perfil: PerfilService, private router : Router, 
+    private _perfil_service : PerfilService ){}
   @Input() Chat = {
     chat_idchat: 0,
     usuario_idusuario: 0  
@@ -66,6 +67,7 @@ export class ChatWhitUserComponent implements OnInit {
   }
   
   irAlChat(){
+    this._perfil_service.chatWith_user = this.userData
     this.router.navigate(["/red/chats/with/" + this.Chat.chat_idchat ])
   }
 }
