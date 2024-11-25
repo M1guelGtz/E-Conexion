@@ -17,6 +17,7 @@ import { ListaPComponent } from './publicaciones-module/lista-p/lista-p.componen
 import { MisPublicacionesComponent } from './publicaciones-module/mis-publicaciones/mis-publicaciones.component';
 import { PublicacionesComponent } from './publicaciones-module/publicaciones/publicaciones.component';
 import { RedComponent } from './red/red.component';
+import { ListaEComponent } from './eventos-module/lista-e/lista-e.component';
 
 const routes: Routes = [
   {
@@ -52,7 +53,21 @@ const routes: Routes = [
       {
         path: 'eventos',
         component: EventosComponent,
-        data: {animation: 'AboutPage'}
+        data: {animation: 'AboutPage'},
+        children :[{
+          path: '',
+          component : ListaEComponent},
+          {
+            path: 'miseventos',
+            component:EventosUsuarioComponent
+          },
+          { path: 'form-evento/:id'
+            , component: FormEventoComponent },
+            {
+              path: 'formeventos',
+              component: FormEventoComponent
+            },
+        ]
       },
       {
         path: 'foros',
@@ -75,16 +90,6 @@ const routes: Routes = [
         path :"Donaciones/donacionesform/:id",
         component : FormDonacionComponent
         },
-      {
-      path: 'eventos/miseventos',
-      component:EventosUsuarioComponent
-    },
-    { path: 'eventos/form-evento/:id'
-      , component: FormEventoComponent },
-      {
-        path: 'eventos/formeventos',
-        component: FormEventoComponent
-      },
       {
         path: "chats",
         component: ChatComponent,
