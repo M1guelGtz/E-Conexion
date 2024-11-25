@@ -10,8 +10,11 @@ import { Backend_Api } from '../../environment/environment';
 export class ForosService {
  
 
+
   constructor(private http: HttpClient) {}
 
+
+  listaForos: Foro[]= []
   obtenerForos(): Observable<Foro[]> {
     return this.http.get<Foro[]>(Backend_Api.Url + "foro");
   }
