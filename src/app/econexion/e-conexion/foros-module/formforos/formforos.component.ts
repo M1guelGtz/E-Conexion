@@ -30,7 +30,7 @@ export class FormforosComponent implements OnInit{
   onSubmit(): void {
     if (this.foroForm.valid) {
       let chat : Chat = {
-        grupal: "true",
+        grupal: true,
         id_chat : 0,
         ultimo_msj : ''
       }

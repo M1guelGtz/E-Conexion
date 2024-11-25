@@ -16,15 +16,24 @@ export class MisForosComponent implements OnInit {
     if (userIdString !== null) {
       this.mi_id = Number(userIdString);
     } 
-      this._service_chat.getUsHasChatById(this.mi_id).subscribe(
-        response => {
-          this.misChats = response
-          console.log("respuesta del servidor", this.misChats);
-        }
-      )
-    this.misChats.map( (chat ) => {
-      this._service_chat.
-    })
+    this.buscarMisForos();
+  }
+  
+  buscarMisForos(){
+    this._service_chat.getUsHasChatById(this.mi_id).subscribe(
+      response => {
+        this.misChats = response
+        this.misChats.map( (chat ) => {
+          this._service_chat.getMyChatsById(chat.chat_idchat).subscribe( (chat) => {
+            console.log(chat);
+            chat.grupal == true ? [this.misForos.push(chat), console.log("añadido a foros")]
+            : ""
+          },
+        error => console.log(error)
+        )
+        })
+      }
+    )
   }
 
 
