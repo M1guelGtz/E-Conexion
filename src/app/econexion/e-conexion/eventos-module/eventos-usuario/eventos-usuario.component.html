@@ -1,4 +1,43 @@
-<div class="h-[100%]  flex flex-col items-center overflow-hidden overflow-y-scroll" id="scrollme">
+<div class="w-full flex text-center items-center justify-center flex-col h-full" *ngIf="this.eventoService.Eventos .length <= 0">
+  <div class="container">
+      <div class="tree">
+          <div class="branch" style="--x:0">
+          <span style="--i:0;"></span>
+          <span style="--i:1;"></span>
+          <span style="--i:2;"></span>
+          <span style="--i:3;"></span>
+          </div>
+          <div class="branch" style="--x:1">
+          <span style="--i:0;"></span>
+          <span style="--i:1;"></span>
+          <span style="--i:2;"></span>
+          <span style="--i:3;"></span>
+          </div>
+          <div class="branch" style="--x:2">
+          <span style="--i:0;"></span>
+          <span style="--i:1;"></span>
+          <span style="--i:2;"></span>
+          <span style="--i:3;"></span>
+          </div>
+          <div class="branch" style="--x:3">
+          <span style="--i:0;"></span>
+          <span style="--i:1;"></span>
+          <span style="--i:2;"></span>
+          <span style="--i:3;"></span>
+          </div>
+          <div class="stem">
+          <span style="--i:0;"></span>
+          <span style="--i:1;"></span>
+          <span style="--i:2;"></span>
+          <span style="--i:3;"></span>
+          </div>
+          <span class="shadow"></span>
+      </div>
+  </div>
+  Upss, aun no tienes eventos
+  <a routerLink="formeventos" class="text-green-600 mx-2 border-b border-green-600"> crea una</a>
+</div>
+ <div class="h-[100%] w-full flex flex-col items-center overflow-hidden overflow-y-scroll" id="scrollme">
   <div *ngFor="let evento of eventoService.Eventos" class=" border-green-300 w-3/5 rounded-lg p-4 mb-4 shadow-md bg-white">
     <div class="flex justify-between">
       <div>

@@ -9,12 +9,12 @@ import { DonacionesService } from '../../../../servicios/donacion.service';
 })
 export class DonacionesComponent implements OnInit {
   donaciones: Donacion[] = [];
-  idUsuario: number = 0; // Inicializa con un valor por defecto
+  idUsuario: number = 0; 
 
   constructor(private donacionesService: DonacionesService) {}
 
   ngOnInit(): void {
-    // Obtener el idUsuario desde sessionStorage
+    
     const userIdString = sessionStorage.getItem('userId');
     if (userIdString !== null) {
       this.idUsuario = Number(userIdString);
