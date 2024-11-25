@@ -3,6 +3,7 @@
       <img src="LOGO.png" alt="Logo" class="w-[80px] h-[80px] rounded-full" >
       <h1 class="text-2xl font-bold text-green-800">ECONEXION</h1>
     </div>
+    <div class="text-green-600 text-lg bg-green-100 p-2 rounded-lg" *ngIf="_perfil_service.chatWith_user.id_usuario !=0"> Chat con {{_perfil_service.chatWith_user.nombre_usuario}} </div>
     <div class="flex space-x-3 mx-3">
 
       <label  (click)="activarBusqueda()" *ngIf="activarInput" class="text-green-800 flex justify-center items-center w-[50px] h-[50px] rounded-full object-cover border border-[#61A146] "><img src="search.png" alt="search" class="w-[25px] h-[25px]"> </label>

@@ -1,25 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { Chat } from '../../../Interfaces/chat';
 import { ChatsService } from '../../../servicios/chats.service';
 import { ContactosService } from '../../../servicios/contactos.service';
+import { PerfilService } from '../../../servicios/perfil.service';
 
 @Component({
   selector: 'app-contacto',
   templateUrl: './contacto.component.html',
   styleUrl: './contacto.component.css'
 })
-export class ContactoComponent {
+export class ContactoComponent implements OnInit {
   constructor(
     private _service_contact: ContactosService,
     private _service_chat: ChatsService,
-    private router: Router
+    private router: Router,
+    private _perfil_service : PerfilService
   ) {}
-
+  ngOnInit(): void {
+    const userIdString = sessionStorage.getItem('userId');
+    if (userIdString !== null) {
+      this.myId = Number(userIdString);
+    } 
+  }
   chats_contacto1: any[] = [];
   chats_contacto2: any[] = [];
-  myId = 1;
+  myId!: number
   existe: boolean = false;
   confirmDelete: boolean = false;
   newChat: Chat = {
@@ -47,17 +54,19 @@ export class ContactoComponent {
       this._service_chat.getUsHasChatById(this.myId)
     ]).subscribe(
       ([chatsContacto, chatsUsuario]) => {
-        // Recorre ambos conjuntos para buscar coincidencias
         const chatExistente = chatsContacto.find((chat1) =>
           chatsUsuario.some((chat2) => chat1.chat_idchat === chat2.chat_idchat)
         );
 
         if (chatExistente) {
-          // Si hay coincidencia, navega al chat y establece existe como true
           this.existe = true;
+          this._perfil_service.getPerfilById(this.contacto.id_usuario).subscribe( contacto => {
+            this._perfil_service.chatWith_user = contacto
+            console.log(contacto);
+          })
           this.router.navigate(["/red/chats/with/" + chatExistente.chat_idchat]);
+
         } else {
-          // Si no hay coincidencia, crea un nuevo chat
           this.existe = false;
           this.noexiste();
         }
@@ -68,7 +77,7 @@ export class ContactoComponent {
 
   noexiste() {
     let chat = {
-      ultimo_msj: "...",
+      ultimo_msj: "",
       grupal: false
     };
     this._service_chat.postChat(chat).subscribe(
@@ -88,7 +97,7 @@ export class ContactoComponent {
         );
         let uschat = {
           chat_idchat: response.id_chat,
-          usuario_idusuario: 1
+          usuario_idusuario: this.myId
         };
         this._service_chat.postUsHasChat(uschat).subscribe(
           (response) => {

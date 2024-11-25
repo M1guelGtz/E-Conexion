@@ -1,5 +1,44 @@
 <div class=" h-full space-y-3  overflow-hidden overflow-y-scroll flex flex-col items-center px-5" id="scrollme">
-    <div *ngFor="let contacto of contactos" class="shadow-md hover:bg-gradient-to-r from-green-600/20 to-white border-green-600 flex-col flex justify-between rounded   border w-3/5">
+    <div *ngIf="_servicio_contactos.contactos.length <= 0" class="w-full flex text-center items-center justify-center flex-col h-full">
+        <div class="container">
+            <div class="tree">
+                <div class="branch" style="--x:0">
+                <span style="--i:0;"></span>
+                <span style="--i:1;"></span>
+                <span style="--i:2;"></span>
+                <span style="--i:3;"></span>
+                </div>
+                <div class="branch" style="--x:1">
+                <span style="--i:0;"></span>
+                <span style="--i:1;"></span>
+                <span style="--i:2;"></span>
+                <span style="--i:3;"></span>
+                </div>
+                <div class="branch" style="--x:2">
+                <span style="--i:0;"></span>
+                <span style="--i:1;"></span>
+                <span style="--i:2;"></span>
+                <span style="--i:3;"></span>
+                </div>
+                <div class="branch" style="--x:3">
+                <span style="--i:0;"></span>
+                <span style="--i:1;"></span>
+                <span style="--i:2;"></span>
+                <span style="--i:3;"></span>
+                </div>
+                <div class="stem">
+                <span style="--i:0;"></span>
+                <span style="--i:1;"></span>
+                <span style="--i:2;"></span>
+                <span style="--i:3;"></span>
+                </div>
+                <span class="shadow"></span>
+            </div>
+        </div>
+        Upss, aun no tienes Contactos agregados,
+      <a (click)="agregarContacto()"  class="text-green-600 mx-2 border-b border-green-600 cursor-pointer"> agregar uno</a>
+    </div>
+    <div *ngFor="let contacto of _servicio_contactos.contactos" class="shadow-md hover:bg-gradient-to-r from-green-600/20 to-white border-green-600 flex-col flex justify-between rounded   border w-3/5">
         <app-contacto [contacto]="contacto"/>
     </div>
 </div>

@@ -13,7 +13,7 @@ export class ChatsService {
 
   private api : string = Backend_Api.Url + "usuario_has_chat/"
   chats : Chat[] = []
-  user_has_chat!: any[] 
+  user_has_chat: any[] = []
   getUsHasChatById( id_user: number ): Observable<any[]> { return this._http.get<any[]>(this.api + "by_usuario/" + id_user) }
   getUsHasChatByChat( id_user: number ): Observable<any[]> { return this._http.get<any[]>(this.api + "by_chat/" + id_user) }
   postUsHasChat( data : any ) : Observable <any> { return this._http.post<any>(this.api, data) }
@@ -23,7 +23,7 @@ export class ChatsService {
   private apiChat : string = Backend_Api.Url + "chat/"
   getMyChatsById( id_user: number ): Observable<Chat> { return this._http.get<Chat>(this.apiChat + id_user) }
   postChat( data : any ) : Observable <any> { return this._http.post<any>(this.apiChat, data) }
-  putChatById( id : number ) : Observable<Chat> { return this._http.put<Chat>(this.apiChat, id) }
+  putChatById( id : number, data: Chat ) : Observable<Chat> { return this._http.put<Chat>(this.apiChat + id, data) }
   deleteCchat( id : number ) : Observable<Chat> { return this._http.delete<Chat>( this.apiChat + id ) }
 
 

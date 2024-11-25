@@ -13,14 +13,17 @@ export class ListChatsComponent implements OnInit {
 
   constructor(private title: Title, private _user_service : ContactosService, private fb: FormBuilder, public _service_chat : ChatsService){}
 
-  mi_id = 1
+  mi_id ! : number
   ngOnInit(): void {
+    const userIdString = sessionStorage.getItem('userId');
+    if (userIdString !== null) {
+      this.mi_id = Number(userIdString);
+    } 
     this._service_chat.getUsHasChatById( this.mi_id ).subscribe(
       ( data ) => {
         this._service_chat.user_has_chat = data
-        console.log(data);
-        
-      }
+      }, e => console.log(e)
+      
     )
   }
 }

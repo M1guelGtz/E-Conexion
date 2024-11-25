@@ -7,6 +7,8 @@ import { Contacto } from '../Interfaces/contacto';
   providedIn: 'root'
 })
 export class ContactosService {
+  contactos: Contacto[] = []
+  modal: boolean= false
   constructor( private _http: HttpClient ) { }
   private api : string = Backend_Api.Url + "lista_contacto/"
   postContact( data : Contacto ) : Observable <Contacto> { return this._http.post<Contacto>(this.api, data) }
