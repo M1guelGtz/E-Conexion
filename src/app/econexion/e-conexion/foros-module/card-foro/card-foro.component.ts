@@ -1,8 +1,9 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { PerfilService } from '../../../../servicios/perfil.service';
 import { Usuario } from '../../../../Interfaces/usuario';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChatsService } from '../../../../servicios/chats.service';
+import { ForosService } from '../../../../servicios/foros.service';
 
 
 @Component({
@@ -12,8 +13,10 @@ import { ChatsService } from '../../../../servicios/chats.service';
 })
 export class CardForoComponent implements OnInit {
   
-  constructor( private _service_perfil: PerfilService, private route: Router, private _service_chat: ChatsService ) { }
+  constructor( private routeA: ActivatedRoute , private _service_perfil: PerfilService, private route: Router, private _service_chat: ChatsService, private _service_foros: ForosService ) { }
   @Input() Foro: any;
+  @Input() miForo: any
+  foroAcrua!:any
   user:Usuario = {
     apellidos_usuario:"",
     correo_usuario:"",
@@ -26,8 +29,27 @@ export class CardForoComponent implements OnInit {
     tipo_usuario: "",
     descripcion: ""
   }
+
+  boton = "Unirme"
+
   mi_id! : number;
   ngOnInit(): void {
+    const routeSnapshot = this.routeA.snapshot;
+    if(routeSnapshot.url[0].path == "misforos"){
+      this.boton="Abrir"
+      console.log(this.Foro.id_chat);
+      this._service_foros.obtenerForoPorIdChat(this.Foro.id_chat).subscribe
+      (element =>{
+        console.log(element);
+        this.Foro = element
+      },
+    error =>{
+      console.log(error);
+      
+    })
+    }else{ 
+
+  
     const userIdString = sessionStorage.getItem('userId');
     if (userIdString !== null) {
       this.mi_id = Number(userIdString);
@@ -40,6 +62,7 @@ export class CardForoComponent implements OnInit {
         },
         error => console.log(error)
       )
+    }
   }
 
   alChat(){
