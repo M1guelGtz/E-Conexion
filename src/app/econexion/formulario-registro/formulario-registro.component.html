@@ -1,6 +1,4 @@
-<h1 class="w-full text-center text-[#61A146] text-4xl pb-5">
-  Regístrate
-</h1>
+<h1 class="w-full text-center text-[#61A146] text-4xl pb-5">Regístrate</h1>
 <form
   [formGroup]="registroForm"
   class="flex text-[#61A146] flex-col lg:flex-row flex-wrap rounded-xl justify-between p-5 bg-white border border-black"
@@ -17,12 +15,35 @@
       placeholder="Introduzca su nombre de usuario"
     />
     <small
-      *ngIf="registroForm.get('nombre_usuario')?.invalid && registroForm.get('nombre_usuario')?.touched"
+      *ngIf="
+        registroForm.get('nombre_usuario')?.invalid &&
+        registroForm.get('nombre_usuario')?.touched
+      "
       class="text-red-500"
     >
       El nombre es obligatorio.
     </small>
   </label>
+
+    <!-- Correo Electrónico -->
+    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
+      <span>Correo electrónico:</span>
+      <input
+        class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-1"
+        type="email"
+        formControlName="correo_usuario"
+        placeholder="Introduzca su correo electrónico"
+      />
+      <small
+        *ngIf="
+          registroForm.get('correo_usuario')?.invalid &&
+          registroForm.get('correo_usuario')?.touched
+        "
+        class="text-red-500"
+      >
+        El correo electrónico es obligatorio y debe ser válido.
+      </small>
+    </label>
 
   <!-- Apellidos -->
   <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
@@ -34,46 +55,16 @@
       placeholder="Introduzca sus apellidos"
     />
     <small
-      *ngIf="registroForm.get('apellidos_usuario')?.invalid && registroForm.get('apellidos_usuario')?.touched"
+      *ngIf="
+        registroForm.get('apellidos_usuario')?.invalid &&
+        registroForm.get('apellidos_usuario')?.touched
+      "
       class="text-red-500"
     >
       Los apellidos son obligatorios.
     </small>
   </label>
 
-  <!-- Correo Electrónico -->
-  <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
-    <span>Correo electrónico:</span>
-    <input
-      class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-1"
-      type="email"
-      formControlName="correo_usuario"
-      placeholder="Introduzca su correo electrónico"
-    />
-    <small
-      *ngIf="registroForm.get('correo_usuario')?.invalid && registroForm.get('correo_usuario')?.touched"
-      class="text-red-500"
-    >
-      El correo electrónico es obligatorio y debe ser válido.
-    </small>
-  </label>
-
-  <!-- Teléfono -->
-  <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
-    <span>Teléfono:</span>
-    <input
-      class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-1"
-      type="text"
-      formControlName="telefono_usuario"
-      placeholder="Introduzca su número de teléfono"
-    />
-    <small
-      *ngIf="registroForm.get('telefono_usuario')?.invalid && registroForm.get('telefono_usuario')?.touched"
-      class="text-red-500"
-    >
-      El teléfono es obligatorio.
-    </small>
-  </label>
 
   <!-- Contraseña -->
   <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
@@ -85,10 +76,33 @@
       placeholder="Introduzca su contraseña"
     />
     <small
-      *ngIf="registroForm.get('contrasena_usuario')?.invalid && registroForm.get('contrasena_usuario')?.touched"
+      *ngIf="
+        registroForm.get('contrasena_usuario')?.invalid &&
+        registroForm.get('contrasena_usuario')?.touched
+      "
       class="text-red-500"
     >
       La contraseña es obligatoria.
+    </small>
+  </label>
+
+   <!-- Teléfono -->
+   <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
+    <span>Teléfono:</span>
+    <input
+      class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-1"
+      type="text"
+      formControlName="telefono_usuario"
+      placeholder="Introduzca su número de teléfono"
+    />
+    <small
+      *ngIf="
+        registroForm.get('telefono_usuario')?.invalid &&
+        registroForm.get('telefono_usuario')?.touched
+      "
+      class="text-red-500"
+    >
+      El teléfono es obligatorio.
     </small>
   </label>
 
@@ -101,7 +115,7 @@
       placeholder="Confirme su contraseña"
     />
     <small
-    *ngIf="registroForm.get('confirmar_contrasena')?.hasError('noCoinciden')"
+      *ngIf="registroForm.get('confirmar_contrasena')?.hasError('noCoinciden')"
       class="text-red-500"
     >
       Las contraseñas no coinciden.
@@ -118,7 +132,10 @@
       placeholder="Introduzca una breve descripción de usted"
     ></textarea>
     <small
-      *ngIf="registroForm.get('descripcion')?.invalid && registroForm.get('descripcion')?.touched"
+      *ngIf="
+        registroForm.get('descripcion')?.invalid &&
+        registroForm.get('descripcion')?.touched
+      "
       class="text-red-500"
     >
       La descripción es obligatoria y debe contener al menos 10 caracteres.
@@ -129,7 +146,7 @@
   <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
     <span>Foto de perfil:</span>
     <input
-      class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-1"
+      class="w-full  text-center border-2 rounded-lg border-[#BDE7AC] p-1"
       type="file"
       (change)="onImagenSeleccionada($event)"
       accept="image/*"
@@ -137,10 +154,13 @@
   </label>
 
   <!-- Botón de Envío -->
+   <div class="flex w-full justify-evenly">
   <button
-    class="p-3 my-5 text-white bg-[#61A146] rounded-lg w-full"
+    class="p-3 my-5 text-white bg-green-600 rounded-lg w-[40%] hover:bg-green-700"
     type="submit"
-  >
+    >
     Crear usuario
   </button>
+    <a routerLink="/login" class="border border-green-600 text-green-600 p-3 my-5 rounded-lg hover:bg-green-100 w-[40%] text-center" > Cancelar</a>
+  </div>
 </form>

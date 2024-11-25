@@ -3,16 +3,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../servicios/login.service';
 
-
 @Component({
   selector: 'app-formulario-login',
   templateUrl: './formulario-login.component.html',
-  styleUrl: './formulario-login.component.css'
+  styleUrls: ['./formulario-login.component.css']
 })
-export class FormularioLoginComponent{
+export class FormularioLoginComponent {
   loginFormulario: FormGroup;
-  alerta: string | null = null; 
-  ojo: boolean = false; 
+  alerta: string | null = null;
+  showAlert: boolean = false;
+  ojo: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -21,7 +21,7 @@ export class FormularioLoginComponent{
   ) {
     this.loginFormulario = this.fb.group({
       correo_usuario: ['', [Validators.required, Validators.email]],
-      contrasena_usuario : ['', Validators.required]
+      contrasena_usuario: ['', Validators.required]
     });
   }
 
@@ -31,24 +31,28 @@ export class FormularioLoginComponent{
 
       this.loginService.login(credentials).subscribe({
         next: (response) => {
-          this.loginService.saveToken(response.access_token); 
+          this.loginService.saveToken(response.access_token);
           sessionStorage.setItem('userId', response.id_usuario.toString());
           this.alerta = null;
-          this.router.navigate(['/red/publicaciones']); 
+          this.showAlert = false;
+          sessionStorage.setItem('alerta', "si")
+          this.router.navigate(['/red/publicaciones']);
         },
         error: () => {
           this.alerta = 'Correo o contraseña incorrectos.';
+          this.showAlert = true;
         }
       });
     }
   }
 
+  passworInput = 'password';
   eye() {
     this.ojo = !this.ojo;
-    const passwordInput = document.querySelector('input[formControlName="password"]') as HTMLInputElement;
-    if (passwordInput) {
-      passwordInput.type = this.ojo ? 'text' : 'password';
-    }
+    this.ojo ? this.passworInput = 'text' : this.passworInput = 'password';
   }
 
+  closeAlert() {
+    this.showAlert = false;
+  }
 }

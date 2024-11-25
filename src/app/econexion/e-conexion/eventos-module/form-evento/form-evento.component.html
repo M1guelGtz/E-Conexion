@@ -3,51 +3,129 @@
   <form [formGroup]="eventoForm" class="w-1/2 p-5 flex flex-col h-full justify-evenly">
     <div>
       <label class="block text-green-600 mb-1" for="nombreEvento">Nombre del evento:</label>
-      <input formControlName="nombreEvento" type="text" id="nombreEvento" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+      <input 
+        formControlName="nombreEvento" 
+        type="text" 
+        id="nombreEvento" 
+        class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+        placeholder="Ingrese el nombre del evento" 
+        required 
+        minlength="3" 
+      />
+      <span *ngIf="eventoForm.get('nombreEvento')?.invalid && eventoForm.get('nombreEvento')?.touched" class="text-red-500 text-sm">
+        El nombre es obligatorio y debe tener al menos 3 caracteres.
+      </span>
     </div>
     
     <div>
       <label class="block text-green-600 mb-1" for="ubicacion">Ubicación:</label>
-      <input formControlName="ubicacion" type="text" id="ubicacion" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+      <input 
+        formControlName="ubicacion" 
+        type="text" 
+        id="ubicacion" 
+        class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+        placeholder="Ingrese la ubicación" 
+        required 
+      />
+      <span *ngIf="eventoForm.get('ubicacion')?.invalid && eventoForm.get('ubicacion')?.touched" class="text-red-500 text-sm">
+        La ubicación es obligatoria.
+      </span>
     </div>
 
     <div>
       <label class="block text-green-600 mb-1" for="fechaInicio">Fecha de inicio:</label>
-      <input formControlName="fechaInicio" type="date" id="fechaInicio" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+      <input 
+        formControlName="fechaInicio" 
+        type="date" 
+        id="fechaInicio" 
+        class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+        [min]="fechaActual" 
+        required 
+      />
+      <span *ngIf="eventoForm.hasError('fechaInicioPasada')" class="text-red-500 text-sm">
+        La fecha de inicio no puede ser anterior a la fecha actual.
+      </span>
     </div>
 
     <div>
       <label class="block text-green-600 mb-1" for="horaInicio">Hora de inicio:</label>
-      <input formControlName="horaInicio" type="time" id="horaInicio" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+      <input 
+        formControlName="horaInicio" 
+        type="time" 
+        id="horaInicio" 
+        class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+        required 
+      />
     </div>
 
     <div>
       <label class="block text-green-600 mb-1" for="fechaFinal">Fecha final:</label>
-      <input formControlName="fechaFinal" type="date" id="fechaFinal" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+      <input 
+        formControlName="fechaFinal" 
+        type="date" 
+        id="fechaFinal" 
+        class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+        [min]="eventoForm.get('fechaInicio')?.value" 
+        required 
+      />
+      <span *ngIf="eventoForm.hasError('fechaFinalAntesInicio')" class="text-red-500 text-sm">
+        La fecha final debe ser posterior a la fecha de inicio.
+      </span>
     </div>
 
     <div>
       <label class="block text-green-600 mb-1" for="horaFinal">Hora final:</label>
-      <input formControlName="horaFinal" type="time" id="horaFinal" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+      <input 
+        formControlName="horaFinal" 
+        type="time" 
+        id="horaFinal" 
+        class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+        required 
+      />
     </div>
 
     <div>
       <label class="block text-green-600 mb-1" for="descripcion">Descripción:</label>
-      <textarea formControlName="descripcion" id="descripcion" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+      <textarea 
+        formControlName="descripcion" 
+        id="descripcion" 
+        class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+        placeholder="Ingrese una breve descripción del evento" 
+        required 
+        minlength="10" 
+      ></textarea>
+      <span *ngIf="eventoForm.get('descripcion')?.invalid && eventoForm.get('descripcion')?.touched" class="text-red-500 text-sm">
+        La descripción es obligatoria y debe tener al menos 10 caracteres.
+      </span>
     </div>
+
     <div>
-      <label class="block text-green-600 mb-1" for="select">¿Requieres de una donacion para este evento?</label>
-      <select name="select" class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" formControlName="estatus_donacion">
-        <option value="no" selected >No</option>
-        <option value="si">Si</option>
+      <label class="block text-green-600 mb-1" for="select">¿Requieres de una donación para este evento?</label>
+      <select 
+        name="select" 
+        class="w-full border border-green-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-green-500" 
+        formControlName="estatus_donacion" 
+        required
+      >
+        <option value="no" selected>No</option>
+        <option value="si">Sí</option>
       </select>
     </div>
 
     <div class="flex justify-evenly my-4">
-      <button (click)="crearEvento()" type="button" class="bg-green-600 text-white py-2 w-40 px-4 rounded-md hover:bg-green-700">
+      <button 
+        (click)="crearEvento()" 
+        type="button" 
+        class="bg-green-600 text-white py-2 w-40 px-4 rounded-md hover:bg-green-700"
+        [disabled]="eventoForm.invalid"
+      >
         {{Accion}}
       </button>
-      <button (click)="cancelar()" type="button" class="border border-green-600 text-green-600 w-40 py-2 px-4 rounded-md hover:bg-green-100">
+      <button 
+        (click)="cancelar()" 
+        type="button" 
+        class="border border-green-600 text-green-600 w-40 py-2 px-4 rounded-md hover:bg-green-100"
+      >
         Cancelar
       </button>
     </div>
