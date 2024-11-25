@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PerfilService } from '../../../servicios/perfil.service';
-import { Usuario } from '../../../Interfaces/usuario';
 import { Router } from '@angular/router';
+import { Usuario } from '../../../Interfaces/usuario';
+import { PerfilService } from '../../../servicios/perfil.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit{
 
-  constructor(private _perfil_service : PerfilService, private router: Router){}
+  constructor(public _perfil_service : PerfilService, private router: Router){}
 
   activarInput: Boolean = true;
   activarBusqueda(){
@@ -29,12 +29,12 @@ export class NavComponent implements OnInit{
     descripcion : ''
   };
 
+  
   ngOnInit(): void {
-
+    
     this._perfil_service.getPerfil().subscribe({
       next: (data) => {
         this.user = data;
-        console.log('Perfil obtenido:', this.user);
       },
       error: (err) => {
         console.error('Error al obtener el perfil:', err);
@@ -49,10 +49,12 @@ export class NavComponent implements OnInit{
 
   logout(): void {
     this.router.navigate(['/login']);
+    sessionStorage.removeItem("userId")
   }
   navigateToProfile(): void {
     this.toggleModal();
     this.router.navigate(['red/perfil']); 
   }
+  
   
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Contacto } from '../../../Interfaces/contacto';
 import { ContactosService } from '../../../servicios/contactos.service';
 
 @Component({
@@ -8,20 +7,24 @@ import { ContactosService } from '../../../servicios/contactos.service';
   styleUrl: './contactos.component.css'
 })
 export class ContactosComponent implements OnInit {
-  constructor ( private _servicio_contactos : ContactosService ) {  }
-  contactos : Contacto[] = []
-  id_user = 1;
+  constructor ( public _servicio_contactos : ContactosService ) {  }
+  id_user ! : number;
   ngOnInit(): void {
+    const userIdString = sessionStorage.getItem('userId');
+    if (userIdString !== null) {
+      this.id_user = Number(userIdString);
+    }
       this._servicio_contactos. getMyContactosById(this.id_user).subscribe( list_contacts => {
-        this.contactos = list_contacts
-        console.log(this.contactos);
+        this._servicio_contactos.contactos = list_contacts
         
       }, e =>{
         console.log("error", e)
       }
     )
   }
-  
+  agregarContacto(){
+    this._servicio_contactos.modal = true
+  }
 
 
 } 

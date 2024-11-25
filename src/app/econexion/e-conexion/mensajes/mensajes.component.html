@@ -1,6 +1,47 @@
 <div class="w-full h-full flex-col p-5 flex justify-center items-center ">
     <div class="w-7/12 h-full ">
         <div class="p-3  overflow-hidden overflow-y-scroll  h-full lg  " id="scrollme" #scrollMe>
+
+          <div *ngIf="Mensajes.length <= 0" class="w-full flex text-center items-center justify-center flex-col h-full">
+            <div class="container">
+                <div class="tree">
+                    <div class="branch" style="--x:0">
+                    <span style="--i:0;"></span>
+                    <span style="--i:1;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:3;"></span>
+                    </div>
+                    <div class="branch" style="--x:1">
+                    <span style="--i:0;"></span>
+                    <span style="--i:1;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:3;"></span>
+                    </div>
+                    <div class="branch" style="--x:2">
+                    <span style="--i:0;"></span>
+                    <span style="--i:1;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:3;"></span>
+                    </div>
+                    <div class="branch" style="--x:3">
+                    <span style="--i:0;"></span>
+                    <span style="--i:1;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:3;"></span>
+                    </div>
+                    <div class="stem">
+                    <span style="--i:0;"></span>
+                    <span style="--i:1;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:3;"></span>
+                    </div>
+                    <span class="shadow"></span>
+                </div>
+            </div>
+            ¿Por que no iniciar la conversacion?
+        </div>
+
+
             <div class="w-full flex justify-between" *ngFor="let mensajes of Mensajes">
               <h2 class="w-full  flex justify-end text-green-600 p-1 " *ngIf="mensajes.id_emisor == mi_id">
                 <span class="bg-green-100 px-3">

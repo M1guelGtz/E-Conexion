@@ -20,7 +20,7 @@ export class ChatWhitUserComponent implements OnInit {
     id_chat: 0,
     ultimo_msj :"",
   }
-  mi_id = 1
+  mi_id! : number
   user : any
   userData: Usuario= {
     apellidos_usuario:"",
@@ -35,6 +35,10 @@ export class ChatWhitUserComponent implements OnInit {
     descripcion: ""
   }
   ngOnInit(): void {
+    const userIdString = sessionStorage.getItem('userId');
+    if (userIdString !== null) {
+      this.mi_id = Number(userIdString);
+    } 
     this._service_chat.getUsHasChatByChat( this.Chat.chat_idchat ).subscribe(
       (data) => {
         data.map ( ( element ) => {
@@ -43,7 +47,6 @@ export class ChatWhitUserComponent implements OnInit {
             this._perfil.getPerfilById( element.usuario_idusuario ).subscribe(
               (data) => {
                 this.userData = data
-                
               }
             )
           } 

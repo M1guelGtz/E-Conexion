@@ -11,6 +11,18 @@ export class PerfilService {
 
   constructor(private http: HttpClient) { }
 
+  chatWith_user : Usuario={
+    apellidos_usuario:"",
+    contraseña_usuario:"",
+    correo_usuario:"",
+    descripcion:"",
+    estatus:"",
+    id_usuario:0,
+    imagen_usuario:"",
+    nombre_usuario:"",
+    telefono_usuario:0,
+    tipo_usuario:"",
+  }
   usuario: any;
 
   getPerfil(): Observable<any> {

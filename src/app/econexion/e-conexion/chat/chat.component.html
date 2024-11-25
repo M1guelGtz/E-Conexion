@@ -11,7 +11,7 @@
 </div>
 
 
-<div *ngIf="modalAddContact" class="absolute top-0 left-0 w-full h-screen bg-black/80 flex  justify-center items-center">
+<div *ngIf="_user_service.modal" class="absolute top-0 left-0 w-full h-screen bg-black/80 flex  justify-center items-center">
     <form [formGroup]="Formulario" (submit)="handleClickAddContact()" class="flex flex-col justify-between w-80 h-52 bg-green-600 p-2">
         <h1 class="w-full text-2xl text-center p-2 text-white ">Agrega un contacto</h1>
         <label for="Email" class="w-full text-white p-3"> Email:
@@ -19,7 +19,7 @@
         </label>
         <div class="w-full flex justify-around p-2">
             <button class="border text-white  border-white hover:text-green-600 p-2 rounded-md hover:bg-green-100" type="submit"  > Agregar </button>            
-            <button class="border text-green-600  border-green-600  p-2 rounded-md bg-green-100"  (click)="handleClickCloseModalAddContact()" > Cancelar </button>
+            <button class="border text-green-600  border-green-600  p-2 rounded-md bg-green-100" type="button"  (click)="handleClickCloseModalAddContact()" > Cancelar </button>
         </div>
     </form>
 </div>
