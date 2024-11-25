@@ -1,50 +1,66 @@
 <h1 class="w-full text-center rounded-lg bg-white font-bold my-5 text-[#61A146] text-4xl p-5">
-    Iniciar sesión
-  </h1>
-  
-  <form
-    [formGroup]="loginFormulario"
-    class="flex text-[#61A146] flex-col justify-between w-[100%] h-[350px] p-5 bg-white border border-black rounded-lg"
-    (ngSubmit)="IniciarSesion()">
-    <label for="email">
-      <span>Correo:</span>
-      <input
-        formControlName="correo_usuario"
-        id="email"
-        class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-3"
-        type="email"
-        placeholder="Introduzca su correo electrónico"
-      />
-    </label>
-  
-    <label for="password">
-      <span>Contraseña:</span>
+  Iniciar sesión
+</h1>
+
+<form
+  [formGroup]="loginFormulario"
+  class="flex text-[#61A146] flex-col justify-between w-[100%] h-[350px] p-5 bg-white border border-black rounded-lg"
+  (ngSubmit)="IniciarSesion()"
+>
+  <label for="email">
+    <span>Correo:</span>
+    <input
+      formControlName="correo_usuario"
+      id="email"
+      class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-3"
+      type="email"
+      placeholder="Introduzca su correo electrónico"
+    />
+    <div *ngIf="loginFormulario.get('correo_usuario')?.invalid && loginFormulario.get('correo_usuario')?.touched" class="text-red-500">
+      <span *ngIf="loginFormulario.get('correo_usuario')?.errors?.['required']">El correo es obligatorio.</span>
+      <span *ngIf="loginFormulario.get('correo_usuario')?.errors?.['email']">Introduzca un correo válido.</span>
+    </div>
+  </label>
+
+  <label for="password" class="block">
+    <span>Contraseña:</span>
+    <div class="relative">
       <input
         formControlName="contrasena_usuario"
         id="password"
-        class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-3"
-        [type]="ojo ? 'text' : 'password'"
+        class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-3 pr-12"
+        [type]="passworInput"
         placeholder="Introduzca su contraseña"
       />
-      <div class="w-full -translate-y-[10px] items-end flex justify-end px-2">
-        <p (click)="eye()" class="w-8 p-1 rounded-xl cover cursor-pointer">
-          <img *ngIf="!ojo" src="icons8-visible-100.png" alt="Mostrar contraseña" />
-          <img *ngIf="ojo" src="icons8-no-visible-50.png" alt="Ocultar contraseña" />
-        </p>
-      </div>
-    </label>
-  
-    <button type="submit" class="p-3 text-white bg-[#61A146] rounded-lg w-full" [disabled]="loginFormulario.invalid">
-      Iniciar sesión
-    </button>
-  
-    <span class="block w-full text-center">
-      ¿No tienes una cuenta?
-      <a class="hover:border-b hover:border-[#61A146] hover:text-[#346321]" href="/registro">Regístrate</a>
-    </span>
-  </form>
-  
-  <div *ngIf="alerta" class="alert alert-danger mt-4">
-    {{ alerta }}
+      <p (click)="eye()" class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
+        <img *ngIf="!ojo" src="icons8-visible-100.png" alt="Mostrar contraseña" class="h-6 w-6" />
+        <img *ngIf="ojo" src="icons8-no-visible-50.png" alt="Ocultar contraseña" class="h-6 w-6" />
+      </p>
+    </div>
+    <div *ngIf="loginFormulario.get('contrasena_usuario')?.invalid && loginFormulario.get('contrasena_usuario')?.touched" class="text-red-500">
+      <span *ngIf="loginFormulario.get('contrasena_usuario')?.errors?.['required']">La contraseña es obligatoria.</span>
+    </div>
+  </label>
+
+  <button
+    type="submit"
+    class="p-3 text-white bg-[#61A146] rounded-lg w-full"
+    [disabled]="loginFormulario.invalid"
+  >
+    Iniciar sesión
+  </button>
+
+  <span class="block w-full text-center">
+    ¿No tienes una cuenta?
+    <a class="hover:border-b hover:border-[#61A146] hover:text-[#346321]" href="/registro">Regístrate</a>
+  </span>
+</form>
+
+<!-- Modal de Alerta -->
+<div *ngIf="showAlert" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-75">
+  <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+    <p class=" mb-4 text-[#61A146] text-xl">Credenciales incorrectas.</p>
+    <div class="text-red-500 text-7xl mb-4">!</div>
+    <button (click)="closeAlert()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Aceptar</button>
   </div>
-  
+</div>
