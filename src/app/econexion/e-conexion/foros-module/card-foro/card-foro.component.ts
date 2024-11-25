@@ -1,9 +1,9 @@
-import { Component, Input, OnInit} from '@angular/core';
-import { PerfilService } from '../../../../servicios/perfil.service';
-import { Usuario } from '../../../../Interfaces/usuario';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Usuario } from '../../../../Interfaces/usuario';
 import { ChatsService } from '../../../../servicios/chats.service';
 import { ForosService } from '../../../../servicios/foros.service';
+import { PerfilService } from '../../../../servicios/perfil.service';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { ForosService } from '../../../../servicios/foros.service';
 export class CardForoComponent implements OnInit {
   
   constructor( private routeA: ActivatedRoute , private _service_perfil: PerfilService, private route: Router, private _service_chat: ChatsService, private _service_foros: ForosService ) { }
-  @Input() Foro: any;
+  @Input() Foro: any;
   @Input() miForo: any
   foroAcrua!:any
   user:Usuario = {
@@ -34,6 +34,10 @@ export class CardForoComponent implements OnInit {
 
   mi_id! : number;
   ngOnInit(): void {
+    const userIdString = sessionStorage.getItem('userId');
+    if (userIdString !== null) {
+      this.mi_id = Number(userIdString);
+    } 
     const routeSnapshot = this.routeA.snapshot;
     if(routeSnapshot.url[0].path == "misforos"){
       this.boton="Abrir"
@@ -48,12 +52,7 @@ export class CardForoComponent implements OnInit {
       
     })
     }else{ 
-
-  
-    const userIdString = sessionStorage.getItem('userId');
-    if (userIdString !== null) {
-      this.mi_id = Number(userIdString);
-    } 
+    
       this._service_perfil.getPerfilById(this.Foro.id_usuario).subscribe(
         ( response ) => {
           console.log(response);
@@ -76,10 +75,8 @@ export class CardForoComponent implements OnInit {
       },
       error => {
         console.log(error);
-        
       }
     )
     this.route.navigate(["/red/chats/with/" + this.Foro.id_chat])
-    alert("alChat")
   }
 }
