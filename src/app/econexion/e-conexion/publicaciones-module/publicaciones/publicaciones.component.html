@@ -1,11 +1,36 @@
-<div class=" h-[15%] flex justify-center bg-transparent p-5 w-full">
-  <div class="flex justify-between px-2 w-3/5 items-center border border-dashed border-green-600 bg-white rounded-xl text-green-600" > 
-    <a routerLink="formpublicacion" routerLinkActive="border-b-2 border-green-600">Crear publicación</a>  
-    <a routerLink="/red/publicaciones"  class="text-2xl font-semibold text-green-600">PUBLICACIONES</a>
-    <a routerLink="misPublicaciones" routerLinkActive="border-b-2 border-green-600"  > Mis Publicaciones</a>
+<div class="h-[15%] flex justify-center bg-transparent p-5 w-full">
+  <div
+    class="flex justify-between px-2 w-3/5 items-center border border-dashed border-green-600 bg-white rounded-xl text-green-600"
+  >
+    <a
+      routerLink="formpublicacion"
+      routerLinkActive="border-b-2 border-green-600"
+      >Crear publicación</a
+    >
+    <a
+      routerLink="/red/publicaciones"
+      class="text-2xl font-semibold text-green-600"
+      >PUBLICACIONES</a
+    >
+    <a
+      routerLink="misPublicaciones"
+      routerLinkActive="border-b-2 border-green-600"
+    >
+      Mis Publicaciones</a
+    >
   </div>
 </div>
-<div class=" h-[85%] w-full overflow-hidden overflow-y-scroll " id="scrollme">
+<div class="h-[85%] w-full overflow-hidden overflow-y-scroll" id="scrollme">
   <router-outlet></router-outlet>
 </div>
 
+<div
+  *ngIf="showAlert"
+  class=" w-[20%] fixed bottom-0 right-10 mb-4 mr-4 z-50 bg-green-500 text-white p-4 rounded-lg shadow-lg transition-transform duration-500 transform translate-x-full"
+  [ngClass]="{ 'translate-x-0': showAlert, 'translate-x-full': !showAlert }"
+>
+  <button (click)="closeAlert()">
+    <img src="cross.png" alt="cerrar" class="w-[20px] h-[20%]">
+  </button>
+  <p class="text-lg">Inicio de sesión exitoso.</p>
+</div>

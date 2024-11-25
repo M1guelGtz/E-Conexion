@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./src/**/*.{html,ts}",
@@ -15,7 +14,7 @@ module.exports = {
         expand: 'expand 1s linear forwards',
       },
       backgroundImage: {
-        logo: "url('/LOGO.png')"
+        logo: "url('/LOGO2.jpg')"
       }
     },
   },

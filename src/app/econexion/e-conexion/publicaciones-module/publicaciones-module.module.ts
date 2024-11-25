@@ -25,6 +25,9 @@ import { ListaPComponent } from './lista-p/lista-p.component';
     PublicacionesModuleRoutingModule,
     FormsModule,
     ReactiveFormsModule
+  ],
+  exports : [
+    MisPublicacionesComponent
   ]
 })
 export class PublicacionesModuleModule { }
