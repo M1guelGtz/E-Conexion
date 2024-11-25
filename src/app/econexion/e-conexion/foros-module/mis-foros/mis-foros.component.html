@@ -1,0 +1,44 @@
+<div class=" h-full space-y-3  overflow-hidden overflow-y-scroll flex flex-col items-center px-5" id="scrollme">
+    <div *ngIf="misForos.length <= 0" class="w-full flex text-center items-center justify-center flex-col h-full">
+        <div class="container">
+            <div class="tree">
+                <div class="branch" style="--x:0">
+                <span style="--i:0;"></span>
+                <span style="--i:1;"></span>
+                <span style="--i:2;"></span>
+                <span style="--i:3;"></span>
+                </div>
+                <div class="branch" style="--x:1">
+                <span style="--i:0;"></span>
+                <span style="--i:1;"></span>
+                <span style="--i:2;"></span>
+                <span style="--i:3;"></span>
+                </div>
+                <div class="branch" style="--x:2">
+                <span style="--i:0;"></span>
+                <span style="--i:1;"></span>
+                <span style="--i:2;"></span>
+                <span style="--i:3;"></span>
+                </div>
+                <div class="branch" style="--x:3">
+                <span style="--i:0;"></span>
+                <span style="--i:1;"></span>
+                <span style="--i:2;"></span>
+                <span style="--i:3;"></span>
+                </div>
+                <div class="stem">
+                <span style="--i:0;"></span>
+                <span style="--i:1;"></span>
+                <span style="--i:2;"></span>
+                <span style="--i:3;"></span>
+                </div>
+                <span class="shadow"></span>
+            </div>
+        </div>
+        Upss, aun no tienes Chats, ve a tu lista de contactos para
+      <a routerLink="/red/chats/contactos" class="text-green-600 mx-2 border-b border-green-600"> iniciar uno</a>
+    </div>
+    <div *ngFor="let chat of misForos" class="shadow-md  hover:bg-green-600/10 border-green-600 flex-col flex justify-between rounded p-2  border w-3/5">
+        <app-card-foro [Foro]="chat"/>
+    </div>
+</div>

@@ -32,7 +32,7 @@ export class ContactoComponent implements OnInit {
   newChat: Chat = {
     id_chat: 0,
     ultimo_msj: "",
-    grupal: ""
+    grupal: false
   };
 
   @Input() contacto = {
