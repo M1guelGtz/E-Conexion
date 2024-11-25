@@ -14,8 +14,11 @@
         </svg>
         <input class="inputBox" id="inputBox" type="text" placeholder="Realiza una busqueda">
       </div> <p (click)="activarBusqueda()" class="flex justify-center items-center m-2 rounded-full w-[40px] h-[40px]  text-green-600 border border-green-600" >X</p> </label>
-      <button 
-    (click)="toggleModal()"
+    <!-- Botón para abrir el modal -->
+<!-- Botón para abrir/cerrar el modal -->
+<button 
+    #buttonRef
+    (click)="toggleModal(buttonRef)"
     class="text-green-800 flex justify-center items-center w-[50px] h-[50px] rounded-full object-cover bg-[#61A146]">
     <img [src]="user.imagen_usuario" alt="user" class="w-[35px] h-[35px] rounded-full" />
 </button>
@@ -23,33 +26,31 @@
 <!-- Modal -->
 <div 
     *ngIf="isModalOpen" 
-    class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-    <div class="bg-white w-80 p-6 rounded-lg shadow-lg relative">
-        <!-- Cerrar modal -->
-        <button 
-            (click)="toggleModal()"
-            class="absolute top-2 right-2ext-green-800 hover:text-green-900 w-[35px] h-[35px]">
-            <img src="cross.png" alt="salir">
-        </button>
-
-        <!-- Contenido del modal -->
-        <div class="flex flex-col items-center">
-            <img [src]="user.imagen_usuario" alt="user" class="w-20 h-20 rounded-full mb-4" />
-            <h2 class="text-xl text-green-800  font-semibold ext-green-800">{{ user.nombre_usuario }} {{user.apellidos_usuario}}</h2>
-            <div class="mt-4 space-y-2 w-full">
-                <button 
-                (click)="navigateToProfile()"
-                    class="border m-2 border-green-600 text-green-600 w-full py-2 px-4 rounded-md hover:bg-green-100">
-                    Ir a mi perfil
-                </button>
-                <button 
-                    (click)="logout()"
-                    class=" bg-green-600 text-white py-2 m-2 px-4 rounded-md hover:bg-green-700 w-full">
-                    Cerrar sesión
-                </button>
-            </div>
+    [ngStyle]="{ top: modalPosition.top + 'px', left: modalPosition.left + 'px' }"
+    class="absolute bg-white p-4 rounded-lg shadow-lg z-50 w-64">
+    <!-- Botón de cerrar -->
+    <button 
+        (click)="closeModal()"
+        class="absolute top-2 right-2 hover:text-green-900 w-[35px] h-[35px]">
+        <img src="cross.png" alt="salir">
+    </button>
+    <div class="flex flex-col items-center">
+        <img [src]="user.imagen_usuario" alt="user" class="w-12 h-12 rounded-full mb-2" />
+        <h2 class="text-lg font-semibold">{{ user.nombre_usuario }} {{user.apellidos_usuario}}</h2>
+        <div class="mt-4 space-y-2 w-full">
+            <button 
+                (click)="goToProfile()"
+                class="border m-2 border-green-600 text-green-600 w-full py-2 px-4 rounded-md hover:bg-green-100">
+                Ir a mi perfil
+            </button>
+            <button 
+                (click)="logout()"
+                class="bg-green-600 text-white py-2 m-2 px-4 rounded-md hover:bg-green-700 w-full">
+                Cerrar sesión
+            </button>
         </div>
     </div>
 </div>
+
     </div>
 </header>

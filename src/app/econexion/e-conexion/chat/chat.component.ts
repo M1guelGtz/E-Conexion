@@ -11,7 +11,9 @@ import { ContactosService } from '../../../servicios/contactos.service';
   styleUrl: './chat.component.css'
 })
 export class ChatComponent implements OnInit {
+
   constructor(private title: Title, public _user_service : ContactosService, private fb: FormBuilder, private _service_chat : ChatsService){
+
     this.Formulario = this.fb.group({
       usuario_correo: ['', [Validators.required, Validators.email]],
       id_usuario : sessionStorage.getItem('userId')

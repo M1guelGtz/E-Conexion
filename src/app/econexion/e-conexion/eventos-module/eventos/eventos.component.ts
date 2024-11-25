@@ -8,27 +8,6 @@ import { EventosService } from '../../../../servicios/eventos.service';
   templateUrl: './eventos.component.html',
   styleUrl: './eventos.component.css'
 })
-export class EventosComponent implements OnInit {
-  eventos: any[] = [];
+export class EventosComponent  {
 
-  constructor(private title: Title, private eventosService: EventosService) {}
-
-  ngOnInit(): void {
-    this.title.setTitle('Econexion | Eventos');
-    this.cargarEventos();
-    
-  }
-
-  cargarEventos(): void {
-    this.eventosService.obtenerEventos().subscribe(
-      (data) => {
-        this.eventos = data;
-        console.log(data);
-        
-      },
-      (error) => {
-        console.error('Error al obtener los eventos:', error);
-      }
-    );
-  }
 }
