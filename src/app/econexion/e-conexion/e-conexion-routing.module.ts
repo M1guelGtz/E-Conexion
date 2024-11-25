@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChatComponent } from './chat/chat.component';
 import { ContactosComponent } from './contactos/contactos.component';
@@ -18,6 +18,9 @@ import { MisPublicacionesComponent } from './publicaciones-module/mis-publicacio
 import { PublicacionesComponent } from './publicaciones-module/publicaciones/publicaciones.component';
 import { RedComponent } from './red/red.component';
 import { ListaEComponent } from './eventos-module/lista-e/lista-e.component';
+import path from 'path';
+import { ListaForosComponent } from './foros-module/lista-foros/lista-foros.component';
+import { MisForosComponent } from './foros-module/mis-foros/mis-foros.component';
 
 const routes: Routes = [
   {
@@ -71,12 +74,20 @@ const routes: Routes = [
       },
       {
         path: 'foros',
-        component: ForosComponent
+        component: ForosComponent,
+        children: [{
+          path:'formforos',
+          component: FormforosComponent
+        },{
+          path: "",
+          component: ListaForosComponent
+        },{
+          path: "misforos",
+          component: MisForosComponent
+        }
+        ]
       },
-      {
-        path: 'foros/formforos',
-        component: FormforosComponent
-      },
+     
       
       {
         path : "Donaciones",

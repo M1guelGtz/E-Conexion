@@ -1,6 +1,5 @@
 export interface Foro {
-    id?: number; 
-    nombre: string;
+    id_chat: number; 
+    nombre_foro: string;
     descripcion: string;
-    fechaCreacion?: Date; 
   }

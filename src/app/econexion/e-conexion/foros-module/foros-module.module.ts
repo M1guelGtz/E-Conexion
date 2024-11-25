@@ -6,13 +6,17 @@ import { ForosComponent } from './foros/foros.component';
 import { FormforosComponent } from './formforos/formforos.component';
 import { CardForoComponent } from './card-foro/card-foro.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ListaForosComponent } from './lista-foros/lista-foros.component';
+import { MisForosComponent } from './mis-foros/mis-foros.component';
 
 
 @NgModule({
   declarations: [
     ForosComponent,
     FormforosComponent,
-    CardForoComponent
+    CardForoComponent,
+    ListaForosComponent,
+    MisForosComponent
   ],
   imports: [
     CommonModule,

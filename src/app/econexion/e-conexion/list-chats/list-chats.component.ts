@@ -21,7 +21,16 @@ export class ListChatsComponent implements OnInit {
     } 
     this._service_chat.getUsHasChatById( this.mi_id ).subscribe(
       ( data ) => {
-        this._service_chat.user_has_chat = data
+        data.map( ( chats ) => {
+          this._service_chat.getMyChatsById(chats.chat_idchat).subscribe( (chat) => {
+            console.log(chat);
+            chat.grupal == false ? [this._service_chat.user_has_chat.push(chats), console.log("añadido a foros")]
+            : ""
+          },
+        error => console.log(error)
+        )
+        })
+        
       }, e => console.log(e)
       
     )

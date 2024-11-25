@@ -52,7 +52,7 @@ export class MensajesComponent implements OnInit, AfterViewChecked, OnDestroy{
     )
     let chat={
       ultimo_msj: this.mensaje ,
-      grupal: "false",
+      grupal: false,
       id_chat: this.id
 
     }
