@@ -12,7 +12,7 @@ export class ListaForosComponent implements OnInit {
   ngOnInit(): void {
       this._service_foro.obtenerForos().subscribe(
         (response) => {
-          this._service_foro.listaForos = response;
+          this._service_foro.listaForos = response.reverse();
           console.log(response);
           
         }

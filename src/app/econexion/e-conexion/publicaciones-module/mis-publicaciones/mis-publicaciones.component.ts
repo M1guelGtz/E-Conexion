@@ -21,7 +21,7 @@ export class MisPublicacionesComponent implements OnInit {
     }
 
     this._servicio_publicaciones.getMisPublicaciones(this.id_usuario).subscribe(data => {
-      this._servicio_publicaciones.publicaciones = data;
+      this._servicio_publicaciones.publicaciones = data.reverse();
       console.log("publicaciones", data);
     });
     

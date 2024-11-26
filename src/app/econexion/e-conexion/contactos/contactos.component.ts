@@ -15,7 +15,7 @@ export class ContactosComponent implements OnInit {
       this.id_user = Number(userIdString);
     }
       this._servicio_contactos. getMyContactosById(this.id_user).subscribe( list_contacts => {
-        this._servicio_contactos.contactos = list_contacts
+        this._servicio_contactos.contactos = list_contacts.reverse()
         
       }, e =>{
         console.log("error", e)

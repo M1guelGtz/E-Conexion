@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { EventosService } from '../../../../servicios/eventos.service';
 
@@ -21,7 +21,7 @@ export class ListaEComponent {
   cargarEventos(): void {
     this.eventosService.obtenerEventos().subscribe(
       (data) => {
-        this.eventos = data;
+        this.eventos = data.reverse();
         console.log(data);
         
       },

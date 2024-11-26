@@ -31,6 +31,17 @@ export class FormularioRegistroComponent {
       conf_contrasena_usuario: ['', Validators.required]
     });
   }
+  guardado = {
+    nombre_usuario: "",
+    apellidos_usuario:"",
+    correo_usuario: "",
+    contrasena_usuario:"",
+    telefono_usuario: 0,
+    tipo_usuario: "",
+    estatus:"",
+    descripcion: "",
+    conf_contrasena_usuario: ""
+  }
 
   onImagenSeleccionada(event: any) {
     const archivo = event.target.files[0];
@@ -58,6 +69,7 @@ export class FormularioRegistroComponent {
     ] : [this.mostrarErrorContrasenas = false, console.log("coinciden")
     ]
   }
+  registrado = false
   registrarUsuario() {
     if (this.registroForm.valid && this.imagenSeleccionada) {
       const usuario = this.registroForm.value;
@@ -65,14 +77,19 @@ export class FormularioRegistroComponent {
         .registrarUsuarioConImagen(usuario, this.imagenSeleccionada)
         .subscribe({
           next: (response) => {
-            console.log('Usuario registrado con éxito:', response);
-            console.log(usuario , this.imagenSeleccionada);
+            this.registrado = true
+            this.creado = true
+            console.log(this.registrado);
             
+            console.log('Usuario registrado con éxito:', response);
+            this.guardado = response
+            console.log(usuario , this.imagenSeleccionada);
             this._router.navigate(['/login']);
           },
           error: (err) => {
             console.error('Error al registrar usuario:', err);
             console.log(usuario , this.imagenSeleccionada);
+            this.error = true
             
           },
         });
@@ -84,5 +101,9 @@ export class FormularioRegistroComponent {
   }
   closeError(){
     this.error=false
+  }
+  aceptar(){
+    this.registrado = false
+    this.creado = true
   }
 }

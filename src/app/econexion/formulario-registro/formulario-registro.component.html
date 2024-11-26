@@ -176,6 +176,19 @@ enctype="multipart/form-data"
 
 </div>
 <div *ngIf="error" class="w-full h-full absolute top-0 left-0 bg-black/70 rounded-lg flex justify-center items-center">
-
-  <button (click)="closeError()" class="p-2 bg-green-600 text-white rounded-lg">Aceptar</button>
+  <div class="w-[300px] h-[350px] bg-white rounded-lg flex justify-between flex-col items-center p-5">
+    <h1 class="w-full text-green-600 text-center text-xl"> Debe llenar todos los campos</h1>
+    <img src="icons8-error-100.png" alt="">
+    <button (click)="closeError()" class="p-2 bg-green-600 text-white w-full rounded-lg">Aceptar</button>
+  </div>
+</div>
+<div *ngIf="creado" class="w-full h-full absolute top-0 left-0 bg-black/70 rounded-lg flex justify-center items-center">
+  <div class="w-[300px] h-[350px] bg-white rounded-lg flex justify-between flex-col items-center p-5">
+    <h1 class="w-full text-green-600 text-center text-xl">Registrado con las credenciales</h1>
+    <div>
+      <span>Email: {{guardado.correo_usuario}} </span>
+      <span>Contraseña: {{guardado.contrasena_usuario}} </span>
+    </div>
+    <button (click)="aceptar()" class="p-2 bg-green-600 text-white w-full rounded-lg">Aceptar</button>
+  </div>
 </div>

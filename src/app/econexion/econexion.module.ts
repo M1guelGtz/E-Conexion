@@ -9,6 +9,7 @@ import { FormularioLoginComponent } from './formulario-login/formulario-login.co
 import { FormularioRegistroComponent } from './formulario-registro/formulario-registro.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { RegistroComponent } from './registro/registro.component';
     LoginComponent,
     RegistroComponent,
     FormularioRegistroComponent,
-    FormularioLoginComponent
+    FormularioLoginComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,
