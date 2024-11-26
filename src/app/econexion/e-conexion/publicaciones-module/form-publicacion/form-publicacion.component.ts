@@ -15,6 +15,7 @@ export class FormPublicacionComponent implements OnInit {
   accion: string = "";
   id: any;
   error: boolean = false;
+  publicacionCreada: boolean = false;  // Variable para modal de éxito
   id_user: number = 0; 
   img = null;
   formdata = new FormData();
@@ -85,6 +86,7 @@ export class FormPublicacionComponent implements OnInit {
       });
     } else {
       this._service_publicaciones.postPublicaciones(this.formdata).subscribe(data => {
+        this.publicacionCreada = true;  
         console.log("publicacion agregada con los datos:", data);
         this.router.navigate(['red/publicaciones']);
       },
@@ -98,6 +100,10 @@ export class FormPublicacionComponent implements OnInit {
 
   HandleClickAlertClose() {
     this.error = false;
+  }
+
+  HandleClickSuccessClose() {
+    this.publicacionCreada = false;
   }
 
   cancelar(): void {
