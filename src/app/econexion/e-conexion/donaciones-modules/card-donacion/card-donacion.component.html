@@ -1,7 +1,7 @@
 <div class="border border-green-500 rounded-lg p-4 mb-4">
     <div class="flex justify-between">
-      <span class="w-1/3 p-2 flex justify-evenly items-center text-green-600 bg-blue-100/50 rounded-2xl"> <strong>Nombre del evento: </strong> {{ evento.nombre }} <i (click)="handleClickExpandEvent()" class="w-5 mx-5 text-white rounded bg-green-600 flex justify-center object-fill items-center h-5"> <img src="expandir.png" alt=""> </i> </span>
-      <span class="w-1/3 flex justify-end"><strong>Fecha: </strong> {{donacion.fecha}}</span>
+      <span class="w-2/3 p-2 flex justify-evenly items-center text-green-600 bg-blue-100/50 rounded-2xl"> <strong>Nombre del evento: </strong> {{ evento.nombre }} <i (click)="handleClickExpandEvent()" class="w-5 mx-5 text-white rounded bg-green-600 flex justify-center object-fill items-center h-5"> <img src="expandir.png" alt=""> </i> </span>
+      <span class="w-1/3 flex text-[12px] justify-end"><strong>Fecha: </strong> {{donacion.fecha}}</span>
     </div>
     <div class="flex justify-between mt-2">
       <span><strong>Tipo:</strong> {{ donacion.tipo_donacion}}</span>

@@ -11,7 +11,7 @@ export class LoginService {
 
   
   login(credentials: { correo_usuario: string; contrasena_usuario: string }): Observable<Login> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', 'Autorization' : `Bearer ${Token.token}`});
     const body = new URLSearchParams();
     body.set('correo_usuario', credentials.correo_usuario);
     body.set('contrasena_usuario', credentials.contrasena_usuario);
@@ -20,6 +20,9 @@ export class LoginService {
   }
 
   registrarUsuarioConImagen(usuario: any, imagen: File): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${Token.token}`
+    });
     const formData = new FormData();
     formData.append('nombre_usuario', usuario.nombre_usuario);
     formData.append('apellidos_usuario', usuario.apellidos_usuario);

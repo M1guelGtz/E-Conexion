@@ -26,7 +26,7 @@ export class PerfilService {
 
   getPerfil(): Observable<any> {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${Token}`
+      'Authorization': `Bearer ${Token.token}`
     });
     const idUsuario = sessionStorage.getItem('userId');
     if (!idUsuario) {
@@ -37,9 +37,9 @@ export class PerfilService {
   }
   getPerfilById(id : number): Observable<Usuario>{
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${Token}`
+      'Authorization': `Bearer ${Token.token}`
     });
-    return this.http.get<Usuario>(`${Backend_Api.Url}usuarios/${id}`, {headers});
+    return this.http.get<Usuario>(`${Backend_Api.Url}usuarios/${id}`, {headers: headers});
   }
 }
 
