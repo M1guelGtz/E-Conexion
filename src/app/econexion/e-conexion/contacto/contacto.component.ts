@@ -48,7 +48,6 @@ export class ContactoComponent implements OnInit {
   handleClickGoToChat(): void {
     alert("Vamos al chat");
 
-    // Verifica ambos conjuntos de datos usando forkJoin
     forkJoin([
       this._service_chat.getUsHasChatById(this.contacto.id_usuario),
       this._service_chat.getUsHasChatById(this.myId)

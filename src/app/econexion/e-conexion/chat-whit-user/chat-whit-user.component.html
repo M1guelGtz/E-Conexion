@@ -1,10 +1,13 @@
-<div class="w-full h-full cursor-pointer select-none"  (click)="irAlChat()">
-    <div class="flex w-full justify-between">
-        <span class="text-green-600 text-xl mx-5 "> {{userData.nombre_usuario}} </span>
-        <span class="text-sm"> ultimo mensaje fecha </span>
-    </div>
-    <div class="flex w-full  justify-between">
-        <span class="text-black/70 w-[calc(85%)] text-sm mx-10"> {{chatActual.ultimo_msj}} </span>
-        <span class="bg-green-500 w-5 text-sm text-white h-5 flex justify-center items-center rounded-full"> 1 </span>
+<div class="w-full h-full justify-center items-center flex cursor-pointer select-none"  (click)="irAlChat()">
+    <img class="w-10 h-10 rounded-full" [src]="userData.imagen_usuario" alt="">
+    <div class="w-full">
+        <div class="flex w-full justify-between">
+            <span class="text-green-600 text-xl mx-5 "> {{userData.nombre_usuario}} </span>
+            <span class="text-sm"> ultimo mensaje fecha </span>
+        </div>
+        <div class="flex w-full  justify-between">
+            <span class="text-black/70 w-[calc(85%)] text-sm mx-10"> {{chatActual.ultimo_msj}} </span>
+            <span class="bg-green-500 w-5 text-sm text-white h-5 flex justify-center items-center rounded-full"> 1 </span>
+        </div>
     </div>
 </div>
