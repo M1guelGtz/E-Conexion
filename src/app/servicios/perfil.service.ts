@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Backend_Api } from '../../environment/environment';
+import { Backend_Api, Token } from '../../environment/environment';
 import { Usuario } from '../Interfaces/usuario';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -26,15 +25,21 @@ export class PerfilService {
   usuario: any;
 
   getPerfil(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${Token}`
+    });
     const idUsuario = sessionStorage.getItem('userId');
     if (!idUsuario) {
       throw new Error('No se encontró el ID del usuario en el sessionStorage');
     }
     const url = `${Backend_Api.Url}usuarios/${idUsuario}`;
-    return this.http.get(url);
+    return this.http.get(url, {headers: headers});
   }
   getPerfilById(id : number): Observable<Usuario>{
-    return this.http.get<Usuario>(`${Backend_Api.Url}usuarios/${id}`)
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${Token}`
+    });
+    return this.http.get<Usuario>(`${Backend_Api.Url}usuarios/${id}`, {headers});
   }
 }
 

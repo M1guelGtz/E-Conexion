@@ -37,10 +37,15 @@ export class FormularioLoginComponent {
           this.showAlert = false;
           sessionStorage.setItem('alerta', "si")
           this.router.navigate(['/red/publicaciones']);
+          console.log(response);
+          
         },
-        error: () => {
+        error : (error) => {
           this.alerta = 'Correo o contraseña incorrectos.';
           this.showAlert = true;
+          this.cargando = false
+          console.log(error);
+          
         }
       });
     }else{

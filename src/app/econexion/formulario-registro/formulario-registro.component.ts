@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginService } from '../../servicios/login.service';
 
 @Component({
@@ -11,7 +11,8 @@ import { LoginService } from '../../servicios/login.service';
 export class FormularioRegistroComponent {
   registroForm: FormGroup;
   imagenSeleccionada: File | null = null;
-
+  creado: boolean= false
+  error:boolean=false
   constructor(
     private _router: Router,
     private fb: FormBuilder,
@@ -56,8 +57,11 @@ export class FormularioRegistroComponent {
         });
     } else {
       console.error('Formulario inválido o imagen no seleccionada');
-     
+      this.error=true
       
     }
+  }
+  closeError(){
+    this.error=false
   }
 }
