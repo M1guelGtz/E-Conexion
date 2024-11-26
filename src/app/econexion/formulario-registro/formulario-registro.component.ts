@@ -21,7 +21,7 @@ export class FormularioRegistroComponent {
       nombre_usuario: ['', Validators.required],
       apellidos_usuario: ['', Validators.required],
       correo_usuario: ['', [Validators.required, Validators.email]],
-      contrasena_usuario: ['', Validators.required],
+      contrasena_usuario: ['', Validators.required,Validators.minLength(10),Validators.maxLength(10)],
       telefono_usuario: ['', Validators.required, ],
       tipo_usuario: ['usuario', Validators.required],
       estatus: ['activo', Validators.required],
