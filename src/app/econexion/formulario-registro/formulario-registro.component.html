@@ -90,6 +90,8 @@
    <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
     <span>Teléfono:</span>
     <input
+    [maxLength]="10"
+    [minlength]="10"
       class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-1"
       type="text"
       formControlName="telefono_usuario"
@@ -98,11 +100,11 @@
     <small
       *ngIf="
         registroForm.get('telefono_usuario')?.invalid &&
-        registroForm.get('telefono_usuario')?.touched
+        registroForm.get('telefono_usuario')?.touched 
       "
       class="text-red-500"
     >
-      El teléfono es obligatorio.
+      introduaca un numero de telefono valido.
     </small>
   </label>
 
