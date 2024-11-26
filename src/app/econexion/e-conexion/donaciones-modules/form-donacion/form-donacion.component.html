@@ -32,6 +32,24 @@
       </div>
     </div>
 
+
+    <!-- Campo para tipo de donación -->
+    <div class="mb-4">
+      <label for="tipo" class="block text-green-600">Tipo</label>
+      <input
+      type="text"
+      formControlName="tipo_donacion"
+      class="w-full border border-green-300 rounded p-2"
+      />
+      <!-- Mensaje de error para tipo_donacion -->
+      <div
+      *ngIf="donacionForm.get('tipo_donacion')?.touched && donacionForm.get('tipo_donacion')?.hasError('required')"
+      class="text-red-500 text-sm mt-1"
+      >
+        El tipo de donación es obligatorio.
+      </div>
+    </div>
+
     <!-- Campo para cantidad -->
     <div class="mb-4">
       <label for="cantidad" class="block text-green-600">Cantidad</label>
@@ -52,23 +70,6 @@
       class="text-red-500 text-sm mt-1"
       >
         La cantidad debe ser mayor a 0.
-      </div>
-    </div>
-
-    <!-- Campo para tipo de donación -->
-    <div class="mb-4">
-      <label for="tipo" class="block text-green-600">Tipo</label>
-      <input
-      type="text"
-      formControlName="tipo_donacion"
-      class="w-full border border-green-300 rounded p-2"
-      />
-      <!-- Mensaje de error para tipo_donacion -->
-      <div
-      *ngIf="donacionForm.get('tipo_donacion')?.touched && donacionForm.get('tipo_donacion')?.hasError('required')"
-      class="text-red-500 text-sm mt-1"
-      >
-        El tipo de donación es obligatorio.
       </div>
     </div>
 

@@ -74,12 +74,10 @@
       type="password"
       formControlName="contrasena_usuario"
       placeholder="Introduzca su contraseña"
+      (input)="validarContrasenas()" 
     />
     <small
-      *ngIf="
-        registroForm.get('contrasena_usuario')?.invalid &&
-        registroForm.get('contrasena_usuario')?.touched
-      "
+      *ngIf="registroForm.get('contrasena_usuario')?.invalid && registroForm.get('contrasena_usuario')?.touched"
       class="text-red-500"
     >
       La contraseña es obligatoria.
@@ -114,10 +112,12 @@
     <input
       class="w-full text-center border-2 rounded-lg border-[#BDE7AC] p-1"
       type="password"
+      formControlName="conf_contrasena_usuario"
       placeholder="Confirme su contraseña"
+      (input)="confValidarContrasenas()" 
     />
     <small
-      *ngIf="registroForm.get('confirmar_contrasena')?.hasError('noCoinciden')"
+      *ngIf="mostrarErrorContrasenas"
       class="text-red-500"
     >
       Las contraseñas no coinciden.
