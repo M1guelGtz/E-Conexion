@@ -41,5 +41,17 @@ export class PerfilService {
     });
     return this.http.get<Usuario>(`${Backend_Api.Url}usuarios/${id}`, {headers: headers});
   }
+
+  updatePerfilById(form: FormData): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${Token.token}`
+    });
+    const idUsuario = sessionStorage.getItem('userId');
+    if (!idUsuario) {
+      throw new Error('No se encontró el ID del usuario en el sessionStorage');
+    }
+    const url = `${Backend_Api.Url}usuarios/${idUsuario}`;
+    return this.http.put<Usuario>(`${Backend_Api.Url}usuarios/${idUsuario}`, form, {headers: headers})
+  }
 }
 
