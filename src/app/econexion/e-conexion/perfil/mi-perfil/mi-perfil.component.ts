@@ -42,4 +42,8 @@ export class MiPerfilComponent implements OnInit {
   ruta(){
     this.router.navigate(['red/publicaciones/misPublicaciones'])
   }
+
+  actualizarperfil(){
+    this.router.navigate([`red/actualizar_perfil`])
+  }
 }
