@@ -1,10 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Login } from '../Interfaces/login';
 import { Backend_Api, Token } from '../../environment/environment';
-import { Usuario } from '../Interfaces/usuario';
-
+import { Login } from '../Interfaces/login';
 @Injectable({
   providedIn: 'root',
 })

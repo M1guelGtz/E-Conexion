@@ -166,12 +166,16 @@ enctype="multipart/form-data"
 
   <!-- Botón de Envío -->
    <div class="flex w-full justify-evenly">
-  <button
-    class="p-3 my-5 text-white bg-[#61A146] rounded-lg w-[40%] hover:bg-[#3a7122] "
-    type="submit"
-    >
-    Crear usuario
-  </button>
+  <button class="p-3 my-5 text-white bg-[#61A146] rounded-lg w-[40%] hover:bg-[#3a7122] "type="submit">Crear usuario</button>
     <a routerLink="/login" class="border border-green-600 text-green-600 p-3 my-5 rounded-lg hover:bg-green-100 w-[40%] text-center" > Cancelar</a>
   </div>
 </form>
+
+
+<div *ngIf="creado" class="w-full h-screen absolute top-0 left-0 bg-black/70">
+
+</div>
+<div *ngIf="error" class="w-full h-full absolute top-0 left-0 bg-black/70 rounded-lg flex justify-center items-center">
+
+  <button (click)="closeError()" class="p-2 bg-green-600 text-white rounded-lg">Aceptar</button>
+</div>
