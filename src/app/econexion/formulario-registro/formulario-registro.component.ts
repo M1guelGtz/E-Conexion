@@ -10,6 +10,7 @@ import { LoginService } from '../../servicios/login.service';
 })
 export class FormularioRegistroComponent {
   registroForm: FormGroup;
+  mostrarErrorContrasenas: boolean = false;
   imagenSeleccionada: File | null = null;
 
   constructor(
@@ -21,11 +22,12 @@ export class FormularioRegistroComponent {
       nombre_usuario: ['', Validators.required],
       apellidos_usuario: ['', Validators.required],
       correo_usuario: ['', [Validators.required, Validators.email]],
-      contrasena_usuario: ['', Validators.required,Validators.minLength(10),Validators.maxLength(10)],
+      contrasena_usuario: ['', Validators.required],
       telefono_usuario: ['', Validators.required, ],
       tipo_usuario: ['usuario', Validators.required],
       estatus: ['activo', Validators.required],
       descripcion: ['', [Validators.required, Validators.minLength(10)]],
+      conf_contrasena_usuario: ['', Validators.required]
     });
   }
 
@@ -36,6 +38,25 @@ export class FormularioRegistroComponent {
     }
   }
 
+  validarContrasenas(): void {
+    const contrasena = this.registroForm.get('contrasena_usuario')?.value;
+    const conf_contrasena = this.registroForm.get('conf_contrasena_usuario')?.value;
+    console.log(contrasena + "==" + conf_contrasena);
+    
+    contrasena == conf_contrasena ? [this.mostrarErrorContrasenas = false, console.log("las contraseñas coinciden")
+    ] : [this.mostrarErrorContrasenas = true, console.log("No coinciden")
+    ]
+  }
+  confValidarContrasenas(): void {
+    const contrasena = this.registroForm.get('contrasena_usuario')?.value;
+    const conf_contrasena = this.registroForm.get('conf_contrasena_usuario')?.value;
+
+    console.log(contrasena + "==" + conf_contrasena);
+    
+    contrasena != conf_contrasena ? [this.mostrarErrorContrasenas = true, console.log("las contraseñas no coinciden")
+    ] : [this.mostrarErrorContrasenas = false, console.log("coinciden")
+    ]
+  }
   registrarUsuario() {
     if (this.registroForm.valid && this.imagenSeleccionada) {
       const usuario = this.registroForm.value;
