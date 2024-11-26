@@ -14,7 +14,10 @@ module.exports = {
         expand: 'expand 1s linear forwards',
       },
       backgroundImage: {
-        logo: "url('/LOGO2.jpg')"
+        logo: "url('/LOGO2.jpg')",
+        logo2: "url('/fondocntext.jpeg')",
+        logo3: "url('/fondoconform.jpeg')",
+        logo4: "url('/fondosntext.jpeg')"
       }
     },
   },
