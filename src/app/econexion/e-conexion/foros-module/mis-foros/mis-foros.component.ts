@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ChatsService } from '../../../../servicios/chats.service';
 import { ActivatedRoute } from '@angular/router';
+import { ChatsService } from '../../../../servicios/chats.service';
 
 @Component({
   selector: 'app-mis-foros',
@@ -19,6 +19,7 @@ export class MisForosComponent implements OnInit {
       this.mi_id = Number(userIdString);
     } 
     this.buscarMisForos();
+    
   }
 
   buscarMisForos(){
@@ -35,7 +36,9 @@ export class MisForosComponent implements OnInit {
           },
         error => console.log(error)
         )
-        })
+        }
+      )
+      this.misForos.reverse()
       }
     )
   }

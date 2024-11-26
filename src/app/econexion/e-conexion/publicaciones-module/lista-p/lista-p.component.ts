@@ -16,7 +16,7 @@ export class ListaPComponent {
   ngOnInit(): void {
     this.publicacionesService.getPublicaciones().subscribe( data => {
       this.publicaciones = data
-      console.log("publicaciones",data)
+      console.log("publicaciones",data.reverse())
     })
     this.title.setTitle("Econexion | Publicaciones")
   }
