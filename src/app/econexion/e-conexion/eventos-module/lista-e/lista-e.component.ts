@@ -34,7 +34,7 @@ export class ListaEComponent {
             }
           );
         });
-        this.eventos = eventos;
+        this.eventos = eventos.reverse();
         console.log('Eventos enriquecidos:', this.eventos);
       },
       (error) => {
