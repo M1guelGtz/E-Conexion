@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EventosService } from '../../../../servicios/eventos.service';
-import { Eventos } from '../../../../Interfaces/eventos';
 import { Router } from '@angular/router';
+import { Eventos } from '../../../../Interfaces/eventos';
+import { EventosService } from '../../../../servicios/eventos.service';
 
 @Component({
   selector: 'app-eventos-usuario',
@@ -29,7 +29,7 @@ export class EventosUsuarioComponent implements OnInit {
 
     this.eventoService.obtenerEventosPorUsuario(this.idUsuario).subscribe(
       eventos => {
-        this.eventoService.Eventos = eventos;
+        this.eventoService.Eventos = eventos.reverse();
         console.log(this.eventoService.Eventos);
       },
       error => {

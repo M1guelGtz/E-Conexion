@@ -1,5 +1,9 @@
 import { CanActivateFn } from '@angular/router';
+import { Token } from '../environment/environment';
 
 export const guardGuard: CanActivateFn = (route, state) => {
-  return true;
+  if(Token.token != ""){
+    return true
+  }
+  return false;
 };

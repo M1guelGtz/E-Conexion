@@ -39,7 +39,7 @@
     <a routerLink="/red/publicaciones/formpublicacion" class="text-green-600 mx-2 border-b border-green-600"> crea una</a>
 </div>
 <div *ngIf="publicaciones.length  > 0" class="w-full flex items-center px-5 h-full flex-col">
-    <div *ngFor="let publicacion of publicaciones" class="bg-white  shadow-lg rounded-xl p-5 border w-3/5">
+    <div *ngFor="let publicacion of publicaciones" class="bg-white shadow-lg rounded-xl p-5 border w-3/5">
         <app-card-publicacion [publicacion]="publicacion"></app-card-publicacion>
     </div>
 </div>
