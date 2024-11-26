@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Donacion } from '../../../../Interfaces/donacion';
 import { DonacionesService } from '../../../../servicios/donacion.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-donaciones',
@@ -11,7 +12,7 @@ export class DonacionesComponent implements OnInit {
   donaciones: Donacion[] = [];
   idUsuario: number = 0; 
 
-  constructor(private donacionesService: DonacionesService) {}
+  constructor(private donacionesService: DonacionesService , private title : Title) {}
 
   ngOnInit(): void {
     
@@ -23,6 +24,7 @@ export class DonacionesComponent implements OnInit {
     }
 
     this.obtenerDonacionesPorUsuario(this.idUsuario);
+    this.title.setTitle('Econexion | Donaciones')
   }
 
   obtenerDonacionesPorUsuario(idUsuario: number): void {

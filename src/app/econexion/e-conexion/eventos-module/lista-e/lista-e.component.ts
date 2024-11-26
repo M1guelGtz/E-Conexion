@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { EventosService } from '../../../../servicios/eventos.service';
 import { PerfilService } from '../../../../servicios/perfil.service';
-import { error } from 'console';
+
 
 @Component({
   selector: 'app-lista-e',

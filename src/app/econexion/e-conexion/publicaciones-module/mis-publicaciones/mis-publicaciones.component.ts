@@ -25,6 +25,5 @@ export class MisPublicacionesComponent implements OnInit {
       console.log("publicaciones", data);
     });
     
-    this.title.setTitle("Econexion | Mis Publicaciones");
   }
 }
