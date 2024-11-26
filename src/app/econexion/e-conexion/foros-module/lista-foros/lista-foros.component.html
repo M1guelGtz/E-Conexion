@@ -35,8 +35,9 @@
             <span class="shadow"></span>
         </div>
     </div>
-    Upss, aun no tienes eventos
-    <a routerLink="formeventos" class="text-green-600 mx-2 border-b border-green-600"> crea una</a>
+    Upss, aun no hay foros,
+    <a routerLink="formforos" class="text-green-600 mx-2 border-b border-green-600"> crea uno e invita a tus amigos</a>
+
 </div>
 <div *ngIf="_service_foro.listaForos.length  > 0" class="w-full flex items-center h-full flex-col">
     <div *ngFor="let foro of _service_foro.listaForos" class="bg-white  shadow-lg rounded-xl p-4 border w-3/5">

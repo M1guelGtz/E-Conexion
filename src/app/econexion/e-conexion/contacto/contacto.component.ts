@@ -46,15 +46,24 @@ export class ContactoComponent implements OnInit {
   }
 
   handleClickGoToChat(): void {
-    alert("Vamos al chat");
-
     forkJoin([
       this._service_chat.getUsHasChatById(this.contacto.id_usuario),
       this._service_chat.getUsHasChatById(this.myId)
     ]).subscribe(
       ([chatsContacto, chatsUsuario]) => {
-        const chatExistente = chatsContacto.find((chat1) =>
-          chatsUsuario.some((chat2) => chat1.chat_idchat === chat2.chat_idchat)
+        const chatExistente = chatsContacto.find((chat1) =>{
+          chatsUsuario.some((chat2) => {
+            chat1.chat_idchat === chat2.chat_idchat ? [ 
+              this._service_chat.getMyChatsById(chat1.chat_idchat).subscribe( (element) =>{
+                console.log(element);
+              })
+            ] : {}
+            
+          }
+          )
+
+        }
+        
         );
 
         if (chatExistente) {
