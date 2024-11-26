@@ -21,6 +21,7 @@ import { ListaEComponent } from './eventos-module/lista-e/lista-e.component';
 import path from 'path';
 import { ListaForosComponent } from './foros-module/lista-foros/lista-foros.component';
 import { MisForosComponent } from './foros-module/mis-foros/mis-foros.component';
+import { FormActulizarPerfilComponent } from './perfil/form-actulizar-perfil/form-actulizar-perfil.component';
 
 const routes: Routes = [
   {
@@ -87,8 +88,6 @@ const routes: Routes = [
         }
         ]
       },
-     
-      
       {
         path : "Donaciones",
         component : DonacionesComponent
@@ -124,6 +123,10 @@ const routes: Routes = [
       },{
         path: "perfil",
         component: MiPerfilComponent
+      },
+      {
+        path: "actualizar_perfil",
+        component: FormActulizarPerfilComponent
       }
     ]
   },
