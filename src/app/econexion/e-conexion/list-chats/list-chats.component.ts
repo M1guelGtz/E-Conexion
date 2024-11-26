@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ChatsService } from '../../../servicios/chats.service';
@@ -9,7 +9,7 @@ import { ContactosService } from '../../../servicios/contactos.service';
   templateUrl: './list-chats.component.html',
   styleUrl: './list-chats.component.css'
 })
-export class ListChatsComponent implements OnInit {
+export class ListChatsComponent implements OnInit, OnDestroy {
 
   constructor(private title: Title, private _user_service : ContactosService, private fb: FormBuilder, public _service_chat : ChatsService){}
 
@@ -24,7 +24,7 @@ export class ListChatsComponent implements OnInit {
         data.map( ( chats ) => {
           this._service_chat.getMyChatsById(chats.chat_idchat).subscribe( (chat) => {
             console.log(chat);
-            chat.grupal == false ? [this._service_chat.user_has_chat.push(chats), console.log("añadido a foros")]
+            chat.grupal == false ? [this._service_chat.user_has_chat.push(chats), console.log("Añdido a chats")]
             : ""
           },
         error => console.log(error)
@@ -34,5 +34,8 @@ export class ListChatsComponent implements OnInit {
       }, e => console.log(e)
       
     )
+  }
+  ngOnDestroy(): void {
+      this._service_chat.user_has_chat = []
   }
 }
