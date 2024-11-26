@@ -1,10 +1,17 @@
-<h1 class="w-full text-center text-[#61A146] text-4xl pb-5">Regístrate</h1>
+<h1 class="w-full border border-black/60 text-center flex justify-center items-center rounded-lg bg-white font-bold mb-5 text-[#61A146] text-4xl p-2">
+  Registrate en econexion
+  <img class="w-[75px]" src="LOGO.png" alt="">
+</h1>
+
 <form
-  [formGroup]="registroForm"
-  class="flex text-[#61A146] flex-col lg:flex-row flex-wrap rounded-xl justify-between p-5 bg-white border border-black"
-  (ngSubmit)="registrarUsuario()"
-  enctype="multipart/form-data"
+[formGroup]="registroForm"
+class="flex text-[#61A146] flex-col lg:flex-row flex-wrap rounded-xl justify-between px-5 bg-white border border-black"
+(ngSubmit)="registrarUsuario()"
+enctype="multipart/form-data"
 >
+<h1 class="w-full text-center flex justify-center items-center rounded-lg bg-white  my-5 text-[#61A146] text-2xl p-2">
+  Ingresa tus datos
+</h1>
   <!-- Nombre -->
   <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
     <span>Nombre:</span>
@@ -145,20 +152,22 @@
   </label>
 
   <!-- Foto de Perfil -->
-  <label class="my-2 lg:px-5 lg:w-1/2 flex flex-col">
+  <label class="my-2 lg:px-5 lg:w-full items-center justify-center flex flex-col">
     <span>Foto de perfil:</span>
-    <input
-      class="w-full  text-center border-2 rounded-lg border-[#BDE7AC] p-1"
+    <div class="w-full flex justify-center border-2 border-[#BDE7AC] ">
+      <input
+      class=" flex justify-center items-center  text-center file:bg-transparent file:border-none cursor-pointer rounded-lg p-5"
       type="file"
       (change)="onImagenSeleccionada($event)"
       accept="image/*"
-    />
+      />
+    </div>
   </label>
 
   <!-- Botón de Envío -->
    <div class="flex w-full justify-evenly">
   <button
-    class="p-3 my-5 text-white bg-green-600 rounded-lg w-[40%] hover:bg-green-700"
+    class="p-3 my-5 text-white bg-[#61A146] rounded-lg w-[40%] hover:bg-[#3a7122] "
     type="submit"
     >
     Crear usuario

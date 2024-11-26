@@ -24,11 +24,11 @@ export class FormularioLoginComponent {
       contrasena_usuario: ['', Validators.required]
     });
   }
-
+  cargando: boolean= false
   IniciarSesion() {
-    if (this.loginFormulario.valid) {
+    this.cargando= true
+    if (this.loginFormulario.valid) { 
       const credentials = this.loginFormulario.value;
-
       this.loginService.login(credentials).subscribe({
         next: (response) => {
           this.loginService.saveToken(response.access_token);
@@ -43,6 +43,10 @@ export class FormularioLoginComponent {
           this.showAlert = true;
         }
       });
+    }else{
+      console.log("complete todos los campos")
+      this.alerta = 'Por favor, complete todos los campos.';
+      this.showAlert = true
     }
   }
 
@@ -54,5 +58,6 @@ export class FormularioLoginComponent {
 
   closeAlert() {
     this.showAlert = false;
+    this.cargando= false
   }
 }

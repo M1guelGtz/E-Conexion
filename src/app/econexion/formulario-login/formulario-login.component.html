@@ -1,10 +1,54 @@
-<h1 class="w-full text-center rounded-lg bg-white font-bold my-5 text-[#61A146] text-4xl p-5">
-  Iniciar sesión
-</h1>
 
+<div class="w-full flex text-center items-center justify-center flex-col h-full" *ngIf="cargando">
+  <div class="container">
+      <div class="tree">
+          <div class="branch" style="--x:0">
+            <span style="--i:0;"></span>
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"></span>
+          </div>
+          <div class="branch" style="--x:1">
+            <span style="--i:0;"></span>
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"></span>
+          </div>
+          <div class="branch" style="--x:2">
+            <span style="--i:0;"></span>
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"></span>
+          </div>
+          <div class="branch" style="--x:3">
+            <span style="--i:0;"></span>
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"></span>
+          </div>
+          <div class="stem">
+            <span style="--i:0;"></span>
+            <span style="--i:1;"></span>
+            <span style="--i:2;"></span>
+            <span style="--i:3;"></span>
+          </div>
+          <span class="shadow"></span>
+      </div>
+  </div>
+  Cargando....
+
+</div>
+<div *ngIf="!cargando">
+  <div class="w-full flex justify-center">
+  </div>
+  
+  <h1 class="w-full text-center flex justify-center items-center rounded-lg bg-white font-bold my-5 text-[#61A146] text-4xl p-5">
+    Iniciar sesión
+    <img class="w-[75px]" src="LOGO.png" alt="">
+  </h1>
 <form
   [formGroup]="loginFormulario"
-  class="flex text-[#61A146] flex-col justify-between w-[100%] h-[350px] p-5 bg-white border border-black rounded-lg"
+  class="flex text-[#61A146] flex-col justify-between w-[100%] h-[350px]  p-5 bg-white border border-black rounded-lg"
   (ngSubmit)="IniciarSesion()"
 >
   <label for="email">
@@ -63,4 +107,5 @@
     <div class="text-red-500 text-7xl mb-4">!</div>
     <button (click)="closeAlert()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Aceptar</button>
   </div>
+</div>
 </div>
